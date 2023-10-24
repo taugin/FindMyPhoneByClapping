@@ -33,4 +33,7 @@
     <string name="yes">YES</string>
     <string name="exit_dialog">EXIT </string>
     <string name="EXITorNO">Are you sure you want to exit?</string>
+    <string name="exit_message">Are you sure to exit ?</string>
+    <string name="exit_later">Exit Later</string>
+    <string name="tap_to_exit">Tap to Exit</string>
 </resources>

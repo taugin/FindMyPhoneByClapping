@@ -71,8 +71,9 @@
         android:layout_gravity="bottom"
         android:layout_marginBottom="5dp"
         android:layout_marginHorizontal="4dp"
-        android:layout_height="wrap_content">
-        <include layout="@layout/full_native_container" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+<!--        <include layout="@layout/full_native_container" />-->
     </LinearLayout>
 
 

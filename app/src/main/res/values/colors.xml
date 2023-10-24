@@ -11,4 +11,8 @@
     <color name="gray">#B32A3135</color>
     <color name="transparent">#00000000</color>
     <color name="gray_light">#8F9BB3</color>
+
+    <color name="large_file_clean_btn_disable">#C6C6C6</color>
+    <color name="color_common_btn">#239CFA</color>
+    <color name="color_common_btn_pressed">#88239CFA</color>
 </resources>

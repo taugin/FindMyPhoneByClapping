@@ -326,8 +326,9 @@
                 android:id="@+id/native_ad_large"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="4dp"
-                android:layout_height="wrap_content">
-                <include layout="@layout/full_native_container" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+<!--                <include layout="@layout/full_native_container" />-->
             </LinearLayout>
 
 

@@ -44,9 +44,10 @@
             <LinearLayout
                 android:id="@+id/native_ad_big"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <include layout="@layout/full_native_container" />
+<!--                <include layout="@layout/full_native_container" />-->
             </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
@@ -172,8 +173,9 @@
         android:id="@+id/native_ad_small"
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
-        android:layout_height="wrap_content">
-        <include layout="@layout/small_native_container" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+<!--        <include layout="@layout/small_native_container" />-->
     </LinearLayout>
 
 

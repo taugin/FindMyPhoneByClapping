@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.clapping.find.phone"
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -23,7 +24,7 @@
 
 
     <application
-        android:name=".SingletonClasses.MyApplication"
+        android:name=".app.MyApplication"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -60,7 +61,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.Intro1Activity"
+            android:name=".ui.IntroTwoActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -68,7 +69,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.IntroActivity"
+            android:name=".ui.IntroOneActivity"
             android:exported="false"
             android:screenOrientation="portrait">
 

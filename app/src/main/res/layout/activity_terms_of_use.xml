@@ -239,8 +239,9 @@
             android:id="@+id/native_ad0"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content">
-            <include layout="@layout/small_native_container" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+<!--            <include layout="@layout/small_native_container" />-->
         </LinearLayout>
 
 
