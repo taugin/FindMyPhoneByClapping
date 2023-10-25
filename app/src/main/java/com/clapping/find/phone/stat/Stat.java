@@ -42,9 +42,6 @@ public class Stat {
             // 场景类型设置接口
             MobclickAgent.setCatchUncaughtExceptions(true);
             MobclickAgent.setPageCollectionMode(MobclickAgent.PageMode.LEGACY_MANUAL);
-//            if (RCManager.isGclicUser(context)) {
-//                Sync.createSyncAccount(context);
-//            }
         }
     }
 

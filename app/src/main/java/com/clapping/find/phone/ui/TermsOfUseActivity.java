@@ -6,9 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
-import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityTermsOfUseBinding;
 import com.clapping.find.phone.stat.Stat;
@@ -20,7 +18,7 @@ public class TermsOfUseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_terms_of_use);
+        binding = ActivityTermsOfUseBinding.inflate(getLayoutInflater());
         AdHelper.showBroccoli(binding.adIncludeLayout);
         AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_terms_of_use");
         type = getIntent().getIntExtra("type", 0);

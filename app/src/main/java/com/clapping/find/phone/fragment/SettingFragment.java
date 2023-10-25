@@ -18,7 +18,6 @@ import android.view.ViewGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.clapping.find.phone.R;
@@ -36,7 +35,7 @@ public class SettingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
+        binding = FragmentSettingBinding.inflate(getLayoutInflater());
         AdHelper.showBroccoli(binding.adIncludeLayout);
         AdHelper.loadAndShowNative(getActivity(), binding.nativeAd0, "tiny", "sn_settings_fragment");
         String ringtoneUriStr = getPreference("ringtone_Name");

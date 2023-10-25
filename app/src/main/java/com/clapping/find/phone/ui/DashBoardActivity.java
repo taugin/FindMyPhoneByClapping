@@ -207,7 +207,6 @@ public class DashBoardActivity extends AppCompatActivity {
         intent.putExtra("fragmentClass", fragmentClass.getName());
         intent.putExtra("iconResourceId", iconResourceId);
         startActivity(intent);
-        finish();
     }
 
     private void share() {

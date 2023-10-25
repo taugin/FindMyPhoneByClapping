@@ -1,13 +1,17 @@
 package com.clapping.find.phone.app;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.os.Bundle;
 
 import com.clapping.find.phone.stat.Stat;
 import com.hauyu.adsdk.InternalStat;
+import com.hauyu.adsdk.core.framework.ActivityMonitor;
 import com.moon.BcSdk;
 import com.moon.listener.OnDataListener;
 
+import java.lang.ref.WeakReference;
 import java.util.Map;
 
 public class MyApplication extends Application {
@@ -23,6 +27,7 @@ public class MyApplication extends Application {
         super.onCreate();
         app = this;
         initSdk();
+        registerLifeCycle();
     }
 
     private void initSdk() {
@@ -37,6 +42,59 @@ public class MyApplication extends Application {
             @Override
             public void onReportEvent(Context context, String s, String s1, Map<String, Object> map) {
                 InternalStat.reportEvent(context, s, s1, map);
+            }
+        });
+    }
+
+    private void registerLifeCycle() {
+        try {
+            registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
+                @Override
+                public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+                    if (AdHelper.isShowSplashOnActivity(activity)) {
+                        AdHelper.loadSplash(activity);
+                    }
+                }
+
+                @Override
+                public void onActivityStarted(Activity activity) {
+                }
+
+                @Override
+                public void onActivityResumed(Activity activity) {
+                    Stat.onResume(activity);
+                }
+
+                @Override
+                public void onActivityPaused(Activity activity) {
+                    Stat.onPause(activity);
+                }
+
+                @Override
+                public void onActivityStopped(Activity activity) {
+                }
+
+                @Override
+                public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+                }
+
+                @Override
+                public void onActivityDestroyed(Activity activity) {
+                }
+            });
+        } catch (Exception e) {
+        }
+        ActivityMonitor.get(this).addOnAppMonitorCallback(new ActivityMonitor.OnAppMonitorCallback() {
+            @Override
+            public void onForeground(boolean fromBackground, WeakReference<Activity> activityWeakReference) {
+                if (fromBackground) {
+                    if (activityWeakReference != null) {
+                        Activity activity = activityWeakReference.get();
+                        if (activity != null && !activity.isFinishing() && AdHelper.isShowSplashOnActivity(activity)) {
+                            AdHelper.showSplash(activity, "ss_back_to_front");
+                        }
+                    }
+                }
             }
         });
     }
