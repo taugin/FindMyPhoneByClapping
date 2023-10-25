@@ -25,14 +25,9 @@ import me.samlss.broccoli.PlaceholderParameter;
 public class AdHelper {
     public static final String PID_SPLASH_COMMON = "common_splash";
     public static final String PID_INT_COMMON = "common_int";
-    private static final String PID_NATIVE_COMMON = "common_native";
     private static final String PID_INT_COMMON_SLAVE = "common_int_slave";
-
-    public static final int AD_LEVEL_LOW = 1;
-    public static final int AD_LEVEL_MEDIUM = 2;
-    public static final int AD_LEVEL_HIGH = 3;
-
-    private static int sAdLevel = AD_LEVEL_LOW;
+    private static final String PID_NATIVE_COMMON = "common_native";
+    private static final String PID_NATIVE_COMMON_SLAVE = "common_native_slave";
 
     public static void init(Context context) {
         AdSdk.get(context).setOnAdEventListener(new OnAdEventListener() {
@@ -112,6 +107,7 @@ public class AdHelper {
 
     public static void loadNative(Context context) {
         AdSdk.get(context).loadAdView(PID_NATIVE_COMMON);
+        AdSdk.get(context).loadAdView(PID_NATIVE_COMMON_SLAVE);
     }
 
     public static boolean isNativeLoaded(Context context) {
@@ -119,7 +115,7 @@ public class AdHelper {
     }
 
     public static void loadAndShowNativeSlave(Context context, ViewGroup viewGroup, String cardStyle, String sceneName) {
-        AdSdk.get(context).loadAdView(PID_INT_COMMON_SLAVE, new SimpleAdSdkListener() {
+        AdSdk.get(context).loadAdView(PID_NATIVE_COMMON_SLAVE, new SimpleAdSdkListener() {
             @Override
             public void onLoaded(String placeName, String source, String adType, String pid) {
                 if (!(context instanceof Activity) || !((Activity) context).isFinishing()) {
@@ -193,7 +189,69 @@ public class AdHelper {
         return AdSdk.get(context).getString(key);
     }
 
-    public static int getAdLevel() {
-        return sAdLevel;
+    public static void showSplashCallback(Context context, Runnable runnable) {
+        String maxPlace = getMaxSplash(context);
+        if (!TextUtils.isEmpty(maxPlace)) {
+            AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
+                @Override
+                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+
+                @Override
+                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+            }, true);
+            AdSdk.get(context).showSplash(maxPlace);
+        } else {
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+    }
+
+    public static void showInterstitialCallback(Context context, Runnable runnable) {
+        showInterstitialCallback(context, null, runnable);
+    }
+
+    private static List<String> sIgnoreShowIntTag = Arrays.asList("navigation_bottom_find", "navigation_bottom_settings");
+
+    public static void showInterstitialCallback(Context context, String tag, Runnable runnable) {
+        if (!RCManager.isAdUser(context) && !TextUtils.isEmpty(tag) && sIgnoreShowIntTag.contains(tag)) {
+            runnable.run();
+            return;
+        }
+        String maxPlace = getMaxInterstitial(context);
+        if (!TextUtils.isEmpty(maxPlace)) {
+            AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
+                @Override
+                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+
+                @Override
+                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                }
+            }, true);
+            AdSdk.get(context).showInterstitial(maxPlace);
+        } else {
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
     }
 }

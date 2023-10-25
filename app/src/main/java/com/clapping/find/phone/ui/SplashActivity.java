@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.clapping.find.phone.R;
+import com.clapping.find.phone.app.AdHelper;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -14,7 +15,14 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        loadAds();
         openActivity();
+    }
+
+    private void loadAds() {
+        AdHelper.loadSplash(this);
+        AdHelper.loadAllInterstitial(this);
+        AdHelper.loadNative(this);
     }
 
     private void openActivity() {

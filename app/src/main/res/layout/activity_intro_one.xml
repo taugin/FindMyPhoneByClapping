@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/onboarding_background"
     android:orientation="vertical">
 
@@ -111,12 +112,13 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="8dp"
+        app:contentPadding="4dp"
         android:layout_weight="0"
         android:orientation="horizontal">
 
         <include
             android:id="@+id/ad_include_layout"
-            layout="@layout/rab_card_small" />
+            layout="@layout/rab_card_tiny" />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

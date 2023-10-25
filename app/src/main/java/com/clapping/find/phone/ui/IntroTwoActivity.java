@@ -17,7 +17,7 @@ public class IntroTwoActivity extends AppCompatActivity {
         ActivityIntroTwoBinding binding = ActivityIntroTwoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         AdHelper.showBroccoli(binding.adIncludeLayout);
-        AdHelper.loadAndShowNative(this, binding.nativeAd0, "small", "sn_intro_two");
+        AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_intro_two");
         binding.txtNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

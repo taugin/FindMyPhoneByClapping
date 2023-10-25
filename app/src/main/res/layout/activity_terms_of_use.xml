@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:background="@color/white">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_above="@+id/native_ad0"
+            android:layout_centerInParent="true"
             android:layout_gravity="top"
             android:gravity="top"
-            android:layout_above="@+id/native_ad0"
-            android:paddingTop="8dp"
-            android:paddingHorizontal="16dp"
-            android:layout_centerInParent="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_above="@+id/relbtn"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp">
 
                 <TextView
                     android:id="@+id/title"
@@ -32,17 +33,17 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:textSize="20dp"
                     android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
                     android:text="@string/terms_of_use_cap"
                     android:textAppearance="@style/TextAppearance.MyApp.Headline5"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:scrollbars="none"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:scrollbars="none">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -54,12 +55,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins"
                             android:padding="5dp"
                             android:text="@string/android_apps_is_warning_you_about_the_app_that_gives_you_many_services_and_important_information_for_safer_and_efficient_use"
                             android:textAppearance="@style/TextAppearance.MyApp.Body2"
-                            android:fontFamily="@font/poppins"
-                            android:textColor="@color/black"
-                            />
+                            android:textColor="@color/black" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -78,10 +78,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="@string/by_pressing_the_accept_button_i_declare_i_have_read_and_accepted_the_following_condition_of_use"
                                 android:textAppearance="@style/TextAppearance.MyApp.Body2"
-                                android:fontFamily="@font/poppins"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -101,10 +101,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="@string/if_we_find_the_app_is_being_used_outside_its_terms_of_use_we_may_restrict_access_to_it"
                                 android:textAppearance="@style/TextAppearance.MyApp.Body2"
-                                android:fontFamily="@font/poppins"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -124,10 +124,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="@string/any_type_of_modification_to_the_app_or_its_components_is_not_allowed"
                                 android:textAppearance="@style/TextAppearance.MyApp.Body2"
-                                android:fontFamily="@font/poppins"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -147,10 +147,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="@string/privacy_policy_may_be_updated_from_time_to_time_for_any_reason_we_will_notify_you_of_any_changes_to_our_privacy_policy_by_posting_the_new_privacy_policy_here"
                                 android:textAppearance="@style/TextAppearance.MyApp.Body2"
-                                android:fontFamily="@font/poppins"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/black" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -170,9 +170,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:fontFamily="@font/poppins"
                                 android:text="@string/we_do_not_share_any_kind_of_your_personal_data_with_third_parties"
                                 android:textAppearance="@style/TextAppearance.MyApp.Body2"
-                                android:fontFamily="@font/poppins"
                                 android:textColor="@color/black" />
                         </LinearLayout>
 
@@ -189,8 +189,8 @@
                             android:id="@+id/privacyPolicyTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="6dp"
                             android:fontFamily="@font/poppins_bold"
+                            android:padding="6dp"
                             android:text="@string/privacy_policy_tv"
                             android:textColor="@color/app_color" />
 
@@ -198,9 +198,9 @@
                             android:id="@+id/termsConditionsTV"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="6dp"
                             android:layout_marginBottom="20dp"
                             android:fontFamily="@font/poppins_bold"
+                            android:padding="6dp"
                             android:text="@string/terms_conditions"
                             android:textColor="@color/app_color" />
 
@@ -214,8 +214,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -223,26 +221,40 @@
                     android:id="@+id/tvText"
                     android:layout_width="250dp"
                     android:layout_height="40dp"
-                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="I Agree"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#2A3135"
-                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:text="I Agree"
                     android:textColor="@color/white"
-                    />
+                    android:textStyle="bold" />
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="#880000FF" />
             </LinearLayout>
         </RelativeLayout>
-        <LinearLayout
+
+        <androidx.cardview.widget.CardView
             android:id="@+id/native_ad0"
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-<!--            <include layout="@layout/small_native_container" />-->
-        </LinearLayout>
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:contentPadding="4dp">
+
+            <include
+                android:id="@+id/ad_include_layout"
+                layout="@layout/rab_card_tiny" />
+        </androidx.cardview.widget.CardView>
 
 
     </RelativeLayout>

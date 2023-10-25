@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.clapping.find.phone.R;
+import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityMainBinding;
 import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.fragment.SettingFragment;
@@ -59,36 +60,46 @@ public class MainActivity extends AppCompatActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.phoneFinderll.setBackground(pressedBackground);
-                binding.settingLl.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyLl.setBackground(defaultBackground);
-                binding.privacyPolicyLl.setBackground(defaultBackground);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
-                fragmentTransaction.commit();
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.phoneFinderll.setBackground(pressedBackground);
+                        binding.settingLl.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyLl.setBackground(defaultBackground);
+                        binding.privacyPolicyLl.setBackground(defaultBackground);
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
+                        fragmentTransaction.commit();
                   /*  binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
                     binding.findTxt.setTextColor(getResources().getColor(R.color.app_color));
                     binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
                     binding.settingTxt.setTextColor(getResources().getColor(R.color.gray_light));*/
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                    }
+                });
             }
         });
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.settingLl.setBackground(pressedBackground);
-                binding.phoneFinderll.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyLl.setBackground(defaultBackground);
-                binding.privacyPolicyLl.setBackground(defaultBackground);
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.settingLl.setBackground(pressedBackground);
+                        binding.phoneFinderll.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyLl.setBackground(defaultBackground);
+                        binding.privacyPolicyLl.setBackground(defaultBackground);
                    /* binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
                     binding.settingTxt.setTextColor(getResources().getColor(R.color.app_color));
                     binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
                     binding.findTxt.setTextColor(getResources().getColor(R.color.gray_light));*/
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                    }
+                });
             }
         });
         binding.referLl.setOnClickListener(new View.OnClickListener() {
@@ -106,47 +117,67 @@ public class MainActivity extends AppCompatActivity {
         binding.privacyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.privacyLl.setBackground(pressedBackground);
-                binding.phoneFinderll.setBackground(defaultBackground);
-                binding.settingLl.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(MainActivity.this, NewPrivacyPolicyActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.privacyLl.setBackground(pressedBackground);
+                        binding.phoneFinderll.setBackground(defaultBackground);
+                        binding.settingLl.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyPolicyLl.setBackground(defaultBackground);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        startActivity(new Intent(MainActivity.this, NewPrivacyPolicyActivity.class));
+                    }
+                });
             }
         });
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.privacyPolicyLl.setBackground(pressedBackground);
-                binding.phoneFinderll.setBackground(defaultBackground);
-                binding.settingLl.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(MainActivity.this, TermsConditionsActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.privacyPolicyLl.setBackground(pressedBackground);
+                        binding.phoneFinderll.setBackground(defaultBackground);
+                        binding.settingLl.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyLl.setBackground(defaultBackground);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        startActivity(new Intent(MainActivity.this, TermsConditionsActivity.class));
+                    }
+                });
             }
         });
         binding.findLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
-                binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
-                fragmentTransaction.commit();
+                AdHelper.showInterstitialCallback(getApplicationContext(), "navigation_bottom_find", new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
+                        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
+                        fragmentTransaction.commit();
+                    }
+                });
             }
         });
         binding.settingsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
-                binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new SettingFragment());
-                fragmentTransaction.commit();
+                AdHelper.showInterstitialCallback(getApplicationContext(), "navigation_bottom_settings", new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
+                        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
+                        FragmentManager fragmentManager = getSupportFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                        fragmentTransaction.replace(R.id.fragment_container, new SettingFragment());
+                        fragmentTransaction.commit();
+                    }
+                });
             }
         });
 
@@ -296,9 +327,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
-            if (!Settings.canDrawOverlays(this)) {
-                checkPermission();
-            } else {
+            if (Settings.canDrawOverlays(this)) {
                 SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
                 editor.putBoolean("switch", true);
                 editor.apply();

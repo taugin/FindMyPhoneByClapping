@@ -25,8 +25,8 @@ import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.clapping.find.phone.R;
-import com.clapping.find.phone.databinding.ActivityDashBoardBinding;
 import com.clapping.find.phone.app.AdHelper;
+import com.clapping.find.phone.databinding.ActivityDashBoardBinding;
 import com.clapping.find.phone.dialog.ExitDialog;
 import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.remote.RCManager;
@@ -38,7 +38,6 @@ public class DashBoardActivity extends AppCompatActivity {
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.CAMERA
     };
-    int valueOpenActivity = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,25 +71,35 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.phoneFinderll.setBackground(pressedBackground);
-                binding.settingLl.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyLl.setBackground(defaultBackground);
-                binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                navigateToMainActivityWithFragment(FindFragment.class, R.drawable.find_selector);
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.phoneFinderll.setBackground(pressedBackground);
+                        binding.settingLl.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyLl.setBackground(defaultBackground);
+                        binding.privacyPolicyLl.setBackground(defaultBackground);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        navigateToMainActivityWithFragment(FindFragment.class, R.drawable.find_selector);
+                    }
+                });
             }
         });
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.settingLl.setBackground(pressedBackground);
-                binding.phoneFinderll.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyLl.setBackground(defaultBackground);
-                binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(DashBoardActivity.this, SettingActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.settingLl.setBackground(pressedBackground);
+                        binding.phoneFinderll.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyLl.setBackground(defaultBackground);
+                        binding.privacyPolicyLl.setBackground(defaultBackground);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        startActivity(new Intent(DashBoardActivity.this, SettingActivity.class));
+                    }
+                });
             }
         });
         binding.referLl.setOnClickListener(new View.OnClickListener() {
@@ -103,50 +112,73 @@ public class DashBoardActivity extends AppCompatActivity {
                 binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
                 share();
-
             }
         });
         binding.privacyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.privacyLl.setBackground(pressedBackground);
-                binding.phoneFinderll.setBackground(defaultBackground);
-                binding.settingLl.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
-
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.privacyLl.setBackground(pressedBackground);
+                        binding.phoneFinderll.setBackground(defaultBackground);
+                        binding.settingLl.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyPolicyLl.setBackground(defaultBackground);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
+                    }
+                });
             }
         });
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.privacyPolicyLl.setBackground(pressedBackground);
-                binding.phoneFinderll.setBackground(defaultBackground);
-                binding.settingLl.setBackground(defaultBackground);
-                binding.referLl.setBackground(defaultBackground);
-                binding.privacyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
-                startActivity(new Intent(getApplicationContext(), TermsConditionsActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        binding.privacyPolicyLl.setBackground(pressedBackground);
+                        binding.phoneFinderll.setBackground(defaultBackground);
+                        binding.settingLl.setBackground(defaultBackground);
+                        binding.referLl.setBackground(defaultBackground);
+                        binding.privacyLl.setBackground(defaultBackground);
+                        binding.drawer.closeDrawer(Gravity.LEFT);
+                        startActivity(new Intent(getApplicationContext(), TermsConditionsActivity.class));
+                    }
+                });
             }
         });
         binding.start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                });
             }
         });
         binding.settingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getApplicationContext(), SettingActivity.class));
+                    }
+                });
             }
         });
         binding.privacyScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
+                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
+                    }
+                });
             }
         });
         binding.shareScreen.setOnClickListener(new View.OnClickListener() {
@@ -169,8 +201,6 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     public void startCLick(View view) {
-
-
         if (ContextCompat.checkSelfPermission(DashBoardActivity.this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED
                 &&
@@ -203,8 +233,6 @@ public class DashBoardActivity extends AppCompatActivity {
 
             }
         }
-
-
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
