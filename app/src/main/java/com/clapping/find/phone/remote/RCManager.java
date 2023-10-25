@@ -184,4 +184,8 @@ public class RCManager {
     public static boolean isShowOpenSplash(Context context) {
         return isGclicUser(context) && getBooleanValue("show_open_splash", true);
     }
+
+    public static boolean isShowIntroInt(Context context) {
+        return isAdUser(context) && getBooleanValue("show_intro_int", true);
+    }
 }

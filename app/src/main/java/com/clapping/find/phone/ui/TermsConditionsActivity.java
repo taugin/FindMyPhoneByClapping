@@ -4,13 +4,16 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityTermsConditionsBinding;
+import com.clapping.find.phone.remote.RCManager;
 
 public class TermsConditionsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         ActivityTermsConditionsBinding binding = ActivityTermsConditionsBinding.inflate(getLayoutInflater());
 
         setContentView(binding.getRoot());
@@ -25,5 +28,19 @@ public class TermsConditionsActivity extends AppCompatActivity {
                 "\n" +
                 "\n";
         binding.textView.setText(termsConditions);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (RCManager.isAdUser(this)) {
+            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                @Override
+                public void run() {
+                    TermsConditionsActivity.super.onBackPressed();
+                }
+            });
+        } else {
+            TermsConditionsActivity.super.onBackPressed();
+        }
     }
 }

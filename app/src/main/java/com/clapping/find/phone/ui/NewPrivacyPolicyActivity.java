@@ -4,13 +4,16 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityNewPrivacyPolicyBinding;
+import com.clapping.find.phone.remote.RCManager;
 
 public class NewPrivacyPolicyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         ActivityNewPrivacyPolicyBinding binding = ActivityNewPrivacyPolicyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -64,5 +67,19 @@ public class NewPrivacyPolicyActivity extends AppCompatActivity {
                 "If you have concerns or questions about changes to a privacy policy, it's important to carefully review the updated policy and reach out to us directly for clarification.\n\n";
 
         binding.textView.setText(privacyPolicy);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (RCManager.isAdUser(this)) {
+            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                @Override
+                public void run() {
+                    NewPrivacyPolicyActivity.super.onBackPressed();
+                }
+            });
+        } else {
+            NewPrivacyPolicyActivity.super.onBackPressed();
+        }
     }
 }

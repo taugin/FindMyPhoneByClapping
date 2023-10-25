@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityIntroTwoBinding;
+import com.clapping.find.phone.remote.RCManager;
 
 public class IntroTwoActivity extends AppCompatActivity {
 
@@ -21,7 +22,16 @@ public class IntroTwoActivity extends AppCompatActivity {
         binding.txtNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), TermsOfUseActivity.class));
+                if (RCManager.isShowIntroInt(getApplicationContext())) {
+                    AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                        @Override
+                        public void run() {
+                            startActivity(new Intent(getApplicationContext(), TermsOfUseActivity.class));
+                        }
+                    });
+                } else {
+                    startActivity(new Intent(getApplicationContext(), TermsOfUseActivity.class));
+                }
             }
         });
     }

@@ -25,13 +25,13 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityMainBinding;
 import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.fragment.SettingFragment;
+import com.clapping.find.phone.remote.RCManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    public Intent intent;
     List<Intent> POWERMANAGER_INTENTS = new ArrayList<Intent>();
 
     String b, b2;
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         Drawable defaultBackground = new ColorDrawable(Color.TRANSPARENT);
@@ -149,33 +150,23 @@ public class MainActivity extends AppCompatActivity {
         binding.findLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), "navigation_bottom_find", new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
-                        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
-                        fragmentTransaction.commit();
-                    }
-                });
+                binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
+                binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
+                fragmentTransaction.commit();
             }
         });
         binding.settingsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), "navigation_bottom_settings", new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
-                        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, new SettingFragment());
-                        fragmentTransaction.commit();
-                    }
-                });
+                binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
+                binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragment_container, new SettingFragment());
+                fragmentTransaction.commit();
             }
         });
 
@@ -288,7 +279,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-        intent = new Intent(this, DetectionService.class);
+        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
+        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
     }
 
     @TargetApi(Build.VERSION_CODES.Q)
@@ -306,7 +298,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        MainActivity.super.onBackPressed();
+        if (RCManager.isAdUser(this)) {
+            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                @Override
+                public void run() {
+                    MainActivity.super.onBackPressed();
+                }
+            });
+        } else {
+            MainActivity.super.onBackPressed();
+        }
     }
 
     public boolean setPreference(String key, String value) {

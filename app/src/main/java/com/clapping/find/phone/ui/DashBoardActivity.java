@@ -37,6 +37,7 @@ public class DashBoardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         AdHelper.showBroccoli(binding.adIncludeLayoutTiny);

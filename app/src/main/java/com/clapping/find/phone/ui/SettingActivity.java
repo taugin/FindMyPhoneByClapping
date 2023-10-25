@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivitySettingBinding;
+import com.clapping.find.phone.remote.RCManager;
 
 public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding binding;
@@ -28,6 +29,7 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         AdHelper.showBroccoli(binding.adIncludeLayout);
@@ -185,6 +187,15 @@ public class SettingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        SettingActivity.super.onBackPressed();
+        if (RCManager.isAdUser(this)) {
+            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                @Override
+                public void run() {
+                    SettingActivity.super.onBackPressed();
+                }
+            });
+        } else {
+            SettingActivity.super.onBackPressed();
+        }
     }
 }
