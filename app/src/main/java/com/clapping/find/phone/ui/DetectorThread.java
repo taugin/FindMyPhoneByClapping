@@ -1,8 +1,8 @@
 package com.clapping.find.phone.ui;
 
 import android.media.AudioRecord;
-import android.util.Log;
 
+import com.clapping.find.phone.log.Log;
 import com.musicg.api.ClapApi;
 import com.musicg.api.WhistleApi;
 import com.musicg.wave.WaveHeader;
@@ -10,6 +10,8 @@ import com.musicg.wave.WaveHeader;
 import java.util.LinkedList;
 
 public class DetectorThread extends Thread {
+
+
     private volatile Thread _thread;
     private int numWhistles;
     private int numClaps;
@@ -92,7 +94,7 @@ public class DetectorThread extends Thread {
                     }
 
                     if (this.numWhistles >= this.whistlePassScore) {
-                        Log.e("Sound", "Detected");
+                        Log.iv(DetectionService.TAG, "Detected clapValue : " + clapValue);
                         initBuffer();
                         if(clapValue.equals("ON")) {
                             onWhistleDetected();
@@ -100,7 +102,7 @@ public class DetectorThread extends Thread {
                     }
 
                     if (this.numClaps >= this.clapPassScore) {
-                        Log.e("Sound", "Detected");
+                        Log.iv(DetectionService.TAG, "Detected clapValue : " + clapValue);
                         initBuffer();
                         if(clapValue.equals("YES")) {
                             onWhistleDetected();
@@ -125,7 +127,7 @@ public class DetectorThread extends Thread {
     }
 
     private void onClapDetected() {
-        Log.d("TAG", "onClapDetected: ");
+        Log.iv(DetectionService.TAG, "onClapDetected: ");
     }
 
     private void onWhistleDetected() {

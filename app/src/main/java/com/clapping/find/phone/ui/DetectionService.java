@@ -45,6 +45,7 @@ import java.util.TimerTask;
 import java.util.TreeMap;
 
 public class DetectionService extends Service implements OnSignalsDetectedListener {
+    public static final String TAG = "DetectionService";
     private static final String PREFS_NAME = "PREFS";
     public int DETECT_NONE = 0;
     public int DETECT_WHISTLE = 1;
@@ -254,11 +255,14 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
             // Single clap detected, reset the double clap flag
             isDoubleClap = false;
         }
-
+        Log.iv(TAG, "isDoubleClap : " + isDoubleClap);
         if (isDoubleClap) {
-            if (getPreference("startButton").equals("YES")) {
-
-                if (getPreference("ring").equals("YES")) {
+            String startStatus = getPreference("startButton");
+            Log.iv(TAG, "startStatus : " + startStatus);
+            if ("YES".equals(startStatus)) {
+                String ringStatus = getPreference("ring");
+                Log.iv(TAG, "ringStatus : " + ringStatus);
+                if ("YES".equals(ringStatus)) {
                     Uri ringtoneUri = Uri.parse(getPreference("ringtone_Name"));
                     if (ringtoneUri == null) {
                         ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
@@ -270,9 +274,7 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                         mediaPlayer.setAudioStreamType(AudioManager.STREAM_RING);
                         mediaPlayer.prepare();
                         mediaPlayer.start();
-
                         Thread.sleep(3000); // Adjust the delay as needed
-
                         // Stop the media player and release resources
                         mediaPlayer.stop();
                         mediaPlayer.reset();
@@ -280,27 +282,11 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                     } catch (IOException | InterruptedException e) {
                         e.printStackTrace();
                     }
-             /*   Uri parse = Uri.parse(getPreference("ringtone_Name"));
-                this.ringtone = RingtoneManager.getRingtone(getApplicationContext(), parse);
-                if (parse == null && (parse = RingtoneManager.getDefaultUri(2)) == null) {
-                    parse = RingtoneManager.getDefaultUri(1);
-                }
-                Ringtone ringtone2 = RingtoneManager.getRingtone(getApplicationContext(), parse);
-                this.ringtone = ringtone2;
-                ringtone2.setStreamType(4);
-                if (this.ringtone != null) {
-                    Log.d("Test", "played");
-                    this.ringtone.play();
-                }
-                try {
-                    Thread.sleep(3000);
-                    stopRinging();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }*/
                 }
 
-                if (getPreference("vibration").equals("YES")) {
+                String vibrationStatus = getPreference("vibration");
+                Log.iv(TAG, "vibrationStatus : " + vibrationStatus);
+                if ("YES".equals(vibrationStatus)) {
                     // Inside your method
                     if (!isVibrating) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -324,17 +310,10 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                             handler.postDelayed(runnable, 5000); // 5000 milliseconds = 5 seconds
                         }
                     }
-
-               /* Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-                long j = this.vib_value;
-                long[] jArr = {3000, j, 50, j, 50, j};
-                if (Build.VERSION.SDK_INT >= 26) {
-                    vibrator.vibrate(VibrationEffect.createWaveform(jArr, -1));
-                } else {
-                    vibrator.vibrate(jArr, -1);
-                }*/
                 }
-                if (getPreference("flash").equals("YES")) {
+                String flashStatus = getPreference("flash");
+                Log.iv(TAG, "flashStatus : " + flashStatus);
+                if ("YES".equals(flashStatus)) {
                     new Thread() {
                         public void run() {
                             try {
