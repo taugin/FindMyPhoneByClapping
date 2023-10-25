@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "433927659191",
+    "project_id": "claptofindmyphone-fa016",
+    "storage_bucket": "claptofindmyphone-fa016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:433927659191:android:f9f7624e5136b208bf7732",
+        "android_client_info": {
+          "package_name": "com.clap.find.tool.myphone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-DQ3JUlYN0ucKEx4MOeSrx45K-M2XHQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

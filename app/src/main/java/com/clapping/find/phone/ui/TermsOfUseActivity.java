@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityTermsOfUseBinding;
+import com.clapping.find.phone.stat.Stat;
 
 public class TermsOfUseActivity extends AppCompatActivity {
     ActivityTermsOfUseBinding binding;
@@ -26,7 +27,7 @@ public class TermsOfUseActivity extends AppCompatActivity {
         binding.privacyPolicyTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
+                Stat.openPrivacyPolicy(getApplicationContext());
             }
         });
 

@@ -30,6 +30,7 @@ import com.clapping.find.phone.databinding.ActivityDashBoardBinding;
 import com.clapping.find.phone.dialog.ExitDialog;
 import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.stat.Stat;
 
 public class DashBoardActivity extends AppCompatActivity {
     ActivityDashBoardBinding binding;
@@ -109,18 +110,13 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.privacyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.privacyLl.setBackground(pressedBackground);
-                        binding.phoneFinderll.setBackground(defaultBackground);
-                        binding.settingLl.setBackground(defaultBackground);
-                        binding.referLl.setBackground(defaultBackground);
-                        binding.privacyPolicyLl.setBackground(defaultBackground);
-                        binding.drawer.closeDrawer(Gravity.LEFT);
-                        startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
-                    }
-                });
+                binding.privacyLl.setBackground(pressedBackground);
+                binding.phoneFinderll.setBackground(defaultBackground);
+                binding.settingLl.setBackground(defaultBackground);
+                binding.referLl.setBackground(defaultBackground);
+                binding.privacyPolicyLl.setBackground(defaultBackground);
+                binding.drawer.closeDrawer(Gravity.LEFT);
+                Stat.openPrivacyPolicy(getApplicationContext());
             }
         });
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
@@ -165,12 +161,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.privacyScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
-                    @Override
-                    public void run() {
-                        startActivity(new Intent(getApplicationContext(), NewPrivacyPolicyActivity.class));
-                    }
-                });
+                Stat.openPrivacyPolicy(getApplicationContext());
             }
         });
         binding.shareScreen.setOnClickListener(new View.OnClickListener() {

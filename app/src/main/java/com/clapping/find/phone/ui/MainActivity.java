@@ -26,6 +26,7 @@ import com.clapping.find.phone.databinding.ActivityMainBinding;
 import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.fragment.SettingFragment;
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.stat.Stat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,18 +117,13 @@ public class MainActivity extends AppCompatActivity {
         binding.privacyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
-                    @Override
-                    public void run() {
-                        binding.privacyLl.setBackground(pressedBackground);
-                        binding.phoneFinderll.setBackground(defaultBackground);
-                        binding.settingLl.setBackground(defaultBackground);
-                        binding.referLl.setBackground(defaultBackground);
-                        binding.privacyPolicyLl.setBackground(defaultBackground);
-                        binding.drawer.closeDrawer(Gravity.LEFT);
-                        startActivity(new Intent(MainActivity.this, NewPrivacyPolicyActivity.class));
-                    }
-                });
+                binding.privacyLl.setBackground(pressedBackground);
+                binding.phoneFinderll.setBackground(defaultBackground);
+                binding.settingLl.setBackground(defaultBackground);
+                binding.referLl.setBackground(defaultBackground);
+                binding.privacyPolicyLl.setBackground(defaultBackground);
+                binding.drawer.closeDrawer(Gravity.LEFT);
+                Stat.openPrivacyPolicy(getApplicationContext());
             }
         });
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {

@@ -24,27 +24,29 @@ static def getDate() {
     return formattedDate
 }
 
-def PRODUCT_NAME = ["com.master.up.tool.clean": "UpClean"]
-def PRIVACY_URL = ["com.master.up.tool.clean": "https://sites.google.com/view/upclean-main/policy"]
-def EMAIL_US_ADDRESS = ["com.master.up.tool.clean": "xmwang8901@gmail.com"]
-def UTM = ["com.master.up.tool.clean": "UpClean"]
-def ONESIGNAL_APP_ID = ["com.master.up.tool.clean": "f9514d4f-199d-4a17-b378-95ecf82edcec"]
-def TALKING_DATA_APP_KEY = ["com.master.up.tool.clean": "8AAF851C1D62414B8C6E74C5AC9BA4AE"]
-def UMENG_APP_KEY = ["com.master.up.tool.clean": "64d4bf28bd4b621232ed84cb"]
+def PRODUCT_NAME = ["com.clap.find.tool.myphone": "ClapFindMyPhone"]
+def PRIVACY_URL = ["com.clap.find.tool.myphone": "https://sites.google.com/view/claptofindmyphone2023/policy"]
+def EMAIL_US_ADDRESS = ["com.clap.find.tool.myphone": "xmwang8901@gmail.com"]
+def UTM = ["com.clap.find.tool.myphone": "ClapFindMyPhone"]
+def ONESIGNAL_APP_ID = ["com.clap.find.tool.myphone": ""]
+def TALKING_DATA_APP_KEY = ["com.clap.find.tool.myphone": "8017CA7F8E6F490D9F70A381DD0A3426"]
+def UMENG_APP_KEY = ["com.clap.find.tool.myphone": "6538e8fc58a9eb5b0af5d19e"]
 
 
 android {
     signingConfigs {
         release {
-            storeFile file('E:\\apps\\FindMyPhoneByClappingNew\\app\\find_phone_by_clap.jks')
-            storePassword '123456'
-            keyAlias 'key0'
-            keyPassword '123456'
+            keyAlias 'clapfindphone'
+            keyPassword 'cfp1568794'
+            def keystore = rootDir.toString() + File.separator + "keystore" + File.separator + "clapfindphone_pwd_cfp1568794.jks";
+            System.out.println("keystore : " + keystore);
+            storeFile file(keystore)
+            storePassword 'cfp1568794'
         }
     }
     compileSdk 33
     defaultConfig {
-        applicationId "com.phonefinder.finderbyclap.devicefind"
+        applicationId "com.clap.find.tool.myphone"
         minSdk 24
         targetSdk 33
         versionCode 2
@@ -65,7 +67,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
         viewBinding = true
     }
@@ -148,4 +150,63 @@ dependencies {
     implementation 'com.umeng.umsdk:apm:1.7.0' // 错误分析模块改为独立库，看crash和性能数据请一定集成
     // talking data
     implementation 'com.talkingdata:talkingdata:5.0.12-1'
+}
+
+
+if (new File(new File(project.getRootDir(), "app"), "google-services.json").exists()) {
+    apply plugin: 'com.google.gms.google-services'
+    println "apply plugin : ===================== com.google.gms.google-services ======================="
+    googleServices { disableVersionCheck = false }
+}
+
+/**
+ * 判断是否编译aab文件
+ * @return
+ */
+def isBuildAabFile() {
+    try {
+        def result = getGradle().getStartParameter().getTaskRequests()[0]["args"][0].toString()
+        return result.contains("bundle")
+    } catch (Exception e) {
+    }
+    return false
+}
+
+apply from: 'https://taugin.gitee.io/adsdk/resguard_aab.gradle'
+aabResGuard.whiteList.add("*.R.string.appi_permission_desc*")
+
+gradle.buildFinished {
+    def error_list = []
+    if (!new File(new File(project.getRootDir(), "app"), "google-services.json").exists()) {
+        error_list.add("google-services.json is not exist")
+    }
+    if (PRIVACY_URL[android.defaultConfig.applicationId] == null
+            || PRIVACY_URL[android.defaultConfig.applicationId].trim() == "") {
+        error_list.add("PRIVACY_URL is not config")
+    }
+    if (EMAIL_US_ADDRESS[android.defaultConfig.applicationId] == null
+            || EMAIL_US_ADDRESS[android.defaultConfig.applicationId].trim() == "") {
+        error_list.add("EMAIL_US_ADDRESS is not config")
+    }
+    if (UTM[android.defaultConfig.applicationId] == null
+            || UTM[android.defaultConfig.applicationId].trim() == "") {
+        error_list.add("UTM is not config")
+    }
+    if (ONESIGNAL_APP_ID[android.defaultConfig.applicationId] == null
+            || ONESIGNAL_APP_ID[android.defaultConfig.applicationId].trim() == "") {
+        error_list.add("ONESIGNAL_APP_ID is not config")
+    }
+    if (TALKING_DATA_APP_KEY[android.defaultConfig.applicationId] == null
+            || TALKING_DATA_APP_KEY[android.defaultConfig.applicationId].trim() == "") {
+        error_list.add("TALKING_DATA_APP_KEY is not config")
+    }
+    if (UMENG_APP_KEY[android.defaultConfig.applicationId] == null
+            || UMENG_APP_KEY[android.defaultConfig.applicationId].trim() == "") {
+        error_list.add("UMENG_APP_KEY is not config")
+    }
+    if (error_list.size() > 0) {
+        System.err.println("+++++++++++++++++++++++++++++++++++++++++++++")
+        System.err.println error_list.join("\n")
+        System.err.println("=============================================")
+    }
 }

@@ -2,6 +2,8 @@ package com.clapping.find.phone.stat;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
 
@@ -14,6 +16,7 @@ import com.tendcloud.tenddata.TalkingDataSDK;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
+import com.umeng.commonsdk.debug.I;
 
 import java.util.Locale;
 import java.util.Map;
@@ -110,6 +113,15 @@ public class Stat {
         if (!Utils.getBoolean(context, event + "_reported", false)) {
             Utils.putBoolean(context, event + "_reported", true);
             InternalStat.reportEvent(context, event, null, null);
+        }
+    }
+
+    public static void openPrivacyPolicy(Context context) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.PRIVACY_URL));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        } catch (Exception e) {
         }
     }
 }
