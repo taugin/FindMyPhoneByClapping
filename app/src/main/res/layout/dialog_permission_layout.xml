@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:cardCornerRadius="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/permission_required"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/permission_guide"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/camera_permission_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/camera_permission_tip" />
+
+                <TextView
+                    android:id="@+id/mic_permission_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/mic_permission_tip" />
+
+                <TextView
+                    android:id="@+id/notification_permission_tip"
+                    android:layout_width="match_parent"
+                    android:layout_height="28dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/notification_permission_tip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/grant_button"
+                style="@style/common_button"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="@string/grant"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:text="@android:string/cancel"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/gray"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

@@ -29,7 +29,7 @@ public class ExitDialog extends Dialog implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.exit_dialog_layout);
+        setContentView(R.layout.dialog_exit_layout);
         mAdContainer = findViewById(R.id.bass_ad_container);
         findViewById(R.id.exit_button).setOnClickListener(this);
         findViewById(R.id.cancel_button).setOnClickListener(this);

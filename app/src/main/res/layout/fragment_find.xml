@@ -32,7 +32,7 @@
                         android:layout_toRightOf="@+id/menu_btn"
                         android:fontFamily="@font/poppins_bold"
                         android:gravity="center"
-                        android:text="Tap to Active"
+                        android:text="@string/tap_to_active"
                         android:textColor="@color/app_color"
                         android:textSize="20dp" />
 
@@ -62,7 +62,6 @@
                         android:text="How to Use  \u203A \u203A"
                         android:textColor="@color/black"
                         android:textSize="16dp" />
-
 
                 </LinearLayout>
 

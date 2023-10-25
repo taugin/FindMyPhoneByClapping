@@ -33,11 +33,6 @@ import com.clapping.find.phone.remote.RCManager;
 
 public class DashBoardActivity extends AppCompatActivity {
     ActivityDashBoardBinding binding;
-    int PERMISSIONGET = 1;
-    String[] GETPERMISSIONS = {
-            Manifest.permission.RECORD_AUDIO,
-            Manifest.permission.CAMERA
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +50,6 @@ public class DashBoardActivity extends AppCompatActivity {
 
         if (!b) {
             setPreference("startButton", "NO");
-        }
-
-        if (!checkPermissions(getApplicationContext(), GETPERMISSIONS)) {
-            ActivityCompat.requestPermissions(DashBoardActivity.this, GETPERMISSIONS, PERMISSIONGET);
         }
         binding.navigationView.setItemIconTintList(ColorStateList.valueOf(Color.BLACK));
         binding.phoneFinderll.setBackground(defaultBackground);
@@ -198,41 +189,6 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         }
         return true;
-    }
-
-    public void startCLick(View view) {
-        if (ContextCompat.checkSelfPermission(DashBoardActivity.this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_GRANTED
-                &&
-                ContextCompat.checkSelfPermission(DashBoardActivity.this, Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_GRANTED
-        ) {
-
-            startActivity(new Intent(DashBoardActivity.this, MainActivity.class));
-            finish();
-
-        } else if (ContextCompat.checkSelfPermission(DashBoardActivity.this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_DENIED
-                ||
-                ContextCompat.checkSelfPermission(DashBoardActivity.this, Manifest.permission.CAMERA)
-                        == PackageManager.PERMISSION_DENIED
-        ) {
-            new AlertDialog.Builder(DashBoardActivity.this).setMessage(R.string.permissionenabled).setPositiveButton(R.string.go_to_setting, (dialog, which) -> {
-                // navigate to settings
-                Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                        Uri.parse("package:" + getPackageName()));
-                intent.addCategory(Intent.CATEGORY_DEFAULT);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }).setNegativeButton(R.string.goback, (DialogInterface.OnClickListener) (dialog, which) -> {
-                dialog.dismiss();
-            }).show();
-        } else {
-            if (!checkPermissions(getApplicationContext(), GETPERMISSIONS)) {
-                ActivityCompat.requestPermissions(DashBoardActivity.this, GETPERMISSIONS, PERMISSIONGET);
-
-            }
-        }
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {

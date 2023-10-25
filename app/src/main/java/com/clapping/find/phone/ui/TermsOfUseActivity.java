@@ -20,6 +20,7 @@ public class TermsOfUseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_terms_of_use);
+        AdHelper.showBroccoli(binding.adIncludeLayout);
         AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_terms_of_use");
         type = getIntent().getIntExtra("type", 0);
         binding.privacyPolicyTV.setOnClickListener(new View.OnClickListener() {

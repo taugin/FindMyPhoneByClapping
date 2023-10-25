@@ -166,4 +166,22 @@ public class RCManager {
     public static boolean isShowSlaveNative(Context context) {
         return isAdUser(context) && getBooleanValue("show_sna", true);
     }
+
+    public static long getScanDurationWithSplashAds() {
+        return getLongValue("with_splash_ads_scan_duration", 12000);
+    }
+
+    public static boolean isShowIntSplash(Context context) {
+        return isGclicUser(context) && getBooleanValue("show_int_splash", true);
+    }
+
+    /**
+     * 非自然量，全部展示开屏广告，自然量从launcher启动展示开屏广告
+     *
+     * @param context
+     * @return
+     */
+    public static boolean isShowOpenSplash(Context context) {
+        return isGclicUser(context) && getBooleanValue("show_open_splash", true);
+    }
 }

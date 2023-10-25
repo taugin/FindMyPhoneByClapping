@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
     public Intent intent;
     List<Intent> POWERMANAGER_INTENTS = new ArrayList<Intent>();
-    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
 
     String b, b2;
     private String PREFS_NAME = "PREFS";
@@ -273,52 +271,24 @@ public class MainActivity extends AppCompatActivity {
                 )
         ));
 
-        b = getPreference("battery");
-
-        if (!b.equals("NO")) {
-            checkPermission();
-        }
-
         if (!Build.BRAND.equalsIgnoreCase("oppo")) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-
                 b2 = getPreference("switchBattery");
-
-
-                if (!b2.equals("YES")) {
-
+                if (!"YES".equals(b2)) {
                     if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
-
-
                         for (Intent intent : POWERMANAGER_INTENTS) {
-                            if (getPackageManager().resolveActivity(
-                                    intent, PackageManager.MATCH_DEFAULT_ONLY
-                            ) != null
-                            ) {
+                            if (getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
                                 startActivity(intent);
                                 setPreference("switchBattery", "YES");
                                 break;
-
                             }
-
                         }
                     }
                 }
-
             }
         }
         intent = new Intent(this, DetectionService.class);
-    }
-
-    public void checkPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            if (!Settings.canDrawOverlays(this)) {
-                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                        Uri.parse("package:" + getPackageName()));
-                startActivityForResult(intent, ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE);
-            }
-        }
     }
 
     @TargetApi(Build.VERSION_CODES.Q)
@@ -326,15 +296,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
-            if (Settings.canDrawOverlays(this)) {
-                SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
-                editor.putBoolean("switch", true);
-                editor.apply();
-                setPreference("battery", "NO");
-            }
+        if (Settings.canDrawOverlays(this)) {
+            SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
+            editor.putBoolean("switch", true);
+            editor.apply();
+            setPreference("battery", "NO");
         }
-
     }
 
     @Override

@@ -36,4 +36,13 @@
     <string name="exit_message">Are you sure to exit ?</string>
     <string name="exit_later">Exit Later</string>
     <string name="tap_to_exit">Tap to Exit</string>
+    <string name="ads_loading">Loading ...\nThis may contain ads ...</string>
+    <string name="tap_to_inactive">Tap to Inactive</string>
+    <string name="tap_to_active">Tap to Active</string>
+    <string name="permission_guide">Please grant permission to ensure the normal use of this app</string>
+    <string name="grant">Grant</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="camera_permission_tip">Camera Permission for Flash light</string>
+    <string name="mic_permission_tip">Mic Permission for detect claps</string>
+    <string name="notification_permission_tip">Receive Notification Permission</string>
 </resources>

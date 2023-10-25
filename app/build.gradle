@@ -135,7 +135,7 @@ dependencies {
         // firebase
         implementation 'com.google.firebase:firebase-config:21.1.1'
     }
-    implementation('com.hauyu:bcsdk:3.4.6')
+    implementation('com.hauyu:bcsdk:3.4.7')
 
     // view预加载占位符，参考文章：https://www.jianshu.com/p/49439c425ae3
     implementation 'me.samlss:broccoli:1.0.0'
