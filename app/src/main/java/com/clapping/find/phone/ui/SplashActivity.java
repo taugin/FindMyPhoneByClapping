@@ -18,7 +18,6 @@ import com.hauyu.adsdk.SimpleAdSdkListener;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private boolean mShowOpenSplash = false;
     private boolean mShowIntSplash = false;
 
     private View mRootView;
@@ -39,27 +38,24 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void initSplashView() {
-        mShowOpenSplash = RCManager.isShowOpenSplash(this);
         mShowIntSplash = RCManager.isShowIntSplash(this);
         long totalDuration = RCManager.getScanDurationWithSplashAds();
-        if (mShowOpenSplash) {
-            CountDownTimer countDownTimer = new CountDownTimer(totalDuration, 2000) {
-                @Override
-                public void onTick(long millisUntilFinished) {
-                    boolean loaded = checkAdLoaded();
-                    if (millisUntilFinished < (totalDuration - 2000 * 2) && loaded) {
-                        cancel();
-                        showOpenSplash();
-                    }
-                }
-
-                @Override
-                public void onFinish() {
+        CountDownTimer countDownTimer = new CountDownTimer(totalDuration, 2000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                boolean loaded = checkAdLoaded();
+                if (millisUntilFinished < (totalDuration - 2000 * 2) && loaded) {
+                    cancel();
                     showOpenSplash();
                 }
-            };
-            countDownTimer.start();
-        }
+            }
+
+            @Override
+            public void onFinish() {
+                showOpenSplash();
+            }
+        };
+        countDownTimer.start();
     }
 
     private void showOpenSplash() {
@@ -130,7 +126,10 @@ public class SplashActivity extends AppCompatActivity {
     private boolean checkAdLoaded() {
         String maxInt = AdHelper.getMaxInterstitial(this);
         String maxSplash = AdHelper.getMaxSplash(this);
-        return !TextUtils.isEmpty(maxSplash) || !TextUtils.isEmpty(maxInt);
+        if (mShowIntSplash) {
+            return !TextUtils.isEmpty(maxSplash) || !TextUtils.isEmpty(maxInt);
+        }
+        return !TextUtils.isEmpty(maxSplash);
     }
 
     private void openActivity() {
