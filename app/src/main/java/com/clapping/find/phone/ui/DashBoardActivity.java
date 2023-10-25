@@ -29,6 +29,7 @@ import com.clapping.find.phone.databinding.ActivityDashBoardBinding;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.dialog.ExitDialog;
 import com.clapping.find.phone.fragment.FindFragment;
+import com.clapping.find.phone.remote.RCManager;
 
 public class DashBoardActivity extends AppCompatActivity {
     ActivityDashBoardBinding binding;
@@ -44,12 +45,14 @@ public class DashBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.loadAndShowNative(this, binding.nativeAd1, "large", "sn_dash_large");
-        AdHelper.loadAndShowNative(this, binding.nativeAd1, "small", "sn_dash_large");
-
+        AdHelper.showBroccoli(binding.adIncludeLayoutTiny);
+        AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_dash_tiny");
+        if (RCManager.isShowSlaveNative(this)) {
+            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "small", "sn_dash_small");
+        }
         Drawable defaultBackground = new ColorDrawable(Color.TRANSPARENT);
         Drawable pressedBackground = getResources().getDrawable(R.drawable.back_checked);
-        boolean b = isMyServiceRunning(DetectionServiceForeground.class);
+        boolean b = isMyServiceRunning(DetectionService.class);
 
         if (!b) {
             setPreference("startButton", "NO");

@@ -18,7 +18,7 @@ public class Log {
     private static final int ERROR = android.util.Log.ERROR;
     private static final int WARN = android.util.Log.WARN;
 
-    public static final String TAG = "clean";
+    public static final String TAG = "clap";
     private static final boolean INTERNAL_LOG_ENABLE;
 
     static {

@@ -118,6 +118,25 @@ public class AdHelper {
         return AdSdk.get(context).isAdViewLoaded(PID_NATIVE_COMMON);
     }
 
+    public static void loadAndShowNativeSlave(Context context, ViewGroup viewGroup, String cardStyle, String sceneName) {
+        AdSdk.get(context).loadAdView(PID_INT_COMMON_SLAVE, new SimpleAdSdkListener() {
+            @Override
+            public void onLoaded(String placeName, String source, String adType, String pid) {
+                if (!(context instanceof Activity) || !((Activity) context).isFinishing()) {
+                    AdParams adParams = new AdParams.Builder().setAdCardStyle(cardStyle).setSceneName(sceneName).build();
+                    AdSdk.get(context).showAdView(placeName, adParams, viewGroup);
+                }
+            }
+
+            @Override
+            public void onImp(String placeName, String source, String adType, String network, String pid) {
+                if (!TextUtils.equals(sceneName, "sn_exit_dialog")) {
+                    AdSdk.get(context).loadAdView(placeName);
+                }
+            }
+        });
+    }
+
     public static void loadAndShowNative(Context context, ViewGroup viewGroup, String cardStyle, String sceneName) {
         AdSdk.get(context).loadAdView(PID_NATIVE_COMMON, new SimpleAdSdkListener() {
             @Override

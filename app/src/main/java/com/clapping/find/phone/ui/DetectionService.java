@@ -1,10 +1,8 @@
 package com.clapping.find.phone.ui;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
-import android.annotation.SuppressLint;
 import android.app.AppOpsManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -28,12 +26,9 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
 import android.os.Process;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.annotation.RequiresApi;
@@ -41,6 +36,7 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.clapping.find.phone.R;
+import com.clapping.find.phone.log.Log;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,10 +44,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeMap;
 
-public class DetectionServiceForeground extends Service implements OnSignalsDetectedListener {
-    public static RemoteViews contentView;
+public class DetectionService extends Service implements OnSignalsDetectedListener {
     private static final String PREFS_NAME = "PREFS";
-    public static DetectionServiceForeground detectionService;
     public int DETECT_NONE = 0;
     public int DETECT_WHISTLE = 1;
     CameraManager cameraManager;
@@ -60,8 +54,6 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
     long flash_value;
     HandlerThread handlerThread;
     Camera.Parameters mParams;
-    public ServiceHandler mServiceHandler;
-    public Looper mServiceLooper;
     boolean on = false;
     private Timer otherAppAudioTimer;
     private RecorderThread recorderThread;
@@ -72,10 +64,12 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
     private boolean isVibrating = false;
     private Handler handler = new Handler();
     private Runnable runnable;
-    public static final String ACTION_STOP_FUNCTIONALITIES = "com.phonefinder.finderbyclap.devicefind.STOP_FUNCTIONALITIES";
+    public static final String ACTION_STOP_FUNCTIONALITIES = DetectionService.class.getName() + ".STOP_FUNCTIONALITIES";
     private long lastClapTime = 0;
     private boolean isDoubleClap = false;
     private final long DOUBLE_CLAP_THRESHOLD = 500;
+    public static String CHANNEL_ID = "001";
+    public static int NOTIFICATION_ID = 0x9685;
 
     private BroadcastReceiver stopFunctionalityReceiver = new BroadcastReceiver() {
         @Override
@@ -95,44 +89,30 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
         return null;
     }
 
-    public final class ServiceHandler extends Handler {
-        ServiceHandler(Looper looper) {
-            super(looper);
+    private void createChannel() {
+        if (Build.VERSION.SDK_INT >= 26) {
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(CHANNEL_ID);
+            if (notificationChannel == null) {
+                notificationChannel = new NotificationChannel(CHANNEL_ID, "ClippingChannel", NotificationManager.IMPORTANCE_LOW);
+                notificationChannel.setDescription("xyz");
+                notificationChannel.enableLights(true);
+                notificationChannel.setShowBadge(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
         }
-
-        public void handleMessage(Message message) {
-            MainActivity.notification = DetectionServiceForeground.this.initNotification("MyService is running");
-            DetectionServiceForeground.this.startForeground(message.arg1, MainActivity.notification);
-        }
-    }
-
-    public DetectionServiceForeground() {
-        detectionService = this;
     }
 
     public void onCreate() {
-        startHandler();
         IntentFilter filter = new IntentFilter(ACTION_STOP_FUNCTIONALITIES);
         registerReceiver(stopFunctionalityReceiver, filter);
     }
 
-    private void startHandler() {
-        HandlerThread handlerThread2 = new HandlerThread("ServiceStartArguments", 10);
-        this.handlerThread = handlerThread2;
-        handlerThread2.start();
-        this.mServiceLooper = this.handlerThread.getLooper();
-        this.mServiceHandler = new ServiceHandler(this.mServiceLooper);
-    }
-
     public int onStartCommand(Intent intent, int i, int i2) {
         startDetection();
-        Message obtainMessage = this.mServiceHandler.obtainMessage();
-        obtainMessage.arg1 = i2;
-        if (intent == null) {
-            return START_STICKY;
-        }
-        obtainMessage.setData(intent.getExtras());
-        this.mServiceHandler.sendMessage(obtainMessage);
+        createChannel();
+        Notification notification = generateNotification();
+        startForeground(NOTIFICATION_ID, notification);
         return START_STICKY;
     }
 
@@ -153,7 +133,7 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             public void run() {
                 long currentTimeMillis = System.currentTimeMillis();
-                List<UsageStats> queryUsageStats = ((UsageStatsManager) DetectionServiceForeground.this.getSystemService(Context.USAGE_STATS_SERVICE)).queryUsageStats(3, currentTimeMillis - 3600000, currentTimeMillis);
+                List<UsageStats> queryUsageStats = ((UsageStatsManager) DetectionService.this.getSystemService(Context.USAGE_STATS_SERVICE)).queryUsageStats(3, currentTimeMillis - 3600000, currentTimeMillis);
                 if (queryUsageStats != null && queryUsageStats.size() > 0) {
                     TreeMap treeMap = new TreeMap();
                     for (UsageStats usageStats : queryUsageStats) {
@@ -162,45 +142,52 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
                     if (!treeMap.isEmpty()) {
                         String packageName = ((UsageStats) treeMap.get(treeMap.lastKey())).getPackageName();
                         boolean z = false;
-                        boolean z2 = DetectionServiceForeground.this.getPackageManager().checkPermission(PermissionsUtils.PERMISSION_RECORD_AUDIO, packageName) == PackageManager.PERMISSION_GRANTED;
-                        if (!DetectionServiceForeground.this.getApplicationContext().getPackageName().equals(packageName)) {
+                        boolean z2 = DetectionService.this.getPackageManager().checkPermission(PermissionsUtils.PERMISSION_RECORD_AUDIO, packageName) == PackageManager.PERMISSION_GRANTED;
+                        if (!DetectionService.this.getApplicationContext().getPackageName().equals(packageName)) {
                             z = z2;
                         }
                         if (z) {
-                            if (DetectionServiceForeground.this.recorderThread != null) {
-                                DetectionServiceForeground.this.recorderThread.stopRecording();
-                                new Handler().removeCallbacksAndMessages(DetectionServiceForeground.this.recorderThread);
-                                DetectionServiceForeground.this.recorderThread = null;
+                            if (DetectionService.this.recorderThread != null) {
+                                DetectionService.this.recorderThread.stopRecording();
+                                new Handler().removeCallbacksAndMessages(DetectionService.this.recorderThread);
+                                DetectionService.this.recorderThread = null;
                             }
-                            if (DetectionServiceForeground.this.detectorThread != null) {
-                                DetectionServiceForeground.this.detectorThread.stopDetection();
-                                new Handler().removeCallbacksAndMessages(DetectionServiceForeground.this.detectorThread);
-                                DetectionServiceForeground.this.detectorThread = null;
+                            if (DetectionService.this.detectorThread != null) {
+                                DetectionService.this.detectorThread.stopDetection();
+                                new Handler().removeCallbacksAndMessages(DetectionService.this.detectorThread);
+                                DetectionService.this.detectorThread = null;
                             }
-                            Log.e("run: ", "stop");
+                            Log.iv(Log.TAG, "stop");
                             return;
                         }
-                        DetectionServiceForeground.this.startDetection();
-                        Log.e("run: ", "start");
+                        DetectionService.this.startDetection();
+                        Log.iv(Log.TAG, "start");
                     }
                 }
             }
         }, 0, 3000);
     }
 
-    public Notification initNotification(String str) {
-
-        RemoteViews remoteViews = new RemoteViews(getPackageName(), (int) R.layout.custom_notification);
-        contentView = remoteViews;
+    public Notification generateNotification() {
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
         remoteViews.setTextViewText(R.id.tvNotificationTitle, getResources().getString(R.string.whistle_detection));
-        contentView.setTextColor(R.id.tvNotificationTitle, ContextCompat.getColor(this, R.color.app_color));
-
-        Intent notificationIntent = new Intent(this, MainActivity.class);
-        @SuppressLint("WrongConstant") PendingIntent pendingIntent = PendingIntent.getActivity(this,
-                0, notificationIntent, FLAG_ACTIVITY_NEW_TASK | PendingIntent.FLAG_IMMUTABLE);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, MainActivity.ID);
-        builder.setSmallIcon(R.drawable.logo).setOngoing(true).setChannelId(MainActivity.ID).setContentTitle(getResources().getString(R.string.service)).setContentText(str).setVisibility(NotificationCompat.VISIBILITY_PUBLIC).setPriority(2).setContent(contentView).setContentIntent(pendingIntent);
+        remoteViews.setTextColor(R.id.tvNotificationTitle, ContextCompat.getColor(this, R.color.app_color));
+        Intent notificationIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
+        if (notificationIntent == null) {
+            notificationIntent = new Intent(getApplicationContext(), SplashActivity.class);
+        }
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID);
+        builder.setSmallIcon(R.drawable.logo)
+                .setOngoing(true)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setPriority(Notification.PRIORITY_LOW)
+                .setCustomContentView(remoteViews)
+                .setContentIntent(pendingIntent);
+        builder.setCustomBigContentView(remoteViews);
+        builder.setStyle(new NotificationCompat.DecoratedCustomViewStyle());
         return builder.build();
     }
 
@@ -233,7 +220,7 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
             detectorThread2.stopDetection();
             this.detectorThread = null;
         }
-        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(Integer.parseInt(MainActivity.ID));
+        ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).cancel(NOTIFICATION_ID);
         this.selectedDetection = this.DETECT_NONE;
         stopVibrating();
         unregisterReceiver(stopFunctionalityReceiver);
@@ -242,7 +229,6 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
 
     @Override
     public void onWhistleDetected() {
-
         if (getPreference("flash_value").equals("slow")) {
             this.flash_value = 400;
         } else if (getPreference("flash_value").equals("medium")) {
@@ -353,30 +339,30 @@ public class DetectionServiceForeground extends Service implements OnSignalsDete
                         public void run() {
                             try {
                                 if (Build.VERSION.SDK_INT >= 23) {
-                                    DetectionServiceForeground.this.cameraManager = (CameraManager) DetectionServiceForeground.this.getSystemService(Context.CAMERA_SERVICE);
-                                } else if (DetectionServiceForeground.this.screen_camera == null) {
-                                    DetectionServiceForeground.this.screen_camera = Camera.open();
+                                    DetectionService.this.cameraManager = (CameraManager) DetectionService.this.getSystemService(Context.CAMERA_SERVICE);
+                                } else if (DetectionService.this.screen_camera == null) {
+                                    DetectionService.this.screen_camera = Camera.open();
                                     try {
-                                        DetectionServiceForeground.this.screen_camera.setPreviewDisplay(null);
+                                        DetectionService.this.screen_camera.setPreviewDisplay(null);
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-                                    DetectionServiceForeground.this.screen_camera.startPreview();
+                                    DetectionService.this.screen_camera.startPreview();
                                 }
                                 for (int i = 0; i < 3; i++) {
-                                    DetectionServiceForeground.this.toggleFlashLight();
-                                    sleep((long) DetectionServiceForeground.this.delay);
+                                    DetectionService.this.toggleFlashLight();
+                                    sleep((long) DetectionService.this.delay);
                                 }
                                 if (Build.VERSION.SDK_INT >= 23) {
                                     try {
-                                        DetectionServiceForeground.this.cameraManager.setTorchMode(DetectionServiceForeground.this.cameraManager.getCameraIdList()[0], false);
+                                        DetectionService.this.cameraManager.setTorchMode(DetectionService.this.cameraManager.getCameraIdList()[0], false);
                                     } catch (CameraAccessException e2) {
                                         e2.printStackTrace();
                                     }
-                                } else if (DetectionServiceForeground.this.screen_camera != null) {
-                                    DetectionServiceForeground.this.screen_camera.stopPreview();
-                                    DetectionServiceForeground.this.screen_camera.release();
-                                    DetectionServiceForeground.this.screen_camera = null;
+                                } else if (DetectionService.this.screen_camera != null) {
+                                    DetectionService.this.screen_camera.stopPreview();
+                                    DetectionService.this.screen_camera.release();
+                                    DetectionService.this.screen_camera = null;
                                 }
                             } catch (Exception e3) {
                                 e3.printStackTrace();

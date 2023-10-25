@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityUseBinding;
+import com.clapping.find.phone.remote.RCManager;
 
 public class UseActivity extends AppCompatActivity {
     ActivityUseBinding binding;
@@ -16,8 +17,11 @@ public class UseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.loadAndShowNative(this, binding.nativeAdSmall, "small", "sn_use_small");
-        AdHelper.loadAndShowNative(this, binding.nativeAdBig, "large", "sn_use_large");
+        AdHelper.showBroccoli(binding.adIncludeLayout);
+        AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_use_tiny");
+        if (RCManager.isShowSlaveNative(this)) {
+            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "small", "sn_use_small");
+        }
         binding.view1.setBackground(new DashedLineDrawable(this));
         binding.view2.setBackground(new DashedLineDrawable(this));
         binding.view3.setBackground(new DashedLineDrawable(this));

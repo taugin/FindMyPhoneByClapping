@@ -4,7 +4,6 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,18 +12,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
-import com.clapping.find.phone.ui.DetectionServiceForeground;
+import com.clapping.find.phone.ui.DetectionService;
 import com.clapping.find.phone.ui.UseActivity;
 
 public class FindFragment extends Fragment {
     TextView use, tap;
     ImageView checkbox;
     private String PREFS_NAME = "PREFS";
-    LinearLayout native_ad_large;
 
     public boolean setPreference(String key, String value) {
         SharedPreferences settings = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -44,8 +43,9 @@ public class FindFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_find, container, false);
-        native_ad_large = view.findViewById(R.id.native_ad_large);
-        AdHelper.loadAndShowNative(getActivity(), native_ad_large, "small", "sn_intro");
+        ViewGroup native_ad_large = view.findViewById(R.id.native_ad_tiny);
+        AdHelper.showBroccoli(native_ad_large.findViewById(R.id.ad_include_layout));
+        AdHelper.loadAndShowNative(getActivity(), native_ad_large, "tiny", "sn_find_fragment");
         use = view.findViewById(R.id.use);
         tap = view.findViewById(R.id.tap);
         checkbox = view.findViewById(R.id.enable_disable);
@@ -65,17 +65,12 @@ public class FindFragment extends Fragment {
                     tap.setText("Tap to Inactive");
                     checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
                     setPreference("startButton", "YES");
-
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        requireActivity().startForegroundService(new Intent(getContext(), DetectionServiceForeground.class));
-                    } else {
-                        requireActivity().startService(new Intent(getContext(), DetectionServiceForeground.class));
-                    }
+                    ContextCompat.startForegroundService(getContext(), new Intent(getContext(), DetectionService.class));
                 } else {
                     tap.setText("Tap to Active");
                     setPreference("startButton", "NO");
                     checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
-                    requireActivity().stopService(new Intent(getContext(), DetectionServiceForeground.class));
+                    requireActivity().stopService(new Intent(getContext(), DetectionService.class));
                 }
             }
         });

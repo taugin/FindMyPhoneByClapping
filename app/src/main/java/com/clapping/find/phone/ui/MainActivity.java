@@ -1,11 +1,7 @@
 package com.clapping.find.phone.ui;
 
 import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -38,9 +34,6 @@ public class MainActivity extends AppCompatActivity {
     public Intent intent;
     List<Intent> POWERMANAGER_INTENTS = new ArrayList<Intent>();
     public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
-    public static String ID = "001";
-    public static Notification notification;
-    public static NotificationManager notificationManager;
 
     String b, b2;
     private String PREFS_NAME = "PREFS";
@@ -134,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, TermsConditionsActivity.class));
             }
         });
-        binding.find.setOnClickListener(new View.OnClickListener() {
+        binding.findLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
@@ -145,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
             }
         });
-        binding.settings.setOnClickListener(new View.OnClickListener() {
+        binding.settingsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
@@ -157,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        createChannel();
         POWERMANAGER_INTENTS.add(new Intent().setComponent(
                 new ComponentName(
                         "com.miui.securitycenter",
@@ -284,25 +276,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-
         }
-        intent = new Intent(this, DetectionServiceForeground.class);
-
-    }
-
-
-    private void createChannel() {
-        if (Build.VERSION.SDK_INT >= 26) {
-
-            notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            NotificationChannel notificationChannel = new NotificationChannel(ID, "Test Channel 1", NotificationManager.IMPORTANCE_LOW);
-            notificationChannel.setDescription("xyz");
-            notificationChannel.enableLights(true);
-            notificationChannel.setShowBadge(true);
-            notificationManager.createNotificationChannel(notificationChannel);
-            return;
-        }
-        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        intent = new Intent(this, DetectionService.class);
     }
 
     public void checkPermission() {
@@ -322,7 +297,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE) {
             if (!Settings.canDrawOverlays(this)) {
-                // You don't have permission
                 checkPermission();
             } else {
                 SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
@@ -333,7 +307,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -364,13 +337,10 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        // Check for touch event (ACTION_DOWN) and send broadcast to stop functionalities
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            Intent stopIntent = new Intent(DetectionServiceForeground.ACTION_STOP_FUNCTIONALITIES);
+            Intent stopIntent = new Intent(DetectionService.ACTION_STOP_FUNCTIONALITIES);
             sendBroadcast(stopIntent);
         }
         return super.onTouchEvent(event);
     }
-
-
 }

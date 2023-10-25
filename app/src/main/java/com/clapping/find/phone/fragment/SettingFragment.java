@@ -11,6 +11,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.clapping.find.phone.R;
+import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.FragmentSettingBinding;
 
 
@@ -35,7 +37,8 @@ public class SettingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false);
-        // AdUtils.showNativeAd(requireActivity(), Constants.adsResponseModel.getNative_ads().getAdx(), binding.nativeAd0.findViewById(com.adsmodule.api.R.id.native_ad), 2, null);
+        AdHelper.showBroccoli(binding.adIncludeLayout);
+        AdHelper.loadAndShowNative(getActivity(), binding.nativeAd0, "tiny", "sn_settings_fragment");
         String ringtoneUriStr = getPreference("ringtone_Name");
         if (!ringtoneUriStr.isEmpty()) {
             Uri lastSelectedRingtoneUri = Uri.parse(ringtoneUriStr);
@@ -46,72 +49,50 @@ public class SettingFragment extends Fragment {
             binding.songItem.setText("None");
             selectedRingtoneUri = null;
         }
-        if(getPreference("flash").equals("YES"))
-        {
+        if (getPreference("flash").equals("YES")) {
             binding.flashSwitch.setChecked(true);
-        }
-        else
-        {
+        } else {
             binding.flashSwitch.setChecked(false);
         }
-        if(getPreference("vibration").equals("YES"))
-        {
+        if (getPreference("vibration").equals("YES")) {
             binding.vibrationSwitch.setChecked(true);
-        }
-        else
-        {
+        } else {
             binding.vibrationSwitch.setChecked(false);
         }
 
-        if(getPreference("ring").equals("YES"))
-        {
+        if (getPreference("ring").equals("YES")) {
             binding.ringSwitch.setChecked(true);
-        }
-        else
-        {
+        } else {
             binding.ringSwitch.setChecked(false);
         }
         binding.changeRingtone.setOnClickListener(v -> {
-//            AdUtils.showInterstitialAd(Constants.adsResponseModel.getInterstitial_ads().getAdx(), activity, isLoaded -> {
-//                Intent intent = new Intent("android.intent.action.RINGTONE_PICKER");
-//                intent.putExtra("android.intent.extra.ringtone.TYPE", 2);
-//                intent.putExtra("android.intent.extra.ringtone.TITLE", getResources().getString(R.string.select_tone));
-//                intent.putExtra("android.intent.extra.ringtone.EXISTING_URI", (Parcelable) null);
-//                startActivityForResult(intent, 5);
-//            });
-
+            Intent intent = new Intent("android.intent.action.RINGTONE_PICKER");
+            intent.putExtra("android.intent.extra.ringtone.TYPE", 2);
+            intent.putExtra("android.intent.extra.ringtone.TITLE", getResources().getString(R.string.select_tone));
+            intent.putExtra("android.intent.extra.ringtone.EXISTING_URI", (Parcelable) null);
+            startActivityForResult(intent, 5);
         });
-
 
 
         binding.flashSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked)
-            {
-                setPreference("flash","YES");
-            }
-            else
-            {
-                setPreference("flash","NO");
+            if (isChecked) {
+                setPreference("flash", "YES");
+            } else {
+                setPreference("flash", "NO");
             }
         });
         binding.vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked)
-            {
-                setPreference("vibration","YES");
-            }
-            else
-            {
-                setPreference("vibration","NO");
+            if (isChecked) {
+                setPreference("vibration", "YES");
+            } else {
+                setPreference("vibration", "NO");
             }
         });
         binding.ringSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if(isChecked)
-            {
-                setPreference("ring","YES");
-            }
-            else
-            {
-                setPreference("ring","NO");
+            if (isChecked) {
+                setPreference("ring", "YES");
+            } else {
+                setPreference("ring", "NO");
             }
 
         });
@@ -154,6 +135,7 @@ public class SettingFragment extends Fragment {
 
         return binding.getRoot();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -208,6 +190,7 @@ public class SettingFragment extends Fragment {
         }
         return "";
     }
+
     public boolean setPreference(String key, String value) {
         SharedPreferences settings = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
@@ -219,7 +202,6 @@ public class SettingFragment extends Fragment {
         SharedPreferences settings = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         return settings.getString(key, "true");
     }
-
 
 
 }

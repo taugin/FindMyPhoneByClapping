@@ -163,4 +163,7 @@ public class RCManager {
         return isAdUser(context) && getBooleanValue("show_ena", true);
     }
 
+    public static boolean isShowSlaveNative(Context context) {
+        return isAdUser(context) && getBooleanValue("show_sna", true);
+    }
 }

@@ -6,14 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".ui.UseActivity">
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_above="@id/native_ad_small"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/native_ad_small">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -41,142 +44,167 @@
                     android:textSize="18dp" />
 
             </RelativeLayout>
-            <LinearLayout
-                android:id="@+id/native_ad_big"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/native_ad_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginHorizontal="8dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:contentPadding="4dp" />
 
-<!--                <include layout="@layout/full_native_container" />-->
-            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/menu_btn"
                 android:fontFamily="@font/poppins"
                 android:gravity="center"
-                android:layout_marginTop="20dp"
                 android:text="Help you find your phone by clap!"
                 android:textColor="#2A3135"
                 android:textSize="16dp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="40dp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/power_button_help"/>
+                    android:src="@drawable/power_button_help" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:text="Click the activate button"
-                    android:gravity="start|center_vertical"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="#2A3135"
-                    android:paddingHorizontal="10dp"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start|center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:text="Click the activate button"
+                    android:textColor="#2A3135" />
             </LinearLayout>
+
             <View
                 android:id="@+id/view1"
                 android:layout_width="2dp"
                 android:layout_height="30dp"
-                android:background="#B3BBCB"
-                android:layout_marginHorizontal="50dp"/>
+                android:layout_marginHorizontal="50dp"
+                android:background="#B3BBCB" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/clap_hand_help"/>
+                    android:src="@drawable/clap_hand_help" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
-                    android:paddingHorizontal="10dp"
-                    android:text="Double clap when you can’t find your phone"
-                    android:gravity="start|center_vertical"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="#2A3135"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start|center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:text="Double clap when you can’t find your phone"
+                    android:textColor="#2A3135" />
             </LinearLayout>
+
             <View
                 android:id="@+id/view2"
                 android:layout_width="2dp"
                 android:layout_height="30dp"
-                android:background="#B3BBCB"
-                android:layout_marginHorizontal="50dp"/>
+                android:layout_marginHorizontal="50dp"
+                android:background="#B3BBCB" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/phone_vibration_help"/>
+                    android:src="@drawable/phone_vibration_help" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:paddingHorizontal="10dp"
-                    android:text="The app will detect the clapping sound and start ringing"
-                    android:gravity="start|center_vertical"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="#2A3135"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start|center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:text="The app will detect the clapping sound and start ringing"
+                    android:textColor="#2A3135" />
             </LinearLayout>
+
             <View
                 android:id="@+id/view3"
                 android:layout_width="2dp"
                 android:layout_height="30dp"
-                android:background="#B3BBCB"
-                android:layout_marginHorizontal="50dp"/>
+                android:layout_marginHorizontal="50dp"
+                android:background="#B3BBCB" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
+
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/setting_help"/>
+                    android:src="@drawable/setting_help" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
-                    android:paddingHorizontal="10dp"
-                    android:text="Before activating, you can set the flashlight, adjust the volume and select alarm sound"
-                    android:gravity="start|center_vertical"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_bold"
-                    android:textColor="#2A3135"
+                    android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    android:layout_marginHorizontal="20dp"/>
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="start|center_vertical"
+                    android:paddingHorizontal="10dp"
+                    android:text="Before activating, you can set the flashlight, adjust the volume and select alarm sound"
+                    android:textColor="#2A3135" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/native_ad_small"
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/native_ad_tiny"
         android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-<!--        <include layout="@layout/small_native_container" />-->
-    </LinearLayout>
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:contentPadding="4dp">
+
+        <include
+            android:id="@+id/ad_include_layout"
+            layout="@layout/rab_card_tiny" />
+    </androidx.cardview.widget.CardView>
 
 
 </RelativeLayout>

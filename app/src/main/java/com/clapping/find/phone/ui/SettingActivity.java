@@ -30,7 +30,8 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.loadAndShowNative(this, binding.nativeAdLarge, "large", "sn_settings");
+        AdHelper.showBroccoli(binding.adIncludeLayout);
+        AdHelper.loadAndShowNative(this, binding.nativeAdLarge, "tiny", "sn_settings_activity");
         String ringtoneUriStr = getPreference("ringtone_Name");
         if (!ringtoneUriStr.isEmpty()) {
             Uri lastSelectedRingtoneUri = Uri.parse(ringtoneUriStr);
