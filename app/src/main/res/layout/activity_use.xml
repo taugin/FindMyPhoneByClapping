@@ -33,15 +33,15 @@
 
                 <TextView
                     android:id="@+id/toolbar_text"
+                    style="@style/common_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/back_btn"
-                    style="@style/common_text_style"
                     android:gravity="center"
-                    android:text="How to use"
+                    android:text="@string/how_to_use"
                     android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
 
@@ -55,14 +55,14 @@
                 app:contentPadding="4dp" />
 
             <TextView
+                style="@style/common_text_style2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@+id/menu_btn"
-                style="@style/common_text_style2"
                 android:gravity="center"
-                android:text="Help you find your phone by clap!"
+                android:text="@string/how_to_use_title"
                 android:textColor="#2A3135"
                 android:textSize="16dp" />
 
@@ -79,15 +79,15 @@
                     android:src="@drawable/power_button_help" />
 
                 <TextView
+                    style="@style/common_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    style="@style/common_text_style"
                     android:gravity="start|center_vertical"
                     android:paddingHorizontal="10dp"
-                    android:text="Click the activate button"
+                    android:text="@string/how_to_use_step_1"
                     android:textColor="#2A3135" />
             </LinearLayout>
 
@@ -102,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -110,16 +111,16 @@
                     android:src="@drawable/clap_hand_help" />
 
                 <TextView
+                    style="@style/common_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="65dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    style="@style/common_text_style"
                     android:gravity="start|center_vertical"
                     android:paddingHorizontal="10dp"
-                    android:text="Double clap when you can’t find your phone"
+                    android:text="@string/how_to_use_step_2"
                     android:textColor="#2A3135" />
             </LinearLayout>
 
@@ -134,6 +135,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -142,16 +144,16 @@
                     android:src="@drawable/phone_vibration_help" />
 
                 <TextView
+                    style="@style/common_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    style="@style/common_text_style"
                     android:gravity="start|center_vertical"
                     android:paddingHorizontal="10dp"
-                    android:text="The app will detect the clapping sound and start ringing"
+                    android:text="@string/how_to_use_step_3"
                     android:textColor="#2A3135" />
             </LinearLayout>
 
@@ -167,6 +169,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginBottom="20dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
@@ -175,16 +178,16 @@
                     android:src="@drawable/setting_help" />
 
                 <TextView
+                    style="@style/common_text_style"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:layout_marginHorizontal="20dp"
                     android:background="@drawable/next_button"
                     android:backgroundTint="#EFF4FD"
-                    style="@style/common_text_style"
                     android:gravity="start|center_vertical"
                     android:paddingHorizontal="10dp"
-                    android:text="Before activating, you can set the flashlight, adjust the volume and select alarm sound"
+                    android:text="@string/how_to_use_step_4"
                     android:textColor="#2A3135" />
             </LinearLayout>
         </LinearLayout>

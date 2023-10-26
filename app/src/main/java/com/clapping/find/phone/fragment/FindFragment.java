@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
+import com.clapping.find.phone.databinding.FragmentFindBinding;
 import com.clapping.find.phone.ui.DetectionService;
 import com.clapping.find.phone.ui.UseActivity;
 import com.hauyu.adsdk.Utils;
@@ -37,6 +38,8 @@ public class FindFragment extends Fragment {
     TextView use, tap;
     ImageView checkbox;
     private String PREFS_NAME = "PREFS";
+
+    private FragmentFindBinding binding;
 
     public boolean setPreference(String key, String value) {
         SharedPreferences settings = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -55,6 +58,7 @@ public class FindFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_find, container, false);
+        binding = FragmentFindBinding.bind(view);
         ViewGroup native_ad_large = view.findViewById(R.id.native_ad_tiny);
         AdHelper.showBroccoli(native_ad_large.findViewById(R.id.ad_include_layout));
         AdHelper.loadAndShowNative(getActivity(), native_ad_large, "tiny", "sn_find_fragment");
@@ -102,6 +106,33 @@ public class FindFragment extends Fragment {
             tap.setText(R.string.tap_to_active);
             checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
         }
+
+        if (getPreference("flash").equals("YES")) {
+            binding.flashSwitch.setChecked(true);
+        } else {
+            binding.flashSwitch.setChecked(false);
+        }
+        if (getPreference("vibration").equals("YES")) {
+            binding.vibrationSwitch.setChecked(true);
+        } else {
+            binding.vibrationSwitch.setChecked(false);
+        }
+
+        binding.flashSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setPreference("flash", "YES");
+            } else {
+                setPreference("flash", "NO");
+            }
+        });
+        binding.vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                setPreference("vibration", "YES");
+            } else {
+                setPreference("vibration", "NO");
+            }
+        });
+
         return view;
     }
 

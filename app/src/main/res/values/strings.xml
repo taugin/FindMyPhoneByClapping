@@ -48,4 +48,17 @@
     <string name="tap_to_start">Tap to get started</string>
     <string name="share_app">Share App</string>
     <string name="privacy_policy">Privacy Policy</string>
+    <string name="how_to_use">How to use</string>
+    <string name="how_to_use_title">Help you find your phone by clap!</string>
+    <string name="how_to_use_step_1">Click the activate button</string>
+    <string name="how_to_use_step_2">Double clap when you can’t find your phone</string>
+    <string name="how_to_use_step_3">The app will detect the clapping sound and start ringing</string>
+    <string name="how_to_use_step_4">Before activating, you can set the flashlight, adjust the volume and select alarm sound</string>
+    <string name="how_to_use_entry">How to Use  \u203A \u203A</string>
+    <string name="flash_light">Flash Light</string>
+    <string name="phone_vibrate">Phone Vibrate</string>
+    <string name="sounds">Sounds</string>
+    <string name="volume">Sounds</string>
+    <string name="current_sound">"Current Sound : "</string>
+    <string name="change_sound_entry"><![CDATA[Change Sound >>]]></string>
 </resources>

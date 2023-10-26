@@ -42,7 +42,7 @@
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/flashSwitch"
                             android:paddingHorizontal="10dp"
-                            android:text="Flash Light"
+                            android:text="@string/flash_light"
                             android:textColor="#2A3135"
                             android:textSize="16dp" />
 
@@ -76,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/vibrationSwitch"
                             android:paddingHorizontal="10dp"
-                            android:text="Phone Vibrate"
+                            android:text="@string/phone_vibrate"
                             android:textColor="#2A3135"
                             android:textSize="16dp" />
 
@@ -114,7 +114,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="65dp"
                         android:paddingHorizontal="30dp"
-                        android:text="Sounds"
+                        android:text="@string/sounds"
                         android:textColor="#2A3135"
                         android:textSize="16dp" />
 
@@ -131,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingHorizontal="15dp"
-                            android:text="Volume"
+                            android:text="@string/volume"
                             android:textColor="#CC2A3135"
                             android:textSize="13dp" />
 
@@ -241,7 +241,7 @@
                             android:layout_gravity="center_vertical"
                             android:paddingLeft="15dp"
                             android:paddingRight="5dp"
-                            android:text="Current Sound : "
+                            android:text="@string/current_sound"
                             android:textColor="#CC2A3135"
                             android:textSize="13dp" />
 
@@ -271,7 +271,7 @@
                         android:backgroundTint="@color/color_common_btn"
                         android:gravity="center"
                         android:paddingVertical="10dp"
-                        android:text="Change Sound >>"
+                        android:text="@string/change_sound_entry"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
