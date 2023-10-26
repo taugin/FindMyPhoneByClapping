@@ -258,7 +258,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Phone finder"
+                    android:text="@string/phone_finder"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />
@@ -296,7 +296,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Settings"
+                    android:text="@string/go_to_setting"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />
@@ -337,7 +337,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Refer a Friend"
+                    android:text="@string/refer_friend"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />
@@ -377,7 +377,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Privacy &amp; Security"
+                    android:text="@string/privacy_policy"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />
@@ -417,7 +417,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Terms of services"
+                    android:text="@string/terms_of_service"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />

@@ -228,7 +228,7 @@
                 android:background="@drawable/next_button"
                 android:backgroundTint="@color/color_common_btn"
                 android:gravity="center"
-                android:text="I Agree"
+                android:text="@string/i_agree"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
