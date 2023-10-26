@@ -25,16 +25,17 @@
 
                     <TextView
                         android:id="@+id/tap"
+                        style="@style/common_text_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginTop="20dp"
                         android:layout_toRightOf="@+id/menu_btn"
-                        style="@style/common_text_style"
                         android:gravity="center"
                         android:text="@string/tap_to_active"
                         android:textColor="@color/app_color"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
                     <ImageView
                         android:id="@+id/enable_disable"
@@ -45,6 +46,7 @@
 
                     <TextView
                         android:id="@+id/use"
+                        style="@style/common_text_style2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -55,7 +57,6 @@
                         android:background="@drawable/use"
                         android:drawableLeft="@drawable/info"
                         android:drawablePadding="20dp"
-                        style="@style/common_text_style2"
                         android:gravity="center"
                         android:paddingHorizontal="30dp"
                         android:paddingVertical="5dp"

@@ -17,4 +17,5 @@
     <color name="color_common_btn">#239CFA</color>
     <color name="color_common_btn_pressed">#88239CFA</color>
     <color name="ic_launcher_background">#4B4A4A</color>
+    <color name="start_click_color">#eff4fd</color>
 </resources>

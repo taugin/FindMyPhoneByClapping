@@ -45,4 +45,7 @@
     <string name="camera_permission_tip">Camera Permission for Flash light</string>
     <string name="mic_permission_tip">Mic Permission for detect claps</string>
     <string name="notification_permission_tip">Receive Notification Permission</string>
+    <string name="tap_to_start">Tap to get started</string>
+    <string name="share_app">Share App</string>
+    <string name="privacy_policy">Privacy Policy</string>
 </resources>

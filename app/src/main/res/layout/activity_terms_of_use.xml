@@ -36,7 +36,8 @@
                 android:text="@string/terms_of_use_cap"
                 android:textAppearance="@style/TextAppearance.MyApp.Headline5"
                 android:textColor="@color/black"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -190,7 +191,8 @@
                         android:layout_height="wrap_content"
                         android:padding="6dp"
                         android:text="@string/privacy_policy_tv"
-                        android:textColor="@color/app_color" />
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/termsConditionsTV"
@@ -200,7 +202,8 @@
                         android:layout_marginBottom="20dp"
                         android:padding="6dp"
                         android:text="@string/terms_conditions"
-                        android:textColor="@color/app_color" />
+                        android:textColor="@color/app_color"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
             </ScrollView>
@@ -223,7 +226,7 @@
                 android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/next_button"
-                android:backgroundTint="#2A3135"
+                android:backgroundTint="@color/color_common_btn"
                 android:gravity="center"
                 android:text="I Agree"
                 android:textColor="@color/white"

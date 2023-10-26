@@ -37,10 +37,10 @@
                         android:background="@drawable/flashlight">
 
                         <TextView
+                            style="@style/common_text_style"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/flashSwitch"
-                            style="@style/common_text_style"
                             android:paddingHorizontal="10dp"
                             android:text="Flash Light"
                             android:textColor="#2A3135"
@@ -71,10 +71,10 @@
                         android:background="@drawable/phone_vibrate">
 
                         <TextView
+                            style="@style/common_text_style"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/vibrationSwitch"
-                            style="@style/common_text_style"
                             android:paddingHorizontal="10dp"
                             android:text="Phone Vibrate"
                             android:textColor="#2A3135"
@@ -108,11 +108,11 @@
 
                     <TextView
                         android:id="@+id/sounds"
+                        style="@style/common_text_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="65dp"
-                        style="@style/common_text_style"
                         android:paddingHorizontal="30dp"
                         android:text="Sounds"
                         android:textColor="#2A3135"
@@ -127,9 +127,9 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/common_text_style2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            style="@style/common_text_style2"
                             android:paddingHorizontal="15dp"
                             android:text="Volume"
                             android:textColor="#CC2A3135"
@@ -153,10 +153,10 @@
                         android:visibility="gone">
 
                         <TextView
+                            style="@style/common_text_style2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            style="@style/common_text_style2"
                             android:paddingHorizontal="15dp"
                             android:text="Duration"
                             android:textColor="#CC2A3135"
@@ -235,10 +235,10 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            style="@style/common_text_style2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            style="@style/common_text_style2"
                             android:paddingLeft="15dp"
                             android:paddingRight="5dp"
                             android:text="Current Sound : "
@@ -247,10 +247,10 @@
 
                         <TextView
                             android:id="@+id/song_item"
+                            style="@style/common_text_style2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            style="@style/common_text_style2"
                             android:paddingHorizontal="5dp"
                             android:text="None"
                             android:textColor="@color/app_color"
@@ -260,6 +260,7 @@
 
                     <TextView
                         android:id="@+id/changeRingtone"
+                        style="@style/common_text_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/current_sound"
@@ -267,8 +268,7 @@
                         android:layout_marginHorizontal="80dp"
                         android:layout_marginTop="15dp"
                         android:background="@drawable/back_checked"
-                        android:backgroundTint="#2A3135"
-                        style="@style/common_text_style"
+                        android:backgroundTint="@color/color_common_btn"
                         android:gravity="center"
                         android:paddingVertical="10dp"
                         android:text="Change Sound >>"
