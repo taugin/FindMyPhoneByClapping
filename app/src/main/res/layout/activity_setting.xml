@@ -85,10 +85,10 @@
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="10dp"
-                            android:outlineAmbientShadowColor="@color/app_color"
+                            android:outlineAmbientShadowColor="@color/color_common_btn"
                             android:textOff="OFF"
                             android:textOn="ON"
-                            app:thumbTint="@color/app_color" />
+                            app:thumbTint="@color/color_common_btn" />
 
 
                     </RelativeLayout>
@@ -122,7 +122,7 @@
                             android:outlineAmbientShadowColor="@color/app_color"
                             android:textOff="OFF"
                             android:textOn="ON"
-                            app:thumbTint="@color/app_color" />
+                            app:thumbTint="@color/color_common_btn" />
 
 
                     </RelativeLayout>
@@ -171,7 +171,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:progressTint="@color/app_color"
-                            android:thumbTint="@color/app_color" />
+                            android:thumbTint="@color/color_common_btn" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -318,7 +318,7 @@
                         android:outlineAmbientShadowColor="@color/app_color"
                         android:textOff="OFF"
                         android:textOn="ON"
-                        app:thumbTint="@color/app_color" />
+                        app:thumbTint="@color/color_common_btn" />
 
 
                 </RelativeLayout>

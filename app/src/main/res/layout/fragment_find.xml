@@ -105,7 +105,7 @@
                             android:outlineAmbientShadowColor="@color/app_color"
                             android:textOff="OFF"
                             android:textOn="ON"
-                            app:thumbTint="@color/app_color" />
+                            app:thumbTint="@color/color_common_btn" />
 
 
                     </RelativeLayout>
@@ -139,7 +139,7 @@
                             android:outlineAmbientShadowColor="@color/app_color"
                             android:textOff="OFF"
                             android:textOn="ON"
-                            app:thumbTint="@color/app_color" />
+                            app:thumbTint="@color/color_common_btn" />
 
 
                     </RelativeLayout>
