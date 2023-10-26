@@ -4,12 +4,12 @@ package com.clapping.find.phone.remote;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.clapping.find.phone.BuildConfig;
+import com.clapping.find.phone.app.ClapApp;
+import com.clapping.find.phone.log.Log;
 import com.hauyu.adsdk.AdSdk;
 import com.hauyu.adsdk.Utils;
 import com.moon.BcSdk;
-import com.clapping.find.phone.BuildConfig;
-import com.clapping.find.phone.app.MyApplication;
-import com.clapping.find.phone.log.Log;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,9 +21,7 @@ import java.util.Random;
  * per run of the app).
  */
 public class RCManager {
-    private static final String DEFAULT_ATTR_CONFIG = "fc_true,fc_false";
     private final static String TAG = RCManager.class.getSimpleName();
-
     private static final Random sRandom = new Random(System.currentTimeMillis());
 
     private RCManager() {
@@ -52,7 +50,7 @@ public class RCManager {
     private static String getFirebaseStringValue(String key) {
         String result = "";
         try {
-            result = AdSdk.get(MyApplication.getInstance()).getString(key);
+            result = AdSdk.get(ClapApp.getInstance()).getString(key);
         } catch (Exception ignored) {
         }
         Log.d(TAG, "get [" + key + "] value: " + result);
@@ -61,9 +59,8 @@ public class RCManager {
 
     private static boolean getFirebaseBooleanValue(String key, boolean defaultValue) {
         boolean result = defaultValue;
-
         try {
-            String str = AdSdk.get(MyApplication.getInstance()).getString(key);
+            String str = AdSdk.get(ClapApp.getInstance()).getString(key);
             if (!TextUtils.isEmpty(str)) {
                 result = Boolean.parseBoolean(str);
             }
@@ -79,7 +76,7 @@ public class RCManager {
         long result = 0;
 
         try {
-            String str = AdSdk.get(MyApplication.getInstance()).getString(key);
+            String str = AdSdk.get(ClapApp.getInstance()).getString(key);
             if (!TextUtils.isEmpty(str)) {
                 result = Long.parseLong(str);
             } else {

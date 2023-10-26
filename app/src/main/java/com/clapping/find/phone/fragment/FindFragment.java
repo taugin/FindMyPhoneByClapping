@@ -3,7 +3,6 @@ package com.clapping.find.phone.fragment;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.Manifest;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,7 +25,7 @@ import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.FragmentFindBinding;
 import com.clapping.find.phone.ui.DetectionService;
-import com.clapping.find.phone.ui.UseActivity;
+import com.clapping.find.phone.ui.UseTipActivity;
 import com.hauyu.adsdk.Utils;
 import com.moon.BcSdk;
 import com.moon.listener.OnPermissionListener;
@@ -73,7 +72,7 @@ public class FindFragment extends Fragment {
                 AdHelper.showInterstitialCallback(requireActivity(), new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(requireActivity(), UseActivity.class));
+                        startActivity(new Intent(requireActivity(), UseTipActivity.class));
                     }
                 });
             }

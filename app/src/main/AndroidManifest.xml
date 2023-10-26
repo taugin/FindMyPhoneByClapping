@@ -25,7 +25,7 @@
 
 
     <application
-        android:name=".app.MyApplication"
+        android:name=".app.ClapApp"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -38,7 +38,7 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.UseActivity"
+            android:name=".ui.UseTipActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -64,10 +64,7 @@
         <activity
             android:name=".ui.IntroOneActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.SplashActivity"
             android:exported="true"
@@ -78,16 +75,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
         </activity>
 
         <service
             android:name=".ui.DetectionService"
             android:enabled="true"
             android:exported="true" />
-
         <receiver android:name=".ui.NotificationListener" />
     </application>
 

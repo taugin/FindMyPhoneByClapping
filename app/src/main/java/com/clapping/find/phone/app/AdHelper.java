@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.ui.DashBoardActivity;
 import com.hauyu.adsdk.AdParams;
 import com.hauyu.adsdk.AdSdk;
 import com.hauyu.adsdk.OnAdEventListener;
@@ -154,7 +155,7 @@ public class AdHelper {
 
     public static boolean isShowSplashOnActivity(Activity activity) {
         if (RCManager.isShowSplashFromBackground(activity)) {
-            List<Class<?>> classList = Arrays.asList();
+            List<Class<?>> classList = Arrays.asList(DashBoardActivity.class);
             try {
                 for (Class<?> clazz : classList) {
                     if (TextUtils.equals(clazz.getName(), activity.getClass().getName())) {
@@ -189,45 +190,7 @@ public class AdHelper {
         return AdSdk.get(context).getString(key);
     }
 
-    public static void showSplashCallback(Context context, Runnable runnable) {
-        String maxPlace = getMaxSplash(context);
-        if (!TextUtils.isEmpty(maxPlace)) {
-            AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
-                @Override
-                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
-                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                }
-
-                @Override
-                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
-                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                }
-            }, true);
-            AdSdk.get(context).showSplash(maxPlace);
-        } else {
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-    }
-
     public static void showInterstitialCallback(Context context, Runnable runnable) {
-        showInterstitialCallback(context, null, runnable);
-    }
-
-    private static List<String> sIgnoreShowIntTag = Arrays.asList("navigation_bottom_find", "navigation_bottom_settings");
-
-    public static void showInterstitialCallback(Context context, String tag, Runnable runnable) {
-        if (!RCManager.isAdUser(context) && !TextUtils.isEmpty(tag) && sIgnoreShowIntTag.contains(tag)) {
-            runnable.run();
-            return;
-        }
         String maxPlace = getMaxInterstitial(context);
         if (!TextUtils.isEmpty(maxPlace)) {
             AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {

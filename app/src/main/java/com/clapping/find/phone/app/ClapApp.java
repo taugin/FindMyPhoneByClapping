@@ -14,11 +14,11 @@ import com.moon.listener.OnDataListener;
 import java.lang.ref.WeakReference;
 import java.util.Map;
 
-public class MyApplication extends Application {
+public class ClapApp extends Application {
 
-    private static MyApplication app;
+    private static ClapApp app;
 
-    public static synchronized MyApplication getInstance() {
+    public static synchronized ClapApp getInstance() {
         return app;
     }
 

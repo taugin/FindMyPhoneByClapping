@@ -9,7 +9,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityUseBinding;
 import com.clapping.find.phone.remote.RCManager;
 
-public class UseActivity extends AppCompatActivity {
+public class UseTipActivity extends AppCompatActivity {
     ActivityUseBinding binding;
 
     @Override
@@ -28,13 +28,13 @@ public class UseActivity extends AppCompatActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UseActivity.super.onBackPressed();
+                UseTipActivity.super.onBackPressed();
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        UseActivity.super.onBackPressed();
+        UseTipActivity.super.onBackPressed();
     }
 }
