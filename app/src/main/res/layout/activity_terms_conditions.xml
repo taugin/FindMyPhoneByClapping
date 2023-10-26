@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.TermsConditionsActivity"
-    android:paddingTop="8dp"
-    android:paddingHorizontal="10dp"
+    android:background="@color/white"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:paddingHorizontal="10dp"
+    android:paddingTop="8dp"
+    tools:context=".ui.TermsConditionsActivity">
 
     <TextView
         android:id="@+id/title"
+        style="@style/common_text_style"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -20,23 +21,22 @@
         android:gravity="center"
         android:text="@string/terms_conditions"
         android:textAppearance="@style/TextAppearance.MyApp.Headline5"
-        android:textColor="@color/app_color"
-        android:fontFamily="@font/poppins_bold" />
+        android:textColor="@color/app_color" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:scrollbars="none"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:fontFamily="@font/poppins"
             android:layout_marginBottom="20dp"
-            android:text="@string/terms_conditions"
+            style="@style/common_text_style2"
             android:justificationMode="inter_word"
+            android:padding="5dp"
+            android:text="@string/terms_conditions"
             android:textAppearance="@style/TextAppearance.MyApp.Body2"
             android:textColor="@color/black"
             tools:targetApi="o" />

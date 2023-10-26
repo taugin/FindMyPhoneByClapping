@@ -18,7 +18,6 @@ public class TermsConditionsActivity extends AppCompatActivity {
 
         setContentView(binding.getRoot());
 
-
         String termsConditions = "Posting rules you should be taking care of before you start interaction on our website/application:\n" +
                 "\n Assuring you carry the rights and eligibility to post any form of content you are about to share. We never permit nudism on application/website.\n" +
                 "\n We won't allow posting of sexually explicit content, sexually explicit text, images, or audio content depicting extreme sexual acts such as acts of posting Content that drives traffic to pornographic online services. Please note that we may make exceptions based on artistic, educational, historical, documentary, or scientific nature, or where there are other considerable benefits to the public at large.\n" +

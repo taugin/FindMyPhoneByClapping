@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/menu_btn"
-                android:fontFamily="@font/poppins_bold"
+                lstyle="@style/common_text_style"
                 android:gravity="center"
                 android:text="@string/app_name"
                 android:textColor="@color/black"
@@ -83,7 +83,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="4dp"
                     android:text="Find"
-                    android:fontFamily="@font/poppins_bold"
+                    lstyle="@style/common_text_style"
                     android:textColor="@color/navigation_drawer_text_color_selector1"
                     android:textSize="12sp" />
 
@@ -121,7 +121,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginBottom="4dp"
                     android:text="Settings"
-                    android:fontFamily="@font/poppins_bold"
+                    lstyle="@style/common_text_style"
                     android:textColor="@color/navigation_drawer_text_color_selector1"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -178,7 +178,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Phone finder"
-                    android:fontFamily="@font/poppins"
+                    style="@style/common_text_style2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />
@@ -216,7 +216,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="Settings"
-                    android:fontFamily="@font/poppins"
+                    style="@style/common_text_style2"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />
@@ -256,7 +256,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:fontFamily="@font/poppins"
+                    style="@style/common_text_style2"
                     android:text="Refer a Friend"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
@@ -296,7 +296,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:fontFamily="@font/poppins"
+                    style="@style/common_text_style2"
                     android:text="Privacy &amp; Security"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
@@ -336,7 +336,7 @@
                     android:layout_marginLeft="10dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:fontFamily="@font/poppins"
+                    style="@style/common_text_style2"
                     android:text="Terms of services"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"

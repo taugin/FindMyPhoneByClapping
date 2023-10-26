@@ -16,4 +16,5 @@
     <color name="large_file_clean_btn_disable">#C6C6C6</color>
     <color name="color_common_btn">#239CFA</color>
     <color name="color_common_btn_pressed">#88239CFA</color>
+    <color name="ic_launcher_background">#4B4A4A</color>
 </resources>

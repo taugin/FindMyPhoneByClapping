@@ -89,10 +89,6 @@
             android:exported="true" />
 
         <receiver android:name=".ui.NotificationListener" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

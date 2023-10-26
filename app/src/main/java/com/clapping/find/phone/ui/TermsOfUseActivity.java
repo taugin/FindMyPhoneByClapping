@@ -19,6 +19,7 @@ public class TermsOfUseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTermsOfUseBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         AdHelper.showBroccoli(binding.adIncludeLayout);
         AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_terms_of_use");
         type = getIntent().getIntExtra("type", 0);
