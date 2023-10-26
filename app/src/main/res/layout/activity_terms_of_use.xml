@@ -25,7 +25,7 @@
 
             <TextView
                 android:id="@+id/title"
-                lstyle="@style/common_text_style"
+                style="@style/common_text_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -185,7 +185,7 @@
 
                     <TextView
                         android:id="@+id/privacyPolicyTV"
-                        lstyle="@style/common_text_style"
+                        style="@style/common_text_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="6dp"
@@ -194,7 +194,7 @@
 
                     <TextView
                         android:id="@+id/termsConditionsTV"
-                        lstyle="@style/common_text_style"
+                        style="@style/common_text_style"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="20dp"

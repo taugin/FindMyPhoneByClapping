@@ -30,7 +30,7 @@
                         android:layout_centerVertical="true"
                         android:layout_marginTop="20dp"
                         android:layout_toRightOf="@+id/menu_btn"
-                        lstyle="@style/common_text_style"
+                        style="@style/common_text_style"
                         android:gravity="center"
                         android:text="@string/tap_to_active"
                         android:textColor="@color/app_color"
