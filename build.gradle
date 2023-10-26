@@ -22,9 +22,9 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
-        classpath 'com.github.megatronking.stringfog:gradle-plugin:2.2.1'
-        // 选用加解密算法库，默认实现了 xor 和 aes-cbc 两种简单算法，也可以使用自己的加解密库。
-        classpath 'com.github.megatronking.stringfog:xor:1.1.0'
+        classpath 'com.github.megatronking.stringfog:gradle-plugin:4.0.1'
+        // 选用加解密算法库，默认实现了xor算法，也可以使用自己的加解密库。
+        classpath 'com.github.megatronking.stringfog:xor:4.0.1'
         classpath "com.bytedance.android:aabresguard-plugin:0.1.10"
         classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:+"
     }
@@ -49,5 +49,5 @@ allprojects {
 }
 
 ext {
-    adsdk_version = "7.2.9"
+    adsdk_version = "7.3.0"
 }
