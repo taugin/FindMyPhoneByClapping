@@ -69,7 +69,7 @@ public class FindFragment extends Fragment {
         use.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(requireActivity(), new Runnable() {
+                AdHelper.showInterstitialCallback(requireActivity(), "si_goto_use", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(requireActivity(), UseTipActivity.class));

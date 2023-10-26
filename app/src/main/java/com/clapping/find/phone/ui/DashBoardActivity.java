@@ -64,7 +64,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_finder", new Runnable() {
                     @Override
                     public void run() {
                         binding.phoneFinderll.setBackground(pressedBackground);
@@ -81,7 +81,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_settings", new Runnable() {
                     @Override
                     public void run() {
                         binding.settingLl.setBackground(pressedBackground);
@@ -122,7 +122,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_policy", new Runnable() {
                     @Override
                     public void run() {
                         binding.privacyPolicyLl.setBackground(pressedBackground);
@@ -139,7 +139,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_goto_main", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -150,7 +150,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.settingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_goto_settings", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(getApplicationContext(), SettingActivity.class));

@@ -190,7 +190,7 @@ public class AdHelper {
         return AdSdk.get(context).getString(key);
     }
 
-    public static void showInterstitialCallback(Context context, Runnable runnable) {
+    public static void showInterstitialCallback(Context context, String sceneName, Runnable runnable) {
         String maxPlace = getMaxInterstitial(context);
         if (!TextUtils.isEmpty(maxPlace)) {
             AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
@@ -210,7 +210,7 @@ public class AdHelper {
                     }
                 }
             }, true);
-            AdSdk.get(context).showInterstitial(maxPlace);
+            AdSdk.get(context).showInterstitial(maxPlace, sceneName);
         } else {
             if (runnable != null) {
                 runnable.run();

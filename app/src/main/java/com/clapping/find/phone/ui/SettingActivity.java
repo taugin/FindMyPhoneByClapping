@@ -188,7 +188,7 @@ public class SettingActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (RCManager.isAdUser(this)) {
-            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+            AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_settings", new Runnable() {
                 @Override
                 public void run() {
                     SettingActivity.super.onBackPressed();

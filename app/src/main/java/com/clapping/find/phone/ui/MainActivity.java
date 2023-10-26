@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_finder_2", new Runnable() {
                     @Override
                     public void run() {
                         binding.phoneFinderll.setBackground(pressedBackground);
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_settings_2", new Runnable() {
                     @Override
                     public void run() {
                         binding.settingLl.setBackground(pressedBackground);
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_policy_2", new Runnable() {
                     @Override
                     public void run() {
                         binding.privacyPolicyLl.setBackground(pressedBackground);
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (RCManager.isAdUser(this)) {
-            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+            AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_main", new Runnable() {
                 @Override
                 public void run() {
                     MainActivity.super.onBackPressed();

@@ -32,7 +32,7 @@ public class TermsConditionsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (RCManager.isAdUser(this)) {
-            AdHelper.showInterstitialCallback(getApplicationContext(), new Runnable() {
+            AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_terms", new Runnable() {
                 @Override
                 public void run() {
                     TermsConditionsActivity.super.onBackPressed();
