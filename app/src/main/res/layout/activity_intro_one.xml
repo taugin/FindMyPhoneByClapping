@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/onboarding_background"
     android:orientation="vertical">
 
@@ -21,27 +21,35 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/tv_title"
+            <androidx.cardview.widget.CardView
+                android:layout_width="360dp"
+                android:layout_height="360dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/first_onboard" />
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/start_click_color"
+                app:cardCornerRadius="360dp">
 
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/tv_title"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/first_onboard" />
+
+            </androidx.cardview.widget.CardView>
 
             <TextView
                 android:id="@+id/tv_title"
+                style="@style/common_text_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tv_dec"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                style="@style/common_text_style"
                 android:gravity="center_horizontal"
                 android:maxLines="2"
                 android:text="@string/clap_to_find"
@@ -52,13 +60,13 @@
 
             <TextView
                 android:id="@+id/tv_dec"
+                style="@style/common_text_style2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                style="@style/common_text_style2"
                 android:gravity="center_horizontal"
                 android:maxLines="3"
                 android:text="@string/first_onboard"
@@ -82,6 +90,7 @@
 
         <TextView
             android:id="@+id/txt_next"
+            style="@style/common_text_style"
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_above="@+id/native_ad0"
@@ -90,7 +99,6 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="0"
             android:background="@drawable/next_button"
-            style="@style/common_text_style"
             android:gravity="center"
             android:text="@string/next"
             android:textColor="@color/white"
@@ -112,9 +120,9 @@
         android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="8dp"
-        app:contentPadding="4dp"
         android:layout_weight="0"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        app:contentPadding="4dp">
 
         <include
             android:id="@+id/ad_include_layout"

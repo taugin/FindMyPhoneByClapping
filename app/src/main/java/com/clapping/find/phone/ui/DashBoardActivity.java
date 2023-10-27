@@ -38,7 +38,7 @@ public class DashBoardActivity extends AppCompatActivity {
         AdHelper.showBroccoli(binding.adIncludeLayoutTiny);
         AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_dash_tiny");
         if (RCManager.isShowSlaveNative(this)) {
-            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "small", "sn_dash_small");
+            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_dash_small");
         }
         Drawable defaultBackground = new ColorDrawable(Color.TRANSPARENT);
         Drawable pressedBackground = getResources().getDrawable(R.drawable.back_checked);

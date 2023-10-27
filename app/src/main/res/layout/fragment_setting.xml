@@ -16,105 +16,10 @@
             android:layout_above="@+id/native_ad0"
             android:layout_marginBottom="8dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/ll1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:paddingTop="50dp"
-                    android:weightSum="2">
-
-                    <RelativeLayout
-                        android:id="@+id/flashlight"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/flashlight_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/flashlight" />
-
-                        <TextView
-                            style="@style/common_text_style"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/flashSwitch"
-                            android:layout_alignStart="@+id/flashlight_image"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/flash_light"
-                            android:textColor="#2A3135"
-                            android:textSize="16dp" />
-
-                        <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/flashSwitch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/flashlight_image"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:outlineAmbientShadowColor="@color/app_color"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            app:thumbTint="@color/color_common_btn" />
-
-
-                    </RelativeLayout>
-
-                    <RelativeLayout
-                        android:id="@+id/phone_vibrate"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_weight="1">
-
-                        <ImageView
-                            android:id="@+id/phone_vibrate_image"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:src="@drawable/phone_vibrate" />
-
-                        <TextView
-                            style="@style/common_text_style"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_above="@+id/vibrationSwitch"
-                            android:layout_alignStart="@+id/phone_vibrate_image"
-                            android:paddingHorizontal="10dp"
-                            android:text="@string/phone_vibrate"
-                            android:textColor="#2A3135"
-                            android:textSize="16dp" />
-
-                        <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/vibrationSwitch"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignStart="@+id/phone_vibrate_image"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginBottom="8dp"
-                            android:outlineAmbientShadowColor="@color/app_color"
-                            android:textOff="OFF"
-                            android:textOn="ON"
-                            app:thumbTint="@color/color_common_btn" />
-
-
-                    </RelativeLayout>
-
-                </LinearLayout>
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -319,7 +224,102 @@
 
                 </RelativeLayout>
 
-            </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <RelativeLayout
+                        android:id="@+id/flashlight"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/flashlight_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/flashlight" />
+
+                        <TextView
+                            style="@style/common_text_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/flashSwitch"
+                            android:layout_alignStart="@+id/flashlight_image"
+                            android:paddingHorizontal="10dp"
+                            android:text="@string/flash_light"
+                            android:textColor="#2A3135"
+                            android:textSize="16dp" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/flashSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/flashlight_image"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:outlineAmbientShadowColor="@color/app_color"
+                            android:textOff="OFF"
+                            android:textOn="ON"
+                            app:thumbTint="@color/color_common_btn" />
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/phone_vibrate"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/phone_vibrate_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/phone_vibrate" />
+
+                        <TextView
+                            style="@style/common_text_style"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/vibrationSwitch"
+                            android:layout_alignStart="@+id/phone_vibrate_image"
+                            android:paddingHorizontal="10dp"
+                            android:text="@string/phone_vibrate"
+                            android:textColor="#2A3135"
+                            android:textSize="16dp" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/vibrationSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/phone_vibrate_image"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:outlineAmbientShadowColor="@color/app_color"
+                            android:textOff="OFF"
+                            android:textOn="ON"
+                            app:thumbTint="@color/color_common_btn" />
+
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
         <androidx.cardview.widget.CardView

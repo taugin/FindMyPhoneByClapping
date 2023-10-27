@@ -11,63 +11,15 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/native_ad_tiny">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/switch_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tap"
-                    style="@style/common_text_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_toRightOf="@+id/menu_btn"
-                    android:gravity="center"
-                    android:text="@string/tap_to_active"
-                    android:textColor="@color/app_color"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/enable_disable"
-                    android:layout_width="170dp"
-                    android:layout_height="170dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp" />
-
-                <TextView
-                    android:id="@+id/use"
-                    style="@style/common_text_style2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_toRightOf="@+id/menu_btn"
-                    android:background="@drawable/use"
-                    android:drawableLeft="@drawable/info"
-                    android:drawablePadding="20dp"
-                    android:gravity="center"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="5dp"
-                    android:text="@string/how_to_use_entry"
-                    android:textColor="@color/black"
-                    android:textSize="16dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
+                android:id="@+id/controller_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/switch_layout"
                 android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
@@ -156,7 +108,58 @@
                 </RelativeLayout>
 
             </LinearLayout>
-        </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/switch_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tap"
+                    style="@style/common_text_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_toRightOf="@+id/menu_btn"
+                    android:gravity="center"
+                    android:text="@string/tap_to_active"
+                    android:textColor="@color/app_color"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/enable_disable"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp" />
+
+                <TextView
+                    android:id="@+id/use"
+                    style="@style/common_text_style2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_toRightOf="@+id/menu_btn"
+                    android:background="@drawable/use"
+                    android:drawableLeft="@drawable/info"
+                    android:drawablePadding="20dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="5dp"
+                    android:text="@string/how_to_use_entry"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
     <androidx.cardview.widget.CardView
