@@ -30,6 +30,7 @@ import com.hauyu.adsdk.Utils;
 import com.moon.BcSdk;
 import com.moon.listener.OnPermissionListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -187,7 +188,12 @@ public class FindFragment extends Fragment {
     }
 
     private void requestPermissions(final Dialog dialog) {
-        List<String> permissions = Arrays.asList(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.POST_NOTIFICATIONS);
+        List<String> permissions = new ArrayList<>();
+        for (String permission : Arrays.asList(Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO, Manifest.permission.POST_NOTIFICATIONS)) {
+            if (!isPermissionGrant(permission)) {
+                permissions.add(permission);
+            }
+        }
         BcSdk.requestPermissions(getActivity(), permissions, true, new OnPermissionListener() {
             @Override
             public void onPermissionResult(List<String> grantList, List<String> deniedList, boolean goSettings) {

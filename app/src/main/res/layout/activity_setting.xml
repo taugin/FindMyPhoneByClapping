@@ -64,14 +64,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/flashlight">
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/flashlight_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/flashlight" />
 
                         <TextView
                             style="@style/common_text_style"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/flashSwitch"
+                            android:layout_alignStart="@+id/flashlight_image"
                             android:paddingHorizontal="10dp"
                             android:text="@string/flash_light"
                             android:textColor="#2A3135"
@@ -81,6 +88,7 @@
                             android:id="@+id/flashSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/flashlight_image"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="10dp"
@@ -98,14 +106,21 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_marginHorizontal="10dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/phone_vibrate">
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/phone_vibrate_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/phone_vibrate" />
 
                         <TextView
                             style="@style/common_text_style"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_above="@+id/vibrationSwitch"
+                            android:layout_alignStart="@+id/phone_vibrate_image"
                             android:paddingHorizontal="10dp"
                             android:text="@string/phone_vibrate"
                             android:textColor="#2A3135"
@@ -115,6 +130,7 @@
                             android:id="@+id/vibrationSwitch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_alignStart="@+id/phone_vibrate_image"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginLeft="10dp"
@@ -134,14 +150,21 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ll1"
                     android:layout_marginHorizontal="10dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/sounds">
+                    android:layout_marginTop="20dp">
+
+                    <ImageView
+                        android:id="@+id/sounds_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/sounds" />
 
                     <TextView
                         android:id="@+id/sounds"
                         style="@style/common_text_style"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/sounds_image"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="65dp"
                         android:paddingHorizontal="30dp"
@@ -154,6 +177,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/sounds"
+                        android:layout_alignStart="@+id/sounds_image"
+                        android:layout_alignEnd="@+id/sounds_image"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
@@ -262,6 +287,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/duration"
+                        android:layout_alignStart="@+id/sounds_image"
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
@@ -303,7 +329,7 @@
                         android:backgroundTint="@color/color_common_btn"
                         android:gravity="center"
                         android:paddingVertical="10dp"
-                        android:text="Change Sound >>"
+                        android:text="@string/change_sound_entry"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
 
@@ -311,8 +337,8 @@
                         android:id="@+id/ringSwitch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignEnd="@+id/sounds_image"
                         android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="40dp"
                         android:outlineAmbientShadowColor="@color/app_color"

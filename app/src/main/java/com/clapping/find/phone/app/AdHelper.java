@@ -3,6 +3,8 @@ package com.clapping.find.phone.app;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,8 @@ public class AdHelper {
     private static final String PID_INT_COMMON_SLAVE = "common_int_slave";
     private static final String PID_NATIVE_COMMON = "common_native";
     private static final String PID_NATIVE_COMMON_SLAVE = "common_native_slave";
+
+    private static final Handler sHandler = new Handler(Looper.getMainLooper());
 
     public static void init(Context context) {
         AdSdk.get(context).setOnAdEventListener(new OnAdEventListener() {
@@ -197,24 +201,18 @@ public class AdHelper {
                 @Override
                 public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    if (runnable != null) {
-                        runnable.run();
-                    }
+                    sHandler.post(runnable);
                 }
 
                 @Override
                 public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    if (runnable != null) {
-                        runnable.run();
-                    }
+                    sHandler.post(runnable);
                 }
             }, true);
             AdSdk.get(context).showInterstitial(maxPlace, sceneName);
         } else {
-            if (runnable != null) {
-                runnable.run();
-            }
+            sHandler.post(runnable);
         }
     }
 }
