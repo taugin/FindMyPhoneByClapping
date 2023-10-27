@@ -65,4 +65,11 @@
     <string name="refer_friend">友達を紹介</string>
     <string name="terms_of_service">サービス利用規約</string>
     <string name="find">検索</string>
+
+    <string name="ignore_battery_optimization_title">バッテリ最適化を無視</string>
+    <string name="ignore_battery_optimization_desc">連続的な携帯電話保護のために、消費電力が増える可能性があるため、バッテリ最適化を無効にすることをお勧めします。</string>
+
+    <string name="background_running_title">バックグラウンド実行を許可する</string>
+    <string name="background_running_desc"><![CDATA[<b>お使いの携帯電話を継続的に保護するために、このアプリケーションの<font color=\"red\">バックグラウンド実行を許可</font>することをお勧めします</b>]]></string>
+    <string name="str_allow">許可</string>
 </resources>

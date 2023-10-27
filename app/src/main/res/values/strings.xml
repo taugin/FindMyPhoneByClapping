@@ -69,5 +69,11 @@
     <string name="refer_friend">Refer a Friend</string>
     <string name="terms_of_service">Terms of services</string>
     <string name="find">Find</string>
-    这是安卓资源，请翻译成日语，韩语，中文
+
+    <string name="ignore_battery_optimization_title">Ignore Battery Optimization</string>
+    <string name="ignore_battery_optimization_desc">In order to continuously protect your phone, we recommend that you turn off battery optimization, which may consume more power.</string>
+
+    <string name="background_running_title">Allow Background Running</string>
+    <string name="background_running_desc"><![CDATA[<b>To continue protecting your phone, it is recommended to <font color=\"red\">allow</font> this app to run in the background</b>]]></string>
+    <string name="str_allow">Allow</string>
 </resources>

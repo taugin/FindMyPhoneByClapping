@@ -1,16 +1,13 @@
 package com.clapping.find.phone.ui;
 
 import android.annotation.TargetApi;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.provider.Settings;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -27,13 +24,10 @@ import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.fragment.SettingFragment;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.stat.Stat;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.clapping.find.phone.utils.PermissionsUtils;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
-    List<Intent> POWERMANAGER_INTENTS = new ArrayList<Intent>();
 
     String b, b2;
     private String PREFS_NAME = "PREFS";
@@ -165,118 +159,9 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.commit();
             }
         });
-
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.miui.securitycenter",
-                        "com.miui.permcenter.autostart.AutoStartManagementActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.letv.android.letvsafe",
-                        "com.letv.android.letvsafe.AutobootManageActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.huawei.systemmanager",
-                        "com.huawei.systemmanager.optimize.process.ProtectActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.huawei.systemmanager",
-                        "com.huawei.systemmanager.startupmgr.ui.StartupNormalAppListActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.huawei.systemmanager",
-                        "com.huawei.systemmanager.appcontrol.activity.StartupAppControlActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.coloros.safecenter",
-                        "com.coloros.safecenter.permission.startup.StartupAppListActivity"
-                )
-        ));
-
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.coloros.safecenter",
-                        "com.coloros.safecenter.startupapp.StartupAppListActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.oppo.safe",
-                        "com.oppo.safe.permission.startup.StartupAppListActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.iqoo.secure",
-                        "com.iqoo.secure.ui.phoneoptimize.AddWhiteListActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.iqoo.secure",
-                        "com.iqoo.secure.ui.phoneoptimize.BgStartUpManager"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.vivo.permissionmanager",
-                        "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.samsung.android.lool",
-                        "com.samsung.android.sm.ui.battery.BatteryActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.htc.pitroad",
-                        "com.htc.pitroad.landingpage.activity.LandingPageActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.asus.mobilemanager",
-                        "com.asus.mobilemanager.MainActivity"
-                )
-        ));
-        POWERMANAGER_INTENTS.add(new Intent().setComponent(
-                new ComponentName(
-                        "com.transsion.phonemanager",
-                        "com.itel.autobootmanager.activity.AutoBootMgrActivity"
-                )
-        ));
-
-        if (!Build.BRAND.equalsIgnoreCase("oppo")) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-                b2 = getPreference("switchBattery");
-                if (!"YES".equals(b2)) {
-                    if (!powerManager.isIgnoringBatteryOptimizations(getPackageName())) {
-                        for (Intent intent : POWERMANAGER_INTENTS) {
-                            if (getPackageManager().resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY) != null) {
-                                startActivity(intent);
-                                setPreference("switchBattery", "YES");
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
         binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
         binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
+        PermissionsUtils.showBatteryIgnoreTip(this);
     }
 
     @TargetApi(Build.VERSION_CODES.Q)

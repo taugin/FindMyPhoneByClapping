@@ -66,4 +66,10 @@
     <string name="terms_of_service">服务条款</string>
     <string name="find">查找</string>
 
+    <string name="ignore_battery_optimization_title">忽略电池优化</string>
+    <string name="ignore_battery_optimization_desc">为了持续保护您的手机，建议您关闭电池优化，这可能会消耗更多电量。</string>
+
+    <string name="background_running_title">允许后台运行</string>
+    <string name="background_running_desc"><![CDATA[<b>为了持续保护您的手机，建议您<font color=\"red\">允许</font>此应用在后台运行</b>]]></string>
+    <string name="str_allow">允许</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.clapping.find.phone.ui;
 
+import android.Manifest;
 import android.app.AppOpsManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -143,7 +144,7 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                     if (!treeMap.isEmpty()) {
                         String packageName = ((UsageStats) treeMap.get(treeMap.lastKey())).getPackageName();
                         boolean z = false;
-                        boolean z2 = DetectionService.this.getPackageManager().checkPermission(PermissionsUtils.PERMISSION_RECORD_AUDIO, packageName) == PackageManager.PERMISSION_GRANTED;
+                        boolean z2 = DetectionService.this.getPackageManager().checkPermission(Manifest.permission.RECORD_AUDIO, packageName) == PackageManager.PERMISSION_GRANTED;
                         if (!DetectionService.this.getApplicationContext().getPackageName().equals(packageName)) {
                             z = z2;
                         }

@@ -20,4 +20,22 @@
     <style name="common_text_style2">
         <!--        <item name="android:fontFamily"></item>-->
     </style>
+
+    <style name="DialogStartBtn">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#ff707070</item>
+        <item name="android:background">@drawable/dialog_lbtn_selector</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">48.0dip</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
+
+    <style name="DialogEndBtn">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#ff108bfe</item>
+        <item name="android:background">@drawable/dialog_rbtn_selector</item>
+        <item name="android:layout_width">0.0dip</item>
+        <item name="android:layout_height">48.0dip</item>
+        <item name="android:layout_weight">1.0</item>
+    </style>
 </resources>
