@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="Settings"
+            android:text="@string/go_to_setting"
             android:textColor="@color/black"
             android:textSize="18dp"
             android:textStyle="bold" />

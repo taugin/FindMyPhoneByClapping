@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_finder_2", new Runnable() {
                     @Override
                     public void run() {
+                        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
+                        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, new FindFragment());

@@ -210,7 +210,12 @@ public class AdHelper {
                     sHandler.post(runnable);
                 }
             }, true);
-            AdSdk.get(context).showInterstitial(maxPlace, sceneName);
+            sHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    AdSdk.get(context).showInterstitial(maxPlace, sceneName);
+                }
+            });
         } else {
             sHandler.post(runnable);
         }
@@ -232,7 +237,12 @@ public class AdHelper {
                     sHandler.post(runnable);
                 }
             }, true);
-            AdSdk.get(context).showSplash(maxPlace, null, sceneName);
+            sHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    AdSdk.get(context).showSplash(maxPlace, null, sceneName);
+                }
+            });
         } else {
             sHandler.post(runnable);
         }
