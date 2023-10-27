@@ -72,4 +72,5 @@
     <string name="background_running_title">允许后台运行</string>
     <string name="background_running_desc"><![CDATA[<b>为了持续保护您的手机，建议您<font color=\"red\">允许</font>此应用在后台运行</b>]]></string>
     <string name="str_allow">允许</string>
+    <string name="no_sound">无声音文件</string>
 </resources>

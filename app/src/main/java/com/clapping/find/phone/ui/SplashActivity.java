@@ -1,6 +1,5 @@
 package com.clapping.find.phone.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,7 +13,6 @@ import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.remote.RCManager;
 import com.hauyu.adsdk.AdSdk;
-import com.hauyu.adsdk.SimpleAdSdkListener;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -69,36 +67,20 @@ public class SplashActivity extends AppCompatActivity {
             }
         }
         if (!TextUtils.isEmpty(maxSplash)) {
-            AdHelper.setOnSplashAdListener(this, maxSplash, new SimpleAdSdkListener() {
+            AdHelper.showSplashCallback(this, "ss_open_splash", new Runnable() {
                 @Override
-                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
-                    AdHelper.setOnSplashAdListener(getApplicationContext(), placeName, null);
-                    openActivity();
-                }
-
-                @Override
-                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
-                    AdHelper.setOnSplashAdListener(getApplicationContext(), placeName, null);
+                public void run() {
                     openActivity();
                 }
             });
-            AdHelper.showSplash(this, "ss_open_splash");
             enableLoadingClickable();
         } else if (mShowIntSplash && !TextUtils.isEmpty(maxInterstitial)) {
-            AdHelper.setOnIntAdListener(this, maxInterstitial, new SimpleAdSdkListener() {
+            AdHelper.showInterstitialCallback(this, "si_open_splash", new Runnable() {
                 @Override
-                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
-                    AdHelper.setOnIntAdListener(getApplicationContext(), placeName, null);
-                    openActivity();
-                }
-
-                @Override
-                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
-                    AdHelper.setOnIntAdListener(getApplicationContext(), placeName, null);
+                public void run() {
                     openActivity();
                 }
             });
-            AdHelper.showInterstitial(this, maxInterstitial, "si_open_splash");
             enableLoadingClickable();
         } else {
             openActivity();

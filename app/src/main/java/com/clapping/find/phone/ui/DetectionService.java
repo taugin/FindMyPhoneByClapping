@@ -13,7 +13,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
@@ -30,6 +29,7 @@ import android.os.IBinder;
 import android.os.Process;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.widget.RemoteViews;
 
 import androidx.annotation.RequiresApi;
@@ -38,6 +38,7 @@ import androidx.core.content.ContextCompat;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.log.Log;
+import com.clapping.find.phone.utils.SPUtils;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +48,6 @@ import java.util.TreeMap;
 
 public class DetectionService extends Service implements OnSignalsDetectedListener {
     public static final String TAG = "DetectionService";
-    private static final String PREFS_NAME = "PREFS";
     public int DETECT_NONE = 0;
     public int DETECT_WHISTLE = 1;
     CameraManager cameraManager;
@@ -204,14 +204,14 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
         RecorderThread recorderThread2 = new RecorderThread();
         this.recorderThread = recorderThread2;
         recorderThread2.start();
-        DetectorThread detectorThread2 = new DetectorThread(this.recorderThread, getPreference("startButton"));
+        DetectorThread detectorThread2 = new DetectorThread(this.recorderThread, SPUtils.getPreference(this, "startButton", "NO"));
         this.detectorThread = detectorThread2;
         detectorThread2.setOnSignalsDetectedListener(this);
         this.detectorThread.start();
     }
 
     public void onDestroy() {
-        setPreference("startButton", "NO");
+        SPUtils.setPreference(this, "startButton", "NO");
         RecorderThread recorderThread2 = this.recorderThread;
         if (recorderThread2 != null) {
             recorderThread2.stopRecording();
@@ -231,18 +231,20 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
 
     @Override
     public void onWhistleDetected() {
-        if (getPreference("flash_value").equals("slow")) {
+        String flashValue = SPUtils.getPreference(this, "flash_value", "true");
+        if ("slow".equals(flashValue)) {
             this.flash_value = 400;
-        } else if (getPreference("flash_value").equals("medium")) {
+        } else if ("medium".equals(flashValue)) {
             this.flash_value = 800;
-        } else if (getPreference("flash_value").equals("fast")) {
+        } else if ("fast".equals(flashValue)) {
             this.flash_value = 1200;
         }
-        if (getPreference("vibration_value").equals("slow")) {
+        String vibrationValue = SPUtils.getPreference(this, "vibration_value", "true");
+        if ("slow".equals(vibrationValue)) {
             this.vib_value = 300;
-        } else if (getPreference("vibration_value").equals("medium")) {
+        } else if ("medium".equals(vibrationValue)) {
             this.vib_value = 600;
-        } else if (getPreference("vibration_value").equals("fast")) {
+        } else if ("fast".equals(vibrationValue)) {
             this.vib_value = 900;
         }
         long currentTime = System.currentTimeMillis();
@@ -258,13 +260,17 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
         }
         Log.iv(TAG, "isDoubleClap : " + isDoubleClap);
         if (isDoubleClap) {
-            String startStatus = getPreference("startButton");
+            String startStatus = SPUtils.getPreference(this, "startButton", "NO");
             Log.iv(TAG, "startStatus : " + startStatus);
             if ("YES".equals(startStatus)) {
-                String ringStatus = getPreference("ring");
+                String ringStatus = SPUtils.getPreference(this, "ring", "NO");
                 Log.iv(TAG, "ringStatus : " + ringStatus);
                 if ("YES".equals(ringStatus)) {
-                    Uri ringtoneUri = Uri.parse(getPreference("ringtone_Name"));
+                    String ringtoneName = SPUtils.getPreference(this, "ringtone_Name", null);
+                    Uri ringtoneUri = null;
+                    if (!TextUtils.isEmpty(ringtoneName)) {
+                        ringtoneUri = Uri.parse(ringtoneName);
+                    }
                     if (ringtoneUri == null) {
                         ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
                     }
@@ -285,7 +291,7 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                     }
                 }
 
-                String vibrationStatus = getPreference("vibration");
+                String vibrationStatus = SPUtils.getPreference(this, "vibration", "NO");
                 Log.iv(TAG, "vibrationStatus : " + vibrationStatus);
                 if ("YES".equals(vibrationStatus)) {
                     // Inside your method
@@ -312,7 +318,7 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                         }
                     }
                 }
-                String flashStatus = getPreference("flash");
+                String flashStatus = SPUtils.getPreference(this, "flash", "NO");
                 Log.iv(TAG, "flashStatus : " + flashStatus);
                 if ("YES".equals(flashStatus)) {
                     new Thread() {
@@ -419,18 +425,6 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public String getPreference(String key) {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return settings.getString(key, "true");
-    }
-
-    public boolean setPreference(String key, String value) {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, value);
-        return editor.commit();
     }
 
     void stopVibrating() {

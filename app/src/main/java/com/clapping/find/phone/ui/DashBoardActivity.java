@@ -3,7 +3,6 @@ package com.clapping.find.phone.ui;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -25,6 +24,7 @@ import com.clapping.find.phone.dialog.ExitDialog;
 import com.clapping.find.phone.fragment.FindFragment;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.stat.Stat;
+import com.clapping.find.phone.utils.SPUtils;
 
 public class DashBoardActivity extends AppCompatActivity {
     ActivityDashBoardBinding binding;
@@ -45,7 +45,7 @@ public class DashBoardActivity extends AppCompatActivity {
         boolean b = isMyServiceRunning(DetectionService.class);
 
         if (!b) {
-            setPreference("startButton", "NO");
+            SPUtils.setPreference(this, "startButton", "NO");
         }
         binding.navigationView.setItemIconTintList(ColorStateList.valueOf(Color.BLACK));
         binding.phoneFinderll.setBackground(defaultBackground);
@@ -137,7 +137,6 @@ public class DashBoardActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0, 0);
                     }
                 });
             }
@@ -186,15 +185,6 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         }
         return false;
-    }
-
-    private String PREFS_NAME = "PREFS";
-
-    public boolean setPreference(String key, String value) {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, value);
-        return editor.commit();
     }
 
     private void navigateToMainActivityWithFragment(Class<? extends Fragment> fragmentClass, int iconResourceId) {

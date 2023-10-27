@@ -215,4 +215,26 @@ public class AdHelper {
             sHandler.post(runnable);
         }
     }
+
+    public static void showSplashCallback(Context context, String sceneName, Runnable runnable) {
+        String maxPlace = getMaxSplash(context);
+        if (!TextUtils.isEmpty(maxPlace)) {
+            AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
+                @Override
+                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    sHandler.post(runnable);
+                }
+
+                @Override
+                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    sHandler.post(runnable);
+                }
+            }, true);
+            AdSdk.get(context).showSplash(maxPlace, null, sceneName);
+        } else {
+            sHandler.post(runnable);
+        }
+    }
 }

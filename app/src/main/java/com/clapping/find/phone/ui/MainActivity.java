@@ -25,14 +25,11 @@ import com.clapping.find.phone.fragment.SettingFragment;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.utils.PermissionsUtils;
+import com.clapping.find.phone.utils.SPUtils;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;
 
-    String b, b2;
-    private String PREFS_NAME = "PREFS";
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AdHelper.loadAllInterstitial(this);
@@ -54,23 +51,19 @@ public class MainActivity extends AppCompatActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.phoneFinderll.setBackground(pressedBackground);
+                binding.settingLl.setBackground(defaultBackground);
+                binding.referLl.setBackground(defaultBackground);
+                binding.privacyLl.setBackground(defaultBackground);
+                binding.privacyPolicyLl.setBackground(defaultBackground);
+                binding.drawer.closeDrawer(Gravity.LEFT);
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_finder_2", new Runnable() {
                     @Override
                     public void run() {
-                        binding.phoneFinderll.setBackground(pressedBackground);
-                        binding.settingLl.setBackground(defaultBackground);
-                        binding.referLl.setBackground(defaultBackground);
-                        binding.privacyLl.setBackground(defaultBackground);
-                        binding.privacyPolicyLl.setBackground(defaultBackground);
                         FragmentManager fragmentManager = getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
                         fragmentTransaction.commit();
-                  /*  binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
-                    binding.findTxt.setTextColor(getResources().getColor(R.color.app_color));
-                    binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
-                    binding.settingTxt.setTextColor(getResources().getColor(R.color.gray_light));*/
-                        binding.drawer.closeDrawer(Gravity.LEFT);
                     }
                 });
             }
@@ -78,19 +71,15 @@ public class MainActivity extends AppCompatActivity {
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.settingLl.setBackground(pressedBackground);
+                binding.phoneFinderll.setBackground(defaultBackground);
+                binding.referLl.setBackground(defaultBackground);
+                binding.privacyLl.setBackground(defaultBackground);
+                binding.privacyPolicyLl.setBackground(defaultBackground);
+                binding.drawer.closeDrawer(Gravity.LEFT);
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_settings_2", new Runnable() {
                     @Override
                     public void run() {
-                        binding.settingLl.setBackground(pressedBackground);
-                        binding.phoneFinderll.setBackground(defaultBackground);
-                        binding.referLl.setBackground(defaultBackground);
-                        binding.privacyLl.setBackground(defaultBackground);
-                        binding.privacyPolicyLl.setBackground(defaultBackground);
-                   /* binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
-                    binding.settingTxt.setTextColor(getResources().getColor(R.color.app_color));
-                    binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
-                    binding.findTxt.setTextColor(getResources().getColor(R.color.gray_light));*/
-                        binding.drawer.closeDrawer(Gravity.LEFT);
                         startActivity(new Intent(MainActivity.this, SettingActivity.class));
                     }
                 });
@@ -123,15 +112,15 @@ public class MainActivity extends AppCompatActivity {
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                binding.privacyPolicyLl.setBackground(pressedBackground);
+                binding.phoneFinderll.setBackground(defaultBackground);
+                binding.settingLl.setBackground(defaultBackground);
+                binding.referLl.setBackground(defaultBackground);
+                binding.privacyLl.setBackground(defaultBackground);
+                binding.drawer.closeDrawer(Gravity.LEFT);
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_policy_2", new Runnable() {
                     @Override
                     public void run() {
-                        binding.privacyPolicyLl.setBackground(pressedBackground);
-                        binding.phoneFinderll.setBackground(defaultBackground);
-                        binding.settingLl.setBackground(defaultBackground);
-                        binding.referLl.setBackground(defaultBackground);
-                        binding.privacyLl.setBackground(defaultBackground);
-                        binding.drawer.closeDrawer(Gravity.LEFT);
                         startActivity(new Intent(MainActivity.this, TermsConditionsActivity.class));
                     }
                 });
@@ -173,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
             editor.putBoolean("switch", true);
             editor.apply();
-            setPreference("battery", "NO");
+            SPUtils.setPreference(getApplicationContext(), "battery", "NO");
         }
     }
 
@@ -189,18 +178,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             MainActivity.super.onBackPressed();
         }
-    }
-
-    public boolean setPreference(String key, String value) {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, value);
-        return editor.commit();
-    }
-
-    public String getPreference(String key) {
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return settings.getString(key, "true");
     }
 
     private void share() {

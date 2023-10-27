@@ -72,4 +72,5 @@
     <string name="background_running_title">バックグラウンド実行を許可する</string>
     <string name="background_running_desc"><![CDATA[<b>お使いの携帯電話を継続的に保護するために、このアプリケーションの<font color=\"red\">バックグラウンド実行を許可</font>することをお勧めします</b>]]></string>
     <string name="str_allow">許可</string>
+    <string name="no_sound">サウンドファイルがありません</string>
 </resources>

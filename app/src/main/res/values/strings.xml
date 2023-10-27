@@ -76,4 +76,5 @@
     <string name="background_running_title">Allow Background Running</string>
     <string name="background_running_desc"><![CDATA[<b>To continue protecting your phone, it is recommended to <font color=\"red\">allow</font> this app to run in the background</b>]]></string>
     <string name="str_allow">Allow</string>
+    <string name="no_sound">No Sound File</string>
 </resources>

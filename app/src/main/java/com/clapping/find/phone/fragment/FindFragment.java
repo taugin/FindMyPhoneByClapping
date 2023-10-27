@@ -1,11 +1,8 @@
 package com.clapping.find.phone.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,6 +23,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.FragmentFindBinding;
 import com.clapping.find.phone.ui.DetectionService;
 import com.clapping.find.phone.ui.UseTipActivity;
+import com.clapping.find.phone.utils.SPUtils;
 import com.hauyu.adsdk.Utils;
 import com.moon.BcSdk;
 import com.moon.listener.OnPermissionListener;
@@ -37,22 +35,7 @@ import java.util.List;
 public class FindFragment extends Fragment {
     TextView use, tap;
     ImageView checkbox;
-    private String PREFS_NAME = "PREFS";
-
     private FragmentFindBinding binding;
-
-    public boolean setPreference(String key, String value) {
-        SharedPreferences settings = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, value);
-        return editor.commit();
-    }
-
-    public String getPreference(String key) {
-        SharedPreferences settings = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return settings.getString(key, "true");
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,7 +65,7 @@ public class FindFragment extends Fragment {
         checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ("NO".equals(getPreference("startButton"))) {
+                if ("NO".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"))) {
                     if (isAllPermissionGrant()) {
                         activeClap();
                     } else {
@@ -90,7 +73,7 @@ public class FindFragment extends Fragment {
                     }
                 } else {
                     tap.setText(R.string.tap_to_active);
-                    setPreference("startButton", "NO");
+                    SPUtils.setPreference(getActivity(), "startButton", "NO");
                     checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
                     requireActivity().stopService(new Intent(getContext(), DetectionService.class));
                 }
@@ -98,7 +81,7 @@ public class FindFragment extends Fragment {
         });
 
         // Set UI state based on the 'startButton' preference value
-        boolean isServiceActive = getPreference("startButton").equals("YES");
+        boolean isServiceActive = "YES".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"));
         if (isServiceActive) {
             tap.setText(R.string.tap_to_inactive);
             checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
@@ -107,12 +90,12 @@ public class FindFragment extends Fragment {
             checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
         }
 
-        if (getPreference("flash").equals("YES")) {
+        if ("YES".equals(SPUtils.getPreference(getActivity(), "flash", null))) {
             binding.flashSwitch.setChecked(true);
         } else {
             binding.flashSwitch.setChecked(false);
         }
-        if (getPreference("vibration").equals("YES")) {
+        if ("YES".equals(SPUtils.getPreference(getActivity(), "vibration", null))) {
             binding.vibrationSwitch.setChecked(true);
         } else {
             binding.vibrationSwitch.setChecked(false);
@@ -120,16 +103,16 @@ public class FindFragment extends Fragment {
 
         binding.flashSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                setPreference("flash", "YES");
+                SPUtils.setPreference(getActivity(), "flash", "YES");
             } else {
-                setPreference("flash", "NO");
+                SPUtils.setPreference(getActivity(), "flash", "NO");
             }
         });
         binding.vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                setPreference("vibration", "YES");
+                SPUtils.setPreference(getActivity(), "vibration", "YES");
             } else {
-                setPreference("vibration", "NO");
+                SPUtils.setPreference(getActivity(), "vibration", "NO");
             }
         });
 
@@ -139,7 +122,7 @@ public class FindFragment extends Fragment {
     private void activeClap() {
         tap.setText(R.string.tap_to_inactive);
         checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
-        setPreference("startButton", "YES");
+        SPUtils.setPreference(getActivity(), "startButton", "YES");
         ContextCompat.startForegroundService(getContext(), new Intent(getContext(), DetectionService.class));
     }
 
@@ -232,7 +215,7 @@ public class FindFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // Update UI state based on the current service status
-        boolean isServiceActive = getPreference("startButton").equals("YES");
+        boolean isServiceActive = "YES".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"));
         if (isServiceActive) {
             tap.setText(R.string.tap_to_inactive);
             checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));

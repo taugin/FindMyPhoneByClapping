@@ -8,7 +8,7 @@ import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Toast;
@@ -19,13 +19,11 @@ import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivitySettingBinding;
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.utils.SPUtils;
 
 public class SettingActivity extends AppCompatActivity {
     ActivitySettingBinding binding;
-    private String PREFS_NAME = "PREFS";
     private Uri selectedRingtoneUri;
-    private AudioManager audioManager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,14 +32,14 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         AdHelper.showBroccoli(binding.adIncludeLayout);
         AdHelper.loadAndShowNative(this, binding.nativeAdLarge, "tiny", "sn_settings_activity");
-        String ringtoneUriStr = getPreference("ringtone_Name");
-        if (!ringtoneUriStr.isEmpty()) {
+        String ringtoneUriStr = SPUtils.getPreference(this, "ringtone_Name", null);
+        if (!TextUtils.isEmpty(ringtoneUriStr)) {
             Uri lastSelectedRingtoneUri = Uri.parse(ringtoneUriStr);
             String ringtoneName = getRingtoneNameFromUri(lastSelectedRingtoneUri);
             binding.songItem.setText(ringtoneName);
             selectedRingtoneUri = lastSelectedRingtoneUri;
         } else {
-            binding.songItem.setText("None");
+            binding.songItem.setText(R.string.no_sound);
             selectedRingtoneUri = null;
         }
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
@@ -50,50 +48,50 @@ public class SettingActivity extends AppCompatActivity {
                 SettingActivity.super.onBackPressed();
             }
         });
-        if (getPreference("flash").equals("YES")) {
+        if ("YES".equals(SPUtils.getPreference(this, "flash", null))) {
             binding.flashSwitch.setChecked(true);
         } else {
             binding.flashSwitch.setChecked(false);
         }
-        if (getPreference("vibration").equals("YES")) {
+        if ("YES".equals(SPUtils.getPreference(this, "vibration", null))) {
             binding.vibrationSwitch.setChecked(true);
         } else {
             binding.vibrationSwitch.setChecked(false);
         }
 
-        if (getPreference("ring").equals("YES")) {
+        if ("YES".equals(SPUtils.getPreference(this, "ring", null))) {
             binding.ringSwitch.setChecked(true);
         } else {
             binding.ringSwitch.setChecked(false);
         }
         binding.changeRingtone.setOnClickListener(v -> {
-            Intent intent = new Intent("android.intent.action.RINGTONE_PICKER");
-            intent.putExtra("android.intent.extra.ringtone.TYPE", 2);
-            intent.putExtra("android.intent.extra.ringtone.TITLE", getResources().getString(R.string.select_tone));
-            intent.putExtra("android.intent.extra.ringtone.EXISTING_URI", (Parcelable) null);
+            Intent intent = new Intent(RingtoneManager.ACTION_RINGTONE_PICKER);
+            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_NOTIFICATION);
+            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_TITLE, getResources().getString(R.string.select_tone));
+            intent.putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, selectedRingtoneUri);
             startActivityForResult(intent, 5);
         });
 
 
         binding.flashSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                setPreference("flash", "YES");
+                SPUtils.setPreference(this, "flash", "YES");
             } else {
-                setPreference("flash", "NO");
+                SPUtils.setPreference(this, "flash", "NO");
             }
         });
         binding.vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                setPreference("vibration", "YES");
+                SPUtils.setPreference(this, "vibration", "YES");
             } else {
-                setPreference("vibration", "NO");
+                SPUtils.setPreference(this, "vibration", "NO");
             }
         });
         binding.ringSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                setPreference("ring", "YES");
+                SPUtils.setPreference(this, "ring", "YES");
             } else {
-                setPreference("ring", "NO");
+                SPUtils.setPreference(this, "ring", "NO");
             }
 
         });
@@ -133,8 +131,6 @@ public class SettingActivity extends AppCompatActivity {
                 Toast.makeText(SettingActivity.this, volumeLevelText, Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     @Override
@@ -150,15 +146,15 @@ public class SettingActivity extends AppCompatActivity {
                 binding.songItem.setText(ringtoneName);
 
                 // Save the selected ringtone URI in SharedPreferences
-                setPreference("ringtone_Name", uri.toString());
-                setPreference("ring", "YES"); // Enable ringtone when a ringtone is selected
+                SPUtils.setPreference(this, "ringtone_Name", uri.toString());
+                SPUtils.setPreference(this, "ring", "YES"); // Enable ringtone when a ringtone is selected
             } else {
                 selectedRingtoneUri = null;
-                binding.songItem.setText("None");
+                binding.songItem.setText(R.string.no_sound);
 
                 // Clear the saved ringtone URI in SharedPreferences if none selected
-                setPreference("ringtone_Name", "");
-                setPreference("ring", "NO"); // Disable ringtone if none selected
+                SPUtils.setPreference(this, "ringtone_Name", "");
+                SPUtils.setPreference(this, "ring", "NO"); // Disable ringtone if none selected
             }
         }
     }
@@ -171,19 +167,6 @@ public class SettingActivity extends AppCompatActivity {
         }
         return "";
     }
-
-    public boolean setPreference(String key, String value) {
-        SharedPreferences settings = SettingActivity.this.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(key, value);
-        return editor.commit();
-    }
-
-    public String getPreference(String key) {
-        SharedPreferences settings = SettingActivity.this.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return settings.getString(key, "true");
-    }
-
 
     @Override
     public void onBackPressed() {
