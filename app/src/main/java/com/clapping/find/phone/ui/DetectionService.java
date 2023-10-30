@@ -14,6 +14,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
@@ -170,10 +178,48 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
         }, 0, 3000);
     }
 
+    private Bitmap getRoundedBitmap(Bitmap bitmap) {
+        if (bitmap == null) {
+            return null;
+        }
+
+        // 创建一个圆形的 Bitmap
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+        final float roundPx = bitmap.getWidth() / 2;
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+        return output;
+    }
+
+    private void setNotifyIcon(RemoteViews remoteViews) {
+        try {
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
+            bitmap = getRoundedBitmap(bitmap);
+            if (bitmap != null) {
+                remoteViews.setImageViewBitmap(R.id.ivNotificationImage, bitmap);
+            }
+        } catch (Exception e) {
+        }
+    }
+
     public Notification generateNotification() {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.custom_notification);
         remoteViews.setTextViewText(R.id.tvNotificationTitle, getResources().getString(R.string.whistle_detection));
         remoteViews.setTextColor(R.id.tvNotificationTitle, ContextCompat.getColor(this, R.color.app_color));
+        setNotifyIcon(remoteViews);
         Intent notificationIntent = getPackageManager().getLaunchIntentForPackage(getPackageName());
         if (notificationIntent == null) {
             notificationIntent = new Intent(getApplicationContext(), SplashActivity.class);
