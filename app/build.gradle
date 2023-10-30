@@ -49,8 +49,8 @@ android {
         applicationId "com.clap.find.tool.myphone"
         minSdk 24
         targetSdk 33
-        versionCode 10000
-        versionName "1.0.0"
+        versionCode 10001
+        versionName "1.0.1"
         multiDexEnabled true
 
         buildConfigField "String", "PRIVACY_URL", "\"" + PRIVACY_URL[applicationId] + "\""
@@ -59,6 +59,12 @@ android {
         buildConfigField "String", "ONESIGNAL_APP_ID", "\"" + ONESIGNAL_APP_ID[applicationId] + "\""
         buildConfigField "String", "TALKING_DATA_APP_KEY", "\"" + TALKING_DATA_APP_KEY[applicationId] + "\""
         buildConfigField "String", "UMENG_APP_KEY", "\"" + UMENG_APP_KEY[applicationId] + "\""
+
+        ndk {
+            //根据需要 自行选择添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
     }
 
     lintOptions {
@@ -145,6 +151,8 @@ dependencies {
         // firebase
         implementation 'com.google.firebase:firebase-config:21.1.1'
     }
+    //firebase
+    implementation 'com.google.firebase:firebase-analytics:21.0.0'
     implementation('com.hauyu:bcsdk:3.4.8')
 
     // view预加载占位符，参考文章：https://www.jianshu.com/p/49439c425ae3
