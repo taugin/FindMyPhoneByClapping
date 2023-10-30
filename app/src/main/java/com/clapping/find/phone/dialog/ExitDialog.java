@@ -36,6 +36,7 @@ public class ExitDialog extends Dialog implements View.OnClickListener {
         updateWindow();
         showAdView();
     }
+
     private void updateWindow() {
         try {
             WindowManager.LayoutParams p = getWindow().getAttributes();

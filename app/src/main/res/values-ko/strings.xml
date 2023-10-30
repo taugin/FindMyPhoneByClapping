@@ -32,7 +32,7 @@
     <string name="exit_message">종료하시겠습니까?</string>
     <string name="exit_later">나중에 종료</string>
     <string name="tap_to_exit">탭하여 종료</string>
-    <string name="ads_loading">로딩 중...\n광고를 포함할 수 있습니다</string>
+    <string name="splash_loading">로딩 중...\n광고를 포함할 수 있습니다</string>
     <string name="tap_to_inactive">비활성화하려면 탭하세요</string>
     <string name="tap_to_active">활성화하려면 탭하세요</string>
     <string name="permission_guide">이 어플리케이션을 정상적으로 사용하려면 권한을 부여하십시오</string>
@@ -73,4 +73,5 @@
     <string name="background_running_desc"><![CDATA[<b>핸드폰을 계속 보호하기 위해 이 앱을 <font color=\"red\">백그라운드에서 실행</font>할 수 있도록 허용하는 것을 권장합니다</b>]]></string>
     <string name="str_allow">허용</string>
     <string name="no_sound">사운드 파일 없음</string>
+    <string name="ad_loading">광고 로드 중...</string>
 </resources>

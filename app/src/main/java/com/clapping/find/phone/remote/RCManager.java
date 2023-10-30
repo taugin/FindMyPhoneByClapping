@@ -185,4 +185,8 @@ public class RCManager {
     public static boolean isShowIntroInt(Context context) {
         return isAdUser(context) && getBooleanValue("show_intro_int", true);
     }
+
+    public static boolean isShowAdLoading(Context context) {
+        return getBooleanValue("show_ad_loading", true);
+    }
 }

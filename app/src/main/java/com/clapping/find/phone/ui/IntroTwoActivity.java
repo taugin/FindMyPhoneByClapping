@@ -23,7 +23,7 @@ public class IntroTwoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
-                    AdHelper.showInterstitialCallback(getApplicationContext(), "si_intro_two",new Runnable() {
+                    AdHelper.showInterstitialAfterLoading(IntroTwoActivity.this, "si_intro_two", new Runnable() {
                         @Override
                         public void run() {
                             startActivity(new Intent(getApplicationContext(), TermsOfUseActivity.class));

@@ -64,7 +64,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
-                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_finder", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_navi_finder", new Runnable() {
                     @Override
                     public void run() {
                         navigateToMainActivityWithFragment(FindFragment.class, R.drawable.find_selector);
@@ -81,7 +81,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
-                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_settings", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_navi_settings", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(DashBoardActivity.this, SettingActivity.class));
@@ -122,7 +122,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
-                AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_policy", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_navi_policy", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(getApplicationContext(), TermsConditionsActivity.class));
@@ -133,7 +133,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.startLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), "si_goto_main", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_goto_main", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -144,7 +144,7 @@ public class DashBoardActivity extends AppCompatActivity {
         binding.settingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialCallback(getApplicationContext(), "si_goto_settings", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_goto_settings", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(new Intent(getApplicationContext(), SettingActivity.class));

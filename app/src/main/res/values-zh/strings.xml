@@ -32,7 +32,7 @@
     <string name="exit_message">确定要退出吗？</string>
     <string name="exit_later">稍后退出</string>
     <string name="tap_to_exit">点击退出</string>
-    <string name="ads_loading">加载中...\n可能包含广告</string>
+    <string name="splash_loading">加载中...\n可能包含广告</string>
     <string name="tap_to_inactive">点击停用</string>
     <string name="tap_to_active">点击启用</string>
     <string name="permission_guide">请授予权限以确保正常使用此应用程序</string>
@@ -73,4 +73,5 @@
     <string name="background_running_desc"><![CDATA[<b>为了持续保护您的手机，建议您<font color=\"red\">允许</font>此应用在后台运行</b>]]></string>
     <string name="str_allow">允许</string>
     <string name="no_sound">无声音文件</string>
+    <string name="ad_loading">广告正在加载...</string>
 </resources>

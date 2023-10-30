@@ -42,7 +42,7 @@ public class TermsOfUseActivity extends AppCompatActivity {
     }
 
     private void mStartAct() {
-        AdHelper.showInterstitialCallback(getApplicationContext(), "si_terms_of_use", new Runnable() {
+        AdHelper.showInterstitialAfterLoading(this, "si_terms_of_use", new Runnable() {
             @Override
             public void run() {
                 startActivity(new Intent(getApplicationContext(), DashBoardActivity.class));

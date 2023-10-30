@@ -24,7 +24,7 @@ public class IntroOneActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
-                    AdHelper.showInterstitialCallback(getApplicationContext(), "si_intro_one", new Runnable() {
+                    AdHelper.showInterstitialAfterLoading(IntroOneActivity.this, "si_intro_one", new Runnable() {
                         @Override
                         public void run() {
                             startActivity(new Intent(getApplicationContext(), IntroTwoActivity.class));

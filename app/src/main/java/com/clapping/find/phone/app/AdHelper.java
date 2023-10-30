@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
+import com.clapping.find.phone.dialog.AdDialog;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.ui.DashBoardActivity;
 import com.hauyu.adsdk.AdParams;
@@ -245,6 +246,26 @@ public class AdHelper {
             });
         } else {
             sHandler.post(runnable);
+        }
+    }
+
+
+    public static void showInterstitialAfterLoading(Activity activity, final String sceneName, final Runnable runnable) {
+        if (RCManager.isShowAdLoading(activity)) {
+            final AdDialog adDialog = new AdDialog(activity);
+            adDialog.setCancelable(false);
+            sHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    AdHelper.showInterstitialCallback(activity, sceneName, runnable);
+                    if (adDialog != null && adDialog.isShowing()) {
+                        adDialog.dismiss();
+                    }
+                }
+            }, 2000);
+            adDialog.show();
+        } else {
+            AdHelper.showInterstitialCallback(activity, sceneName, runnable);
         }
     }
 }
