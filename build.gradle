@@ -49,5 +49,5 @@ allprojects {
 }
 
 ext {
-    adsdk_version = "7.3.0"
+    adsdk_version = "7.3.1"
 }

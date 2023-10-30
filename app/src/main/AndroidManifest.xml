@@ -79,6 +79,11 @@
             android:enabled="true"
             android:exported="true" />
         <receiver android:name=".ui.NotificationListener" />
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9491010963390888~5657963897"
+            tools:replace="android:value" />
     </application>
 
 </manifest>

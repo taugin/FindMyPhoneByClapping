@@ -122,7 +122,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="4dp"
                     android:layout_toRightOf="@+id/menu_btn"
                     android:gravity="center"
                     android:text="@string/tap_to_active"

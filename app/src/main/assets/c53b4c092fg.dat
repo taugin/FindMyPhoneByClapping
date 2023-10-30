@@ -1,0 +1,91 @@
+{
+  "all_places": [
+    {
+      "name": "common_splash",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "admob",
+          "type": "splash",
+          "cpm": 10,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/1355794790"
+        },
+        {
+          "sdk": "admob",
+          "type": "splash",
+          "cpm": 15,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/9912069523"
+        },
+        {
+          "sdk": "applovin",
+          "type": "splash",
+          "pid": "c9db0d9e3959dfbb"
+        }
+      ]
+    },
+    {
+      "name": "common_int",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "admob",
+          "type": "interstitial",
+          "cpm": 20,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/3151220054"
+        },
+        {
+          "sdk": "admob",
+          "type": "interstitial",
+          "cpm": 25,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/2959648363"
+        }
+      ]
+    },
+    {
+      "name": "common_int_slave",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "applovin",
+          "type": "interstitial",
+          "pid": "62335a02039b590e"
+        }
+      ]
+    },
+    {
+      "name": "common_native",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "admob",
+          "type": "native",
+          "cpm": 5,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/6416549786"
+        },
+        {
+          "sdk": "admob",
+          "type": "native",
+          "cpm": 10,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/3790386441"
+        }
+      ]
+    },
+    {
+      "name": "common_native_slave",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "applovin",
+          "type": "native",
+          "pid": "3a00b9f1eb99f84f"
+        }
+      ]
+    }
+  ]
+}
