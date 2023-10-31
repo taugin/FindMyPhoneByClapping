@@ -74,4 +74,7 @@
     <string name="str_allow">허용</string>
     <string name="no_sound">사운드 파일 없음</string>
     <string name="ad_loading">광고 로드 중...</string>
+    <string name="language">언어 설정</string>
+    <string name="language_set_restart_tip">언어 변경은 애플리케이션을 다시 시작해야 적용됩니다. 애플리케이션을 다시 시작하시겠습니까?</string>
+    <string name="restart">재시작</string>
 </resources>

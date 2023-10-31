@@ -78,4 +78,8 @@
     <string name="str_allow">Allow</string>
     <string name="no_sound">No Sound File</string>
     <string name="ad_loading">Ad is loading ...</string>
+
+    <string name="restart">Restart</string>
+    <string name="language">Language</string>
+    <string name="language_set_restart_tip">Language switching requires restarting the application to take effect. Do you need to restart the application?</string>
 </resources>

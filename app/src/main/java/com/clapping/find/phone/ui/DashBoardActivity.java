@@ -130,6 +130,25 @@ public class DashBoardActivity extends BaseActivity {
                 });
             }
         });
+
+        binding.changeLanguageLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.changeLanguageLl.setBackground(pressedBackground);
+                binding.phoneFinderll.setBackground(defaultBackground);
+                binding.settingLl.setBackground(defaultBackground);
+                binding.referLl.setBackground(defaultBackground);
+                binding.privacyLl.setBackground(defaultBackground);
+                binding.drawer.closeDrawer(Gravity.LEFT);
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_navi_language", new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(getApplicationContext(), LanguageActivity.class));
+                    }
+                });
+            }
+        });
+
         binding.startLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

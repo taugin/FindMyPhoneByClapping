@@ -74,4 +74,7 @@
     <string name="str_allow">許可</string>
     <string name="no_sound">サウンドファイルがありません</string>
     <string name="ad_loading">広告を読み込んでいます ...</string>
+    <string name="language">言語を設定</string>
+    <string name="language_set_restart_tip">言語の切り替えにはアプリの再起動が必要です。アプリを再起動しますか？</string>
+    <string name="restart">再起動</string>
 </resources>

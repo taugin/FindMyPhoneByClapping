@@ -122,13 +122,13 @@
                             android:paddingBottom="4dp">
 
                             <androidx.cardview.widget.CardView
-                                android:layout_width="112dp"
-                                android:layout_height="112dp"
-                                app:cardCornerRadius="112dp">
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="100dp">
 
                                 <ImageView
-                                    android:layout_width="112dp"
-                                    android:layout_height="112dp"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
                                     android:src="@drawable/settings_dash" />
                             </androidx.cardview.widget.CardView>
 
@@ -153,13 +153,13 @@
                             android:paddingBottom="4dp">
 
                             <androidx.cardview.widget.CardView
-                                android:layout_width="112dp"
-                                android:layout_height="112dp"
-                                app:cardCornerRadius="112dp">
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="100dp">
 
                                 <ImageView
-                                    android:layout_width="112dp"
-                                    android:layout_height="112dp"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
                                     android:layout_weight="1"
                                     android:src="@drawable/privacy_dash" />
                             </androidx.cardview.widget.CardView>
@@ -185,13 +185,13 @@
                             android:paddingBottom="4dp">
 
                             <androidx.cardview.widget.CardView
-                                android:layout_width="112dp"
-                                android:layout_height="112dp"
-                                app:cardCornerRadius="112dp">
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="100dp">
 
                                 <ImageView
-                                    android:layout_width="112dp"
-                                    android:layout_height="112dp"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
                                     android:layout_weight="1"
                                     android:src="@drawable/share_dash" />
                             </androidx.cardview.widget.CardView>
@@ -440,6 +440,44 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:text="@string/terms_of_service"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textColor="@color/gray"
+                    android:textSize="16dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/change_language_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/privacy_policy_ll"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp">
+
+
+                <ImageView
+                    android:id="@+id/change_language_icon"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="2dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_language" />
+
+                <TextView
+                    android:id="@+id/change_language_txt"
+                    style="@style/common_text_style2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/language"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
                     android:textColor="@color/gray"
                     android:textSize="16dp" />

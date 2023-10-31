@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import com.clapping.find.phone.stat.Stat;
+import com.clapping.find.phone.utils.ChangeLanguage;
 import com.hauyu.adsdk.InternalStat;
 import com.hauyu.adsdk.core.framework.ActivityMonitor;
 import com.moon.BcSdk;
@@ -26,6 +27,7 @@ public class ClapApp extends Application {
     public void onCreate() {
         super.onCreate();
         app = this;
+        ChangeLanguage.init(this);
         initSdk();
         registerLifeCycle();
     }

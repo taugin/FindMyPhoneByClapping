@@ -188,11 +188,8 @@ public class ChangeLanguage {
         //locale为空时，默认行为是跟随系统的语言
         sUserLocaleList.add(0, new LocaleInfo(null, "Follow System"));
         sUserLocaleList.add(new LocaleInfo(Locale.ENGLISH, "English", "英语", "Follow System"));
-        sUserLocaleList.add(new LocaleInfo(new Locale("es"), "Español", "西班牙语", "Seguir sistema"));
         sUserLocaleList.add(new LocaleInfo(new Locale("ja"), "日本語", "日语", "フォローシステム"));
         sUserLocaleList.add(new LocaleInfo(Locale.KOREA, "한국어", "韩语", "팔로우 시스템"));
-        sUserLocaleList.add(new LocaleInfo(new Locale("pt"), "Português", "葡萄牙语", "Siga o sistema"));
-        sUserLocaleList.add(new LocaleInfo(new Locale("ar"), "العربية", "阿拉伯语", "اتبع النظام"));
         sUserLocaleList.add(new LocaleInfo(Locale.SIMPLIFIED_CHINESE, "简体中文", "简体中文", "跟随系统"));
     }
 

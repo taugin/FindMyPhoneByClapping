@@ -262,7 +262,7 @@ public class AdHelper {
                         adDialog.dismiss();
                     }
                 }
-            }, 2000);
+            }, 1000);
             adDialog.show();
         } else {
             AdHelper.showInterstitialCallback(activity, sceneName, runnable);

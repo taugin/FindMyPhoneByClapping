@@ -99,7 +99,7 @@ public class RCManager {
         if (TextUtils.isEmpty(configAttrString)) {
             configAttrString = !TextUtils.isEmpty(defaultValue) ? defaultValue : "fc_true";
         }
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.DEBUG && false) {
             configAttrString = "non-organic,organic,fc_true,fc_false";
             Log.iv(Log.TAG, "**********debug attribution contain all**********");
         }
@@ -188,5 +188,9 @@ public class RCManager {
 
     public static boolean isShowAdLoading(Context context) {
         return getBooleanValue("show_ad_loading", true);
+    }
+
+    public static boolean isShowLanguageNativeAds(Context context) {
+        return isAdUser(context) && getBooleanValue("show_lna", true);
     }
 }

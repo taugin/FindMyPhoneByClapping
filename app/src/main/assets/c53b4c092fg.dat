@@ -34,6 +34,7 @@
           "type": "interstitial",
           "cpm": 20,
           "mac": 3,
+          "remark": "mediation",
           "pid": "ca-app-pub-9491010963390888/3151220054"
         },
         {
@@ -41,6 +42,7 @@
           "type": "interstitial",
           "cpm": 25,
           "mac": 3,
+          "remark": "medium",
           "pid": "ca-app-pub-9491010963390888/2959648363"
         }
       ]
@@ -65,6 +67,7 @@
           "type": "native",
           "cpm": 5,
           "mac": 3,
+          "remark": "mediation",
           "pid": "ca-app-pub-9491010963390888/6416549786"
         },
         {
@@ -72,6 +75,7 @@
           "type": "native",
           "cpm": 10,
           "mac": 3,
+          "remark": "medium",
           "pid": "ca-app-pub-9491010963390888/3790386441"
         }
       ]

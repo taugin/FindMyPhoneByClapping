@@ -74,4 +74,7 @@
     <string name="str_allow">允许</string>
     <string name="no_sound">无声音文件</string>
     <string name="ad_loading">广告正在加载...</string>
+    <string name="language">设置语言</string>
+    <string name="language_set_restart_tip">切换语言需要重新启动应用才能生效。您是否需要重新启动应用？</string>
+    <string name="restart">重新启动</string>
 </resources>

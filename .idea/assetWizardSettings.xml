@@ -293,6 +293,44 @@
             </PersistentState>
           </value>
         </entry>
+        <entry key="vectorWizard">
+          <value>
+            <PersistentState>
+              <option name="children">
+                <map>
+                  <entry key="vectorAssetStep">
+                    <value>
+                      <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="file:/E:/AndroidSdk/Sdk/icons/material/materialicons/language/baseline_language_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                        <option name="values">
+                          <map>
+                            <entry key="opacityPercent" value="91" />
+                            <entry key="outputName" value="ic_language" />
+                            <entry key="sourceFile" value="F:\myprojects\appcode\FindMyPhoneByClapping" />
+                          </map>
+                        </option>
+                      </PersistentState>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </PersistentState>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
