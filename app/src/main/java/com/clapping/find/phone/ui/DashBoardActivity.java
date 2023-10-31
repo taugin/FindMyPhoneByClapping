@@ -26,7 +26,7 @@ import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.utils.SPUtils;
 
-public class DashBoardActivity extends AppCompatActivity {
+public class DashBoardActivity extends BaseActivity {
     ActivityDashBoardBinding binding;
 
     @Override

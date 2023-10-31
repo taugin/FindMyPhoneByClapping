@@ -8,7 +8,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityTermsConditionsBinding;
 import com.clapping.find.phone.remote.RCManager;
 
-public class TermsConditionsActivity extends AppCompatActivity {
+public class TermsConditionsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -21,7 +21,7 @@ import com.clapping.find.phone.databinding.ActivitySettingBinding;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.utils.SPUtils;
 
-public class SettingActivity extends AppCompatActivity {
+public class SettingActivity extends BaseActivity {
     ActivitySettingBinding binding;
     private Uri selectedRingtoneUri;
     @Override

@@ -27,7 +27,7 @@ import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.utils.PermissionsUtils;
 import com.clapping.find.phone.utils.SPUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     ActivityMainBinding binding;
 
     protected void onCreate(Bundle savedInstanceState) {

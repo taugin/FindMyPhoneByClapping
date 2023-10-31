@@ -14,7 +14,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.remote.RCManager;
 import com.hauyu.adsdk.AdSdk;
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     private boolean mShowIntSplash = false;
 
@@ -129,5 +129,9 @@ public class SplashActivity extends AppCompatActivity {
     public void gotoMainActivity() {
         startActivity(new Intent(this, DashBoardActivity.class));
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

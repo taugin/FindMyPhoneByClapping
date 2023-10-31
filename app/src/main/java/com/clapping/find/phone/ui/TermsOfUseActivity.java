@@ -11,7 +11,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityTermsOfUseBinding;
 import com.clapping.find.phone.stat.Stat;
 
-public class TermsOfUseActivity extends AppCompatActivity {
+public class TermsOfUseActivity extends BaseActivity {
     ActivityTermsOfUseBinding binding;
     int type;
 
@@ -49,5 +49,9 @@ public class TermsOfUseActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

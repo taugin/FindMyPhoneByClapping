@@ -10,7 +10,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityIntroTwoBinding;
 import com.clapping.find.phone.remote.RCManager;
 
-public class IntroTwoActivity extends AppCompatActivity {
+public class IntroTwoActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,5 +34,9 @@ public class IntroTwoActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

@@ -9,7 +9,7 @@ import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityUseBinding;
 import com.clapping.find.phone.remote.RCManager;
 
-public class UseTipActivity extends AppCompatActivity {
+public class UseTipActivity extends BaseActivity {
     ActivityUseBinding binding;
 
     @Override

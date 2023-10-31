@@ -46,6 +46,7 @@ import androidx.core.content.ContextCompat;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.log.Log;
+import com.clapping.find.phone.utils.ChangeLanguage;
 import com.clapping.find.phone.utils.SPUtils;
 
 import java.io.IOException;
@@ -94,6 +95,11 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
             stopVibrating();
         }
     };
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(ChangeLanguage.createConfigurationContext(newBase));
+    }
 
     public IBinder onBind(Intent intent) {
         return null;
