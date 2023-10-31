@@ -28,10 +28,12 @@ public class IntroOneActivity extends BaseActivity {
                         @Override
                         public void run() {
                             startActivity(new Intent(getApplicationContext(), IntroTwoActivity.class));
+                            finish();
                         }
                     });
                 } else {
                     startActivity(new Intent(getApplicationContext(), IntroTwoActivity.class));
+                    finish();
                 }
             }
         });

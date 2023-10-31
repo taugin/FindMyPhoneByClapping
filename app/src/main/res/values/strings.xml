@@ -4,7 +4,7 @@
     <string name="second_onboard">Customize the Tones, choose different Sounds, or even enable Vibration alerts.</string>
 
     <string name="find_phone_by_whistle">Find Phone By Clap</string>
-    <string name="chk_permission_dialog">Please enable permission from settings.Find My Phone By Clapping app needs permission to work properly click on settings and go to permission and allow permission.Find My Phone By Clapping is not collecting anytype of personal information.</string>
+    <string name="chk_permission_dialog">Please enable permission from settings.Clap To Find My Phone app needs permission to work properly click on settings and go to permission and allow permission.Find My Phone By Clapping is not collecting anytype of personal information.</string>
     <string name="go_to_setting">Settings</string>
     <string name="you_can_find_out_more_information_by_clicking_on_the_following_link">You can find out more information by clicking on the following link :</string>
     <string name="we_do_not_share_any_kind_of_your_personal_data_with_third_parties">We do not share any kind of your Personal Data with third parties.</string>

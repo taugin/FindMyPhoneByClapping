@@ -119,6 +119,7 @@ public class SplashActivity extends BaseActivity {
             boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
             if (isFirstRun) {
                 startActivity(new Intent(SplashActivity.this, IntroOneActivity.class));
+                finish();
             } else {
                 gotoMainActivity();
             }

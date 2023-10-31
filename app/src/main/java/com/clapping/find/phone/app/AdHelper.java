@@ -140,6 +140,14 @@ public class AdHelper {
     }
 
     public static void loadAndShowNative(Context context, ViewGroup viewGroup, String cardStyle, String sceneName) {
+        String maxPlace = AdSdk.get(context).getMaxPlaceName(AdSdk.AD_TYPE_NATIVE);
+        if (!TextUtils.isEmpty(maxPlace)) {
+            if (!(context instanceof Activity) || !((Activity) context).isFinishing()) {
+                AdParams adParams = new AdParams.Builder().setAdCardStyle(cardStyle).setSceneName(sceneName).build();
+                AdSdk.get(context).showAdView(maxPlace, adParams, viewGroup);
+            }
+            return;
+        }
         AdSdk.get(context).loadAdView(PID_NATIVE_COMMON, new SimpleAdSdkListener() {
             @Override
             public void onLoaded(String placeName, String source, String adType, String pid) {
