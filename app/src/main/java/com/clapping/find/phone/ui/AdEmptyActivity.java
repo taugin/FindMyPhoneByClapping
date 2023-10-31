@@ -61,6 +61,7 @@ public class AdEmptyActivity extends Activity {
                         Intent adIntent = new Intent(activity, AdEmptyActivity.class);
                         adIntent.putExtra(Intent.EXTRA_REFERRER_NAME, sceneName);
                         activity.startActivities(new Intent[]{intent, adIntent});
+                        activity.overridePendingTransition(android.R.anim.fade_in, 0);
                     } catch (Exception e) {
                         AdHelper.showInterstitialCallback(activity, sceneName, runnable);
                     }
@@ -72,6 +73,7 @@ public class AdEmptyActivity extends Activity {
                 Intent adIntent = new Intent(activity, AdEmptyActivity.class);
                 adIntent.putExtra(Intent.EXTRA_REFERRER_NAME, sceneName);
                 activity.startActivities(new Intent[]{intent, adIntent});
+                activity.overridePendingTransition(android.R.anim.fade_in, 0);
             } catch (Exception e) {
                 AdHelper.showInterstitialCallback(activity, sceneName, runnable);
             }
