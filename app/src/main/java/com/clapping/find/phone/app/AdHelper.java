@@ -2,6 +2,7 @@ package com.clapping.find.phone.app;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.Looper;
@@ -12,6 +13,7 @@ import android.view.animation.LinearInterpolator;
 
 import com.clapping.find.phone.dialog.AdDialog;
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.ui.AdEmptyActivity;
 import com.clapping.find.phone.ui.DashBoardActivity;
 import com.hauyu.adsdk.AdParams;
 import com.hauyu.adsdk.AdSdk;
@@ -219,12 +221,7 @@ public class AdHelper {
                     sHandler.post(runnable);
                 }
             }, true);
-            sHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    AdSdk.get(context).showInterstitial(maxPlace, sceneName);
-                }
-            });
+            AdSdk.get(context).showInterstitial(maxPlace, sceneName);
         } else {
             sHandler.post(runnable);
         }
@@ -246,12 +243,7 @@ public class AdHelper {
                     sHandler.post(runnable);
                 }
             }, true);
-            sHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    AdSdk.get(context).showSplash(maxPlace, null, sceneName);
-                }
-            });
+            AdSdk.get(context).showSplash(maxPlace, null, sceneName);
         } else {
             sHandler.post(runnable);
         }
@@ -265,15 +257,19 @@ public class AdHelper {
             sHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    AdHelper.showInterstitialCallback(activity, sceneName, runnable);
                     if (adDialog != null && adDialog.isShowing()) {
                         adDialog.dismiss();
                     }
+                    AdHelper.showInterstitialCallback(activity, sceneName, runnable);
                 }
             }, 1000);
             adDialog.show();
         } else {
             AdHelper.showInterstitialCallback(activity, sceneName, runnable);
         }
+    }
+
+    public static void showInterstitialEmptyAfterLoading(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
+        AdEmptyActivity.showInterstitialEmptyAfterLoading(activity, intent, sceneName, runnable);
     }
 }

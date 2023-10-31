@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityIntroOneBinding;
 import com.clapping.find.phone.remote.RCManager;
@@ -24,10 +22,11 @@ public class IntroOneActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
-                    AdHelper.showInterstitialAfterLoading(IntroOneActivity.this, "si_intro_one", new Runnable() {
+                    Intent intent = new Intent(getApplicationContext(), IntroTwoActivity.class);
+                    AdHelper.showInterstitialEmptyAfterLoading(IntroOneActivity.this, intent, "si_intro_one", new Runnable() {
                         @Override
                         public void run() {
-                            startActivity(new Intent(getApplicationContext(), IntroTwoActivity.class));
+                            startActivity(intent);
                             finish();
                         }
                     });

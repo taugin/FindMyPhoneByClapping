@@ -20,7 +20,7 @@ public class UseTipActivity extends BaseActivity {
         AdHelper.showBroccoli(binding.adIncludeLayout);
         AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_use_tiny");
         if (RCManager.isShowSlaveNative(this)) {
-            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "small", "sn_use_small");
+            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_use_small");
         }
         binding.view1.setBackground(new DashedLineDrawable(this));
         binding.view2.setBackground(new DashedLineDrawable(this));

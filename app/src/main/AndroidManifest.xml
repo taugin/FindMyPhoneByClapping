@@ -74,6 +74,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.LanguageActivity" />
+        <activity
+            android:name=".ui.AdEmptyActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
             android:name=".ui.DetectionService"

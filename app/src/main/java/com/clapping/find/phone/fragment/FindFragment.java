@@ -27,6 +27,7 @@ import com.clapping.find.phone.utils.SPUtils;
 import com.hauyu.adsdk.Utils;
 import com.moon.BcSdk;
 import com.moon.listener.OnPermissionListener;
+import com.umeng.commonsdk.debug.I;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,10 +54,11 @@ public class FindFragment extends Fragment {
         use.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AdHelper.showInterstitialAfterLoading(requireActivity(), "si_goto_use", new Runnable() {
+                Intent intent = new Intent(requireActivity(), UseTipActivity.class);
+                AdHelper.showInterstitialEmptyAfterLoading(requireActivity(), intent, "si_goto_use", new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(requireActivity(), UseTipActivity.class));
+                        startActivity(intent);
                     }
                 });
             }
