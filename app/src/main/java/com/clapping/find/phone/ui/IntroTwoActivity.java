@@ -22,7 +22,7 @@ public class IntroTwoActivity extends BaseActivity {
             public void onClick(View view) {
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
                     Intent intent = new Intent(getApplicationContext(), TermsOfUseActivity.class);
-                    AdHelper.showInterstitialEmptyAfterLoading(IntroTwoActivity.this, intent, "si_intro_two", new Runnable() {
+                    AdHelper.showInterstitialAfterLoading(IntroTwoActivity.this, intent, "si_intro_two", new Runnable() {
                         @Override
                         public void run() {
                             startActivity(intent);

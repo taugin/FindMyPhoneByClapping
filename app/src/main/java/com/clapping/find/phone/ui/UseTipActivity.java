@@ -3,8 +3,6 @@ package com.clapping.find.phone.ui;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityUseBinding;
 import com.clapping.find.phone.remote.RCManager;

@@ -41,7 +41,7 @@ public class TermsOfUseActivity extends BaseActivity {
 
     private void mStartAct() {
         Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
-        AdHelper.showInterstitialEmptyAfterLoading(this, intent, "si_terms_of_use", new Runnable() {
+        AdHelper.showInterstitialAfterLoading(this, intent, "si_terms_of_use", new Runnable() {
             @Override
             public void run() {
                 startActivity(intent);

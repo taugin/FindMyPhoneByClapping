@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
-import com.clapping.find.phone.dialog.AdDialog;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.ui.AdEmptyActivity;
 import com.clapping.find.phone.ui.DashBoardActivity;
@@ -249,27 +248,14 @@ public class AdHelper {
         }
     }
 
-
-    public static void showInterstitialAfterLoading(Activity activity, final String sceneName, final Runnable runnable) {
-        if (RCManager.isShowAdLoading(activity)) {
-            final AdDialog adDialog = new AdDialog(activity);
-            adDialog.setCancelable(false);
-            sHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (adDialog != null && adDialog.isShowing()) {
-                        adDialog.dismiss();
-                    }
-                    AdHelper.showInterstitialCallback(activity, sceneName, runnable);
-                }
-            }, 1000);
-            adDialog.show();
-        } else {
-            AdHelper.showInterstitialCallback(activity, sceneName, runnable);
-        }
-    }
-
-    public static void showInterstitialEmptyAfterLoading(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
-        AdEmptyActivity.showInterstitialEmptyAfterLoading(activity, intent, sceneName, runnable);
+    /**
+     * 展示插屏广告，并且跳转指定的Intent，如果intent为空，则通过runnable回调
+     * @param activity
+     * @param intent
+     * @param sceneName
+     * @param runnable
+     */
+    public static void showInterstitialAfterLoading(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
+        AdEmptyActivity.showInterstitialAfterLoading(activity, intent, sceneName, runnable);
     }
 }

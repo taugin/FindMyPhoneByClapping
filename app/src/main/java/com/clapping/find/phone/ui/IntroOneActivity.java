@@ -23,7 +23,7 @@ public class IntroOneActivity extends BaseActivity {
             public void onClick(View view) {
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
                     Intent intent = new Intent(getApplicationContext(), IntroTwoActivity.class);
-                    AdHelper.showInterstitialEmptyAfterLoading(IntroOneActivity.this, intent, "si_intro_one", new Runnable() {
+                    AdHelper.showInterstitialAfterLoading(IntroOneActivity.this, intent, "si_intro_one", new Runnable() {
                         @Override
                         public void run() {
                             startActivity(intent);

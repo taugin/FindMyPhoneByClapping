@@ -16,7 +16,6 @@ import com.tendcloud.tenddata.TalkingDataSDK;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.commonsdk.UMConfigure;
-import com.umeng.commonsdk.debug.I;
 
 import java.util.Locale;
 import java.util.Map;

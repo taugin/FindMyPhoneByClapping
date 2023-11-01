@@ -63,7 +63,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
-                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, "si_navi_finder", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, null, "si_navi_finder", new Runnable() {
                     @Override
                     public void run() {
                         navigateToMainActivityWithFragment(FindFragment.class, R.drawable.find_selector);
@@ -81,7 +81,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-                AdHelper.showInterstitialEmptyAfterLoading(DashBoardActivity.this, intent, "si_navi_settings", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_settings", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(intent);
@@ -123,7 +123,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
                 Intent intent = new Intent(getApplicationContext(), TermsConditionsActivity.class);
-                AdHelper.showInterstitialEmptyAfterLoading(DashBoardActivity.this, intent, "si_navi_policy", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_policy", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(intent);
@@ -142,7 +142,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(Gravity.LEFT);
                 Intent intent = new Intent(getApplicationContext(), LanguageActivity.class);
-                AdHelper.showInterstitialEmptyAfterLoading(DashBoardActivity.this, intent, "si_navi_language", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_language", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(intent);
@@ -155,7 +155,7 @@ public class DashBoardActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                AdHelper.showInterstitialEmptyAfterLoading(DashBoardActivity.this, intent, "si_goto_main", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_goto_main", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(intent);
@@ -167,7 +167,7 @@ public class DashBoardActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
-                AdHelper.showInterstitialEmptyAfterLoading(DashBoardActivity.this, intent, "si_goto_settings", new Runnable() {
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_goto_settings", new Runnable() {
                     @Override
                     public void run() {
                         startActivity(intent);

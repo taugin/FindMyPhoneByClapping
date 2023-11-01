@@ -2,7 +2,6 @@ package com.clapping.find.phone.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -12,8 +11,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;

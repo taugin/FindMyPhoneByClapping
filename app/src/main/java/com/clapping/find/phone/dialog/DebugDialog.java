@@ -26,12 +26,12 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.clapping.find.phone.log.Log;
 import com.clapping.find.phone.utils.ChangeLanguage;
 import com.hauyu.adsdk.AdImpData;
 import com.hauyu.adsdk.Utils;
 import com.hauyu.adsdk.core.db.DBManager;
 import com.hauyu.adsdk.core.framework.ActivityMonitor;
-import com.clapping.find.phone.log.Log;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
