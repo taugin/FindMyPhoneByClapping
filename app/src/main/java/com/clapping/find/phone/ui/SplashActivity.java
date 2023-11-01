@@ -3,7 +3,6 @@ package com.clapping.find.phone.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -113,21 +112,20 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void openActivity() {
-        new Handler().post(() -> {
-            boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
-            if (isFirstRun) {
-                startActivity(new Intent(SplashActivity.this, IntroOneActivity.class));
-                finish();
-            } else {
-                gotoMainActivity();
-            }
-            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
-        });
+        boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
+        if (isFirstRun) {
+            startActivity(new Intent(SplashActivity.this, IntroOneActivity.class));
+            finish();
+            overridePendingTransition(0, 0);
+        } else {
+            gotoMainActivity();
+        }
     }
 
     public void gotoMainActivity() {
         startActivity(new Intent(this, DashBoardActivity.class));
         finish();
+        overridePendingTransition(0, 0);
     }
 
     @Override
