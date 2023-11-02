@@ -45,7 +45,10 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/flashSwitch"
                         android:layout_alignStart="@+id/flashlight_image"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:autoSizeMinTextSize="14sp"
                         android:paddingHorizontal="10dp"
+                        android:singleLine="true"
                         android:text="@string/flash_light"
                         android:textColor="#2A3135"
                         android:textSize="16dp" />
@@ -86,7 +89,10 @@
                         android:layout_height="wrap_content"
                         android:layout_above="@+id/vibrationSwitch"
                         android:layout_alignStart="@+id/phone_vibrate_image"
+                        android:autoSizeMaxTextSize="16sp"
+                        android:autoSizeMinTextSize="14sp"
                         android:paddingHorizontal="10dp"
+                        android:singleLine="true"
                         android:text="@string/phone_vibrate"
                         android:textColor="#2A3135"
                         android:textSize="16dp" />

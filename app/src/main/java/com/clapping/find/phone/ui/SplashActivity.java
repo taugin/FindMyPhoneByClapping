@@ -114,6 +114,7 @@ public class SplashActivity extends BaseActivity {
     private void openActivity() {
         boolean isFirstRun = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isFirstRun", true);
         if (isFirstRun) {
+            getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isFirstRun", false).commit();
             startActivity(new Intent(SplashActivity.this, IntroOneActivity.class));
             finish();
             overridePendingTransition(0, 0);
