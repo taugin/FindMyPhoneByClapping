@@ -211,13 +211,13 @@ public class AdHelper {
                 @Override
                 public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    sHandler.post(runnable);
+                    runnable.run();
                 }
 
                 @Override
                 public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    sHandler.post(runnable);
+                    runnable.run();
                 }
             }, true);
             AdSdk.get(context).showInterstitial(maxPlace, sceneName);

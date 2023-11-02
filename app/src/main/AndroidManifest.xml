@@ -76,7 +76,7 @@
         <activity android:name=".ui.LanguageActivity" />
         <activity
             android:name=".ui.AdEmptyActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/AdEmptyStyle" />
 
         <service
             android:name=".ui.DetectionService"

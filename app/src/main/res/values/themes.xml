@@ -15,6 +15,10 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AdEmptyStyle" parent="Theme.FindMyPhoneByClapping">
+        <item name="android:background">@color/white</item>
+    </style>
+
     <style name="TextAppearance.MyApp.Body2" parent="TextAppearance.MaterialComponents.Body1">
         <item name="android:textStyle">normal</item>
         <item name="android:textAllCaps">false</item>
