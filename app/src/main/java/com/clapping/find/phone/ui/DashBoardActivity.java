@@ -57,7 +57,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.phoneFinderll.setBackground(pressedBackground);
+                binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
@@ -74,7 +74,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.settingLl.setBackground(pressedBackground);
+                binding.settingLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
@@ -92,7 +92,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.referLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.referLl.setBackground(pressedBackground);
+                binding.referLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
@@ -104,7 +104,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.privacyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.privacyLl.setBackground(pressedBackground);
+                binding.privacyLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
@@ -116,7 +116,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.privacyPolicyLl.setBackground(pressedBackground);
+                binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
@@ -135,7 +135,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.changeLanguageLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.changeLanguageLl.setBackground(pressedBackground);
+                binding.changeLanguageLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);

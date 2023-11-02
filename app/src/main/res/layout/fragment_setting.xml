@@ -302,8 +302,7 @@
                             android:paddingHorizontal="10dp"
                             android:singleLine="true"
                             android:text="@string/phone_vibrate"
-                            android:textColor="#2A3135"
-                            android:textSize="16dp" />
+                            android:textColor="#2A3135" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/vibrationSwitch"

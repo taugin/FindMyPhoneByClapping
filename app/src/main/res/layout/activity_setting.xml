@@ -288,8 +288,7 @@
                             android:paddingHorizontal="10dp"
                             android:singleLine="true"
                             android:text="@string/flash_light"
-                            android:textColor="#2A3135"
-                            android:textSize="18dp" />
+                            android:textColor="#2A3135" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/flashSwitch"
@@ -333,8 +332,7 @@
                             android:paddingHorizontal="10dp"
                             android:singleLine="true"
                             android:text="@string/phone_vibrate"
-                            android:textColor="#2A3135"
-                            android:textSize="18dp" />
+                            android:textColor="#2A3135" />
 
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/vibrationSwitch"
