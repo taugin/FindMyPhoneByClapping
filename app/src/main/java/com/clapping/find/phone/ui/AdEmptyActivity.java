@@ -5,17 +5,22 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.RectF;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.clapping.find.phone.R;
-import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.remote.RCManager;
 import com.hauyu.adsdk.AdSdk;
 import com.hauyu.adsdk.SimpleAdSdkListener;
@@ -91,10 +96,10 @@ public class AdEmptyActivity extends BaseActivity {
                             activity.startActivities(new Intent[]{intent, adIntent});
                             activity.overridePendingTransition(0, 0);
                         } catch (Exception e) {
-                            AdHelper.showInterstitialCallback(activity, sceneName, runnable);
+                            showInterstitialCallback(activity, sceneName, runnable);
                         }
                     } else {
-                        AdHelper.showInterstitialCallback(activity, sceneName, runnable);
+                        showInterstitialCallback(activity, sceneName, runnable);
                     }
                 }
             }, 1000);
@@ -107,24 +112,64 @@ public class AdEmptyActivity extends BaseActivity {
                     activity.startActivities(new Intent[]{intent, adIntent});
                     activity.overridePendingTransition(0, 0);
                 } catch (Exception e) {
-                    AdHelper.showInterstitialCallback(activity, sceneName, runnable);
+                    showInterstitialCallback(activity, sceneName, runnable);
                 }
             } else {
-                AdHelper.showInterstitialCallback(activity, sceneName, runnable);
+                showInterstitialCallback(activity, sceneName, runnable);
             }
         }
     }
 
-    public static class AdDialog extends Dialog {
-        private static final Handler sHandler = new Handler(Looper.myLooper());
+    private static void showInterstitialCallback(Context context, String sceneName, Runnable runnable) {
+        String maxPlace = AdSdk.get(context).getMaxPlaceName(AdSdk.AD_TYPE_INTERSTITIAL);
+        if (!TextUtils.isEmpty(maxPlace)) {
+            AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
+                @Override
+                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    sHandler.post(runnable);
+                }
 
+                @Override
+                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    sHandler.post(runnable);
+                }
+            }, true);
+            AdSdk.get(context).showInterstitial(maxPlace, sceneName);
+        } else {
+            sHandler.post(runnable);
+        }
+    }
+
+    public static class AdDialog extends Dialog {
         public AdDialog(Context context) {
             super(context);
         }
 
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.dialog_ad_loading);
+            LinearLayout rootLayout = new LinearLayout(getContext());
+            rootLayout.setOrientation(LinearLayout.VERTICAL);
+            rootLayout.setGravity(Gravity.CENTER);
+            ProgressBar progressBar = new ProgressBar(getContext());
+            int progressBarSize = Utils.dp2px(getContext(), 28);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(progressBarSize, progressBarSize);
+            rootLayout.addView(progressBar, params);
+            TextView textView = new TextView(getContext());
+            textView.setText(R.string.ad_loading);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            textView.setTextColor(Color.GRAY);
+            params = new LinearLayout.LayoutParams(-2, -2);
+            params.topMargin = Utils.dp2px(getContext(), 8);
+            rootLayout.addView(textView, params);
+            int corner = Utils.dp2px(getContext(), 8);
+            float[] roundArray = new float[]{corner, corner, corner, corner, corner, corner, corner, corner};
+            ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(roundArray, (RectF) null, (float[]) null));
+            shapeDrawable.getPaint().setColor(Color.WHITE);
+            rootLayout.setBackground(shapeDrawable);
+            rootLayout.setPadding(corner, corner, corner, corner);
+            setContentView(rootLayout);
             updateWindow();
         }
 
