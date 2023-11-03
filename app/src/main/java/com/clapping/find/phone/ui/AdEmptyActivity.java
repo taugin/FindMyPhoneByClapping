@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -16,6 +17,8 @@ import android.widget.LinearLayout;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.remote.RCManager;
+import com.hauyu.adsdk.AdSdk;
+import com.hauyu.adsdk.SimpleAdSdkListener;
 import com.hauyu.adsdk.Utils;
 
 public class AdEmptyActivity extends BaseActivity {
@@ -38,13 +41,37 @@ public class AdEmptyActivity extends BaseActivity {
         if (intent != null) {
             sceneName = intent.getStringExtra(Intent.EXTRA_REFERRER_NAME);
         }
-        AdHelper.showInterstitialCallback(this, sceneName, new Runnable() {
-            @Override
-            public void run() {
+        Context context = getApplicationContext();
+        String maxPlace = AdSdk.get(context).getMaxPlaceName(AdSdk.AD_TYPE_INTERSTITIAL);
+        if (!TextUtils.isEmpty(maxPlace)) {
+            AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
+                @Override
+                public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    if (!isFinishing()) {
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
+                }
+
+                @Override
+                public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
+                    AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
+                    if (!isFinishing()) {
+                        finish();
+                        overridePendingTransition(0, 0);
+                    }
+                }
+            }, true);
+            AdSdk.get(context).showInterstitial(maxPlace, sceneName);
+            finish();
+            overridePendingTransition(0, 0);
+        } else {
+            if (!isFinishing()) {
                 finish();
                 overridePendingTransition(0, 0);
             }
-        });
+        }
     }
 
     public static void showInterstitialAfterLoading(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {

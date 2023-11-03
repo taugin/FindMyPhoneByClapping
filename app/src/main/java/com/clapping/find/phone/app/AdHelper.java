@@ -211,13 +211,13 @@ public class AdHelper {
                 @Override
                 public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    runnable.run();
+                    sHandler.post(runnable);
                 }
 
                 @Override
                 public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    runnable.run();
+                    sHandler.post(runnable);
                 }
             }, true);
             AdSdk.get(context).showInterstitial(maxPlace, sceneName);
@@ -250,6 +250,7 @@ public class AdHelper {
 
     /**
      * 展示插屏广告，并且跳转指定的Intent，如果intent为空，则通过runnable回调
+     *
      * @param activity
      * @param intent
      * @param sceneName
