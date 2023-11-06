@@ -122,6 +122,7 @@
         android:layout_marginBottom="8dp"
         android:layout_weight="0"
         android:orientation="horizontal"
+        app:cardBackgroundColor="@color/start_click_color"
         app:contentPadding="4dp">
 
         <include

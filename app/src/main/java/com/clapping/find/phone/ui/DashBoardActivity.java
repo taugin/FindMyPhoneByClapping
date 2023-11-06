@@ -34,15 +34,11 @@ public class DashBoardActivity extends BaseActivity {
         AdHelper.loadAllInterstitial(this);
         binding = ActivityDashBoardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        if (RCManager.isAdUser(this)) {
-            binding.nativeAdTiny.setVisibility(View.VISIBLE);
-            AdHelper.showBroccoli(binding.adIncludeLayoutTiny);
-            AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_dash_tiny");
-            if (RCManager.isShowSlaveNative(this)) {
-                AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_dash_small");
-            }
-        } else {
-            binding.nativeAdTiny.setVisibility(View.GONE);
+        binding.nativeAdTiny.setVisibility(View.VISIBLE);
+        AdHelper.showBroccoli(binding.adIncludeLayoutTiny);
+        AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_dash_tiny");
+        if (RCManager.isShowSlaveNative(this)) {
+            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_dash_small");
         }
         Drawable defaultBackground = new ColorDrawable(Color.TRANSPARENT);
         Drawable pressedBackground = getResources().getDrawable(R.drawable.back_checked);

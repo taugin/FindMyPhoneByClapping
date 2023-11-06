@@ -216,6 +216,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -231,13 +232,6 @@
                 android:text="@string/i_agree"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="6dp"
-                android:background="#880000FF" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -252,6 +246,7 @@
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:visibility="gone"
+        app:cardBackgroundColor="@color/start_click_color"
         app:contentPadding="4dp">
 
         <include
