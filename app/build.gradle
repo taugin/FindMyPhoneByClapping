@@ -49,8 +49,8 @@ android {
         applicationId "com.clap.find.tool.myphone"
         minSdk 24
         targetSdk 33
-        versionCode 10003
-        versionName "1.0.3"
+        versionCode 10005
+        versionName "1.0.5"
         multiDexEnabled true
 
         buildConfigField "String", "PRIVACY_URL", "\"" + PRIVACY_URL[applicationId] + "\""
