@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityTermsOfUseBinding;
+import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.stat.Stat;
 
 public class TermsOfUseActivity extends BaseActivity {
@@ -18,8 +19,13 @@ public class TermsOfUseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTermsOfUseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.showBroccoli(binding.adIncludeLayout);
-        AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_terms_of_use");
+        if (RCManager.isAdUser(this)) {
+            binding.nativeAd0.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(binding.adIncludeLayout);
+            AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_terms_of_use");
+        } else {
+            binding.nativeAd0.setVisibility(View.GONE);
+        }
         type = getIntent().getIntExtra("type", 0);
         binding.privacyPolicyTV.setOnClickListener(new View.OnClickListener() {
             @Override

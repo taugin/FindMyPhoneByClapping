@@ -15,10 +15,15 @@ public class UseTipActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityUseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.showBroccoli(binding.adIncludeLayout);
-        AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_use_tiny");
-        if (RCManager.isShowSlaveNative(this)) {
-            AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_use_small");
+        if (RCManager.isAdUser(this)) {
+            binding.nativeAdTiny.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(binding.adIncludeLayout);
+            AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_use_tiny");
+            if (RCManager.isShowSlaveNative(this)) {
+                AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_use_small");
+            }
+        } else {
+            binding.nativeAdTiny.setVisibility(View.GONE);
         }
         binding.view1.setBackground(new DashedLineDrawable(this));
         binding.view2.setBackground(new DashedLineDrawable(this));

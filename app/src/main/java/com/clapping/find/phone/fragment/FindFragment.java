@@ -21,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.FragmentFindBinding;
+import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.ui.DetectionService;
 import com.clapping.find.phone.ui.UseTipActivity;
 import com.clapping.find.phone.utils.SPUtils;
@@ -33,7 +34,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FindFragment extends Fragment {
-    TextView use, tap;
+    TextView tap;
+    View use;
     ImageView checkbox;
     private FragmentFindBinding binding;
 
@@ -43,8 +45,13 @@ public class FindFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_find, container, false);
         binding = FragmentFindBinding.bind(view);
         ViewGroup native_ad_large = view.findViewById(R.id.native_ad_tiny);
-        AdHelper.showBroccoli(native_ad_large.findViewById(R.id.ad_include_layout));
-        AdHelper.loadAndShowNative(getActivity(), native_ad_large, "tiny", "sn_find_fragment");
+        if (RCManager.isAdUser(getActivity())) {
+            native_ad_large.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(native_ad_large.findViewById(R.id.ad_include_layout));
+            AdHelper.loadAndShowNative(getActivity(), native_ad_large, "tiny", "sn_find_fragment");
+        } else {
+            native_ad_large.setVisibility(View.GONE);
+        }
         use = view.findViewById(R.id.use);
         tap = view.findViewById(R.id.tap);
         checkbox = view.findViewById(R.id.enable_disable);
