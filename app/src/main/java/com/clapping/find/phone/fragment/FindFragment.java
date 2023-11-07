@@ -22,6 +22,7 @@ import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.FragmentFindBinding;
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.ui.DetectionService;
 import com.clapping.find.phone.ui.UseTipActivity;
 import com.clapping.find.phone.utils.SPUtils;
@@ -60,6 +61,7 @@ public class FindFragment extends Fragment {
         use.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getActivity(), "click_finder_use");
                 Intent intent = new Intent(requireActivity(), UseTipActivity.class);
                 AdHelper.showInterstitialAfterLoading(requireActivity(), intent, "si_goto_use", new Runnable() {
                     @Override
@@ -74,12 +76,14 @@ public class FindFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if ("NO".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"))) {
+                    Stat.reportEvent(getActivity(), "click_finder_active");
                     if (isAllPermissionGrant()) {
                         activeClap();
                     } else {
                         checkPermissionDialog();
                     }
                 } else {
+                    Stat.reportEvent(getActivity(), "click_finder_inactive");
                     tap.setText(R.string.tap_to_active);
                     SPUtils.setPreference(getActivity(), "startButton", "NO");
                     checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
@@ -156,12 +160,14 @@ public class FindFragment extends Fragment {
         dialogView.findViewById(R.id.grant_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Stat.reportEvent(getActivity(), "click_finder_grant");
                 requestPermissions(dialog);
             }
         });
         dialogView.findViewById(R.id.cancel_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Stat.reportEvent(getActivity(), "click_finder_cancel");
                 dialog.dismiss();
             }
         });
@@ -175,6 +181,15 @@ public class FindFragment extends Fragment {
             dialog.getWindow().setAttributes(p);
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         } catch (Exception e) {
+        }
+
+        ViewGroup native_ad_large = dialogView.findViewById(R.id.native_ad_tiny);
+        if (RCManager.isShowBottomNativeAds(getActivity())) {
+            native_ad_large.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(native_ad_large.findViewById(R.id.ad_include_layout));
+            AdHelper.loadAndShowNative(getActivity(), native_ad_large, "tiny", "sn_grant_dialog");
+        } else {
+            native_ad_large.setVisibility(View.GONE);
         }
     }
 

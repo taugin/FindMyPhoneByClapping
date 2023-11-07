@@ -130,6 +130,7 @@ public class MainActivity extends BaseActivity {
         binding.findLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_frg_finder");
                 binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
                 binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
                 FragmentManager fragmentManager = getSupportFragmentManager();
@@ -141,6 +142,7 @@ public class MainActivity extends BaseActivity {
         binding.settingsLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_frg_settings");
                 binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
                 binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
                 FragmentManager fragmentManager = getSupportFragmentManager();

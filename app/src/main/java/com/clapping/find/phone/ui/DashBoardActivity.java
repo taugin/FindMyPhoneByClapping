@@ -62,6 +62,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_navi_finder");
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
@@ -79,6 +80,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.settingLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_navi_settings");
                 binding.settingLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
@@ -97,6 +99,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.referLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_navi_refer");
                 binding.referLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
@@ -109,6 +112,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.privacyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_navi_policy");
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
@@ -121,6 +125,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.privacyPolicyLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_navi_terms");
                 binding.privacyPolicyLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
@@ -140,6 +145,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.changeLanguageLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_navi_language");
                 binding.changeLanguageLl.setBackground(defaultBackground);
                 binding.phoneFinderll.setBackground(defaultBackground);
                 binding.settingLl.setBackground(defaultBackground);
@@ -159,6 +165,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.startLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_action_start");
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_goto_main", new Runnable() {
                     @Override
@@ -171,6 +178,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.settingScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_action_settings");
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_goto_settings", new Runnable() {
                     @Override

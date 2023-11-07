@@ -8,6 +8,7 @@ import android.view.View;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.ActivityIntroOneBinding;
 import com.clapping.find.phone.remote.RCManager;
+import com.clapping.find.phone.stat.Stat;
 
 public class IntroOneActivity extends BaseActivity {
 
@@ -26,6 +27,7 @@ public class IntroOneActivity extends BaseActivity {
         binding.txtNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_intro_one");
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
                     Intent intent = new Intent(getApplicationContext(), IntroTwoActivity.class);
                     AdHelper.showInterstitialAfterLoading(IntroOneActivity.this, intent, "si_intro_one", new Runnable() {
