@@ -191,14 +191,14 @@ public class RCManager {
     }
 
     public static boolean isShowLanguageNativeAds(Context context) {
-        return isAdUser(context) && getBooleanValue("show_lna", true);
+        return isAdUser(context) && getBooleanValue("show_lna", false);
     }
 
     public static boolean isShowBottomNativeAds(Context context) {
-        return isAdUser(context) && getBooleanValue("show_bna", true);
+        return isAdUser(context) && getBooleanValue("show_bna", false);
     }
 
     public static boolean isShowSettingNativeAds(Context context) {
-        return isAttr(context, "user_settings") && getBooleanValue("show_sna", true);
+        return isAttr(context, "user_settings") && getBooleanValue("show_sna", false);
     }
 }
