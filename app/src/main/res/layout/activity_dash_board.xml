@@ -61,7 +61,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginHorizontal="14dp"
+                        android:layout_marginHorizontal="8dp"
                         app:cardBackgroundColor="@color/start_click_color"
                         app:cardCornerRadius="10dp">
 
@@ -94,29 +94,18 @@
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/native_ad_small"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
-                        android:visibility="gone"
-                        app:cardBackgroundColor="@color/start_click_color"
-                        app:contentPadding="4dp" />
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/native_ad_small"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginVertical="8dp"
                         android:orientation="horizontal">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:layout_marginHorizontal="5dp"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginEnd="4dp"
                             android:layout_marginVertical="8dp"
                             android:layout_weight="1"
                             app:cardBackgroundColor="@color/start_click_color"
@@ -151,7 +140,8 @@
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="140dp"
-                            android:layout_marginHorizontal="5dp"
+                            android:layout_marginHorizontal="2dp"
+                            android:layout_marginStart="4dp"
                             android:layout_marginVertical="8dp"
                             android:layout_weight="1"
                             app:cardBackgroundColor="@color/start_click_color"
@@ -188,8 +178,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="140dp"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginHorizontal="14dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginHorizontal="8dp"
                         android:layout_marginBottom="8dp"
                         app:cardBackgroundColor="@color/start_click_color"
                         app:cardCornerRadius="10dp">
@@ -238,7 +227,7 @@
                 android:layout_marginBottom="8dp"
                 android:layout_weight="0"
                 android:orientation="horizontal"
-                android:visibility="gone"
+                android:visibility="visible"
                 app:cardBackgroundColor="@color/start_click_color"
                 app:cardCornerRadius="4dp"
                 app:contentPadding="4dp">

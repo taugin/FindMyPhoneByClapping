@@ -132,7 +132,7 @@ dependencies {
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation files('libs/musicg-1.4.2.0.jar')
     //lottiee
-    implementation 'com.airbnb.android:lottie:6.0.0'
+    implementation 'com.airbnb.android:lottie:3.4.4'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.lifecycle:lifecycle-process:2.6.1'
     implementation 'com.google.code.gson:gson:2.10.1'

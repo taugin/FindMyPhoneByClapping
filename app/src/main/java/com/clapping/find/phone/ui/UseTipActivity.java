@@ -19,9 +19,6 @@ public class UseTipActivity extends BaseActivity {
             binding.nativeAdTiny.setVisibility(View.VISIBLE);
             AdHelper.showBroccoli(binding.adIncludeLayout);
             AdHelper.loadAndShowNative(this, binding.nativeAdTiny, "tiny", "sn_use_tiny");
-            if (RCManager.isShowSlaveNative(this)) {
-                AdHelper.loadAndShowNativeSlave(this, binding.nativeAdSmall, "tiny", "sn_use_small");
-            }
         } else {
             binding.nativeAdTiny.setVisibility(View.GONE);
         }
@@ -31,13 +28,22 @@ public class UseTipActivity extends BaseActivity {
         binding.backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UseTipActivity.super.onBackPressed();
+                onBackPressed();
             }
         });
     }
 
     @Override
     public void onBackPressed() {
-        UseTipActivity.super.onBackPressed();
+        if (RCManager.isAdUser(this)) {
+            AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_use", new Runnable() {
+                @Override
+                public void run() {
+                    UseTipActivity.super.onBackPressed();
+                }
+            });
+        } else {
+            UseTipActivity.super.onBackPressed();
+        }
     }
 }

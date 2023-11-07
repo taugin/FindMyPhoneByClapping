@@ -56,7 +56,6 @@ public class FindFragment extends Fragment {
         use = view.findViewById(R.id.use);
         tap = view.findViewById(R.id.tap);
         checkbox = view.findViewById(R.id.enable_disable);
-        checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
 
         use.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +85,7 @@ public class FindFragment extends Fragment {
                     Stat.reportEvent(getActivity(), "click_finder_inactive");
                     tap.setText(R.string.tap_to_active);
                     SPUtils.setPreference(getActivity(), "startButton", "NO");
-                    checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
+                    setInActiveStatus();
                     requireActivity().stopService(new Intent(getContext(), DetectionService.class));
                 }
             }
@@ -97,9 +96,10 @@ public class FindFragment extends Fragment {
         if (isServiceActive) {
             tap.setText(R.string.tap_to_inactive);
             checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
+            setActiveStatus();
         } else {
             tap.setText(R.string.tap_to_active);
-            checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
+            setInActiveStatus();
         }
 
         if ("YES".equals(SPUtils.getPreference(getActivity(), "flash", null))) {
@@ -131,9 +131,17 @@ public class FindFragment extends Fragment {
         return view;
     }
 
+    private void setInActiveStatus() {
+        checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
+    }
+
+    private void setActiveStatus() {
+        checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
+    }
+
     private void activeClap() {
         tap.setText(R.string.tap_to_inactive);
-        checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
+        setActiveStatus();
         SPUtils.setPreference(getActivity(), "startButton", "YES");
         ContextCompat.startForegroundService(getContext(), new Intent(getContext(), DetectionService.class));
     }
@@ -241,10 +249,10 @@ public class FindFragment extends Fragment {
         boolean isServiceActive = "YES".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"));
         if (isServiceActive) {
             tap.setText(R.string.tap_to_inactive);
-            checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
+            setActiveStatus();
         } else {
             tap.setText(R.string.tap_to_active);
-            checkbox.setBackground(getResources().getDrawable(R.drawable.tap_unchecked));
+            setInActiveStatus();
         }
     }
 }

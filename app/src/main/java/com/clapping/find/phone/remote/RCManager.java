@@ -99,7 +99,7 @@ public class RCManager {
         if (TextUtils.isEmpty(configAttrString)) {
             configAttrString = !TextUtils.isEmpty(defaultValue) ? defaultValue : "fc_true";
         }
-        if (BuildConfig.DEBUG && false) {
+        if (BuildConfig.DEBUG) {
             configAttrString = "non-organic,organic,fc_true,fc_false";
             Log.iv(Log.TAG, "**********debug attribution contain all**********");
         }

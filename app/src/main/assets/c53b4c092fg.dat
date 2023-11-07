@@ -77,13 +77,7 @@
           "mac": 3,
           "remark": "medium",
           "pid": "ca-app-pub-9491010963390888/3790386441"
-        }
-      ]
-    },
-    {
-      "name": "common_native_slave",
-      "mode": "con",
-      "pids": [
+        },
         {
           "sdk": "applovin",
           "type": "native",
