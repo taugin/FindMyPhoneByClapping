@@ -13,7 +13,7 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_above="@+id/dots"
@@ -24,12 +24,15 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="360dp"
                 android:layout_height="360dp"
-                android:layout_centerHorizontal="true"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 app:cardBackgroundColor="@color/start_click_color"
-                app:cardCornerRadius="360dp">
+                app:cardCornerRadius="360dp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/imageView13"
@@ -47,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/tv_dec"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="-60dp"
+                android:layout_marginBottom="10dp"
                 android:elevation="10dp"
                 android:ellipsize="end"
                 android:gravity="center_horizontal"
@@ -55,8 +58,8 @@
                 android:text="@string/sound_customization"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold" />
-
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_dec" />
 
             <TextView
                 android:id="@+id/tv_dec"
@@ -72,10 +75,11 @@
                 android:maxLines="3"
                 android:text="@string/second_onboard"
                 android:textColor="@color/black"
-                android:textSize="15dp" />
-
-
-        </RelativeLayout>
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/dots"
