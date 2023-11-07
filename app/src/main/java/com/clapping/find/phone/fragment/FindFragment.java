@@ -45,7 +45,7 @@ public class FindFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_find, container, false);
         binding = FragmentFindBinding.bind(view);
         ViewGroup native_ad_large = view.findViewById(R.id.native_ad_tiny);
-        if (RCManager.isAdUser(getActivity())) {
+        if (RCManager.isShowBottomNativeAds(getActivity())) {
             native_ad_large.setVisibility(View.VISIBLE);
             AdHelper.showBroccoli(native_ad_large.findViewById(R.id.ad_include_layout));
             AdHelper.loadAndShowNative(getActivity(), native_ad_large, "tiny", "sn_find_fragment");

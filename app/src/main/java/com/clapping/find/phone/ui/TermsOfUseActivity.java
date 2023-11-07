@@ -19,7 +19,7 @@ public class TermsOfUseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityTermsOfUseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        if (RCManager.isAdUser(this)) {
+        if (RCManager.isShowBottomNativeAds(this)) {
             binding.nativeAd0.setVisibility(View.VISIBLE);
             AdHelper.showBroccoli(binding.adIncludeLayout);
             AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_terms_of_use");

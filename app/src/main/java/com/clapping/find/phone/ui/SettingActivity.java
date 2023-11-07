@@ -21,14 +21,20 @@ import com.clapping.find.phone.utils.SPUtils;
 public class SettingActivity extends BaseActivity {
     ActivitySettingBinding binding;
     private Uri selectedRingtoneUri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AdHelper.loadAllInterstitial(this);
         binding = ActivitySettingBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.showBroccoli(binding.adIncludeLayout);
-        AdHelper.loadAndShowNative(this, binding.nativeAdLarge, "tiny", "sn_settings_activity");
+        if (RCManager.isShowSettingNativeAds(this)) {
+            binding.nativeAdLarge.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(binding.adIncludeLayout);
+            AdHelper.loadAndShowNative(this, binding.nativeAdLarge, "tiny", "sn_settings_activity");
+        } else {
+            binding.nativeAdLarge.setVisibility(View.GONE);
+        }
         String ringtoneUriStr = SPUtils.getPreference(this, "ringtone_Name", null);
         if (!TextUtils.isEmpty(ringtoneUriStr)) {
             Uri lastSelectedRingtoneUri = Uri.parse(ringtoneUriStr);

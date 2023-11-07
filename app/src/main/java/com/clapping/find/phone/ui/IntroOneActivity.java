@@ -16,8 +16,13 @@ public class IntroOneActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         ActivityIntroOneBinding binding = ActivityIntroOneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        AdHelper.showBroccoli(binding.adIncludeLayout);
-        AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_intro_one");
+        if (RCManager.isShowBottomNativeAds(this)) {
+            binding.nativeAd0.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(binding.adIncludeLayout);
+            AdHelper.loadAndShowNative(this, binding.nativeAd0, "tiny", "sn_intro_one");
+        } else {
+            binding.nativeAd0.setVisibility(View.GONE);
+        }
         binding.txtNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

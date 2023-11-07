@@ -168,7 +168,8 @@ public class AdEmptyActivity extends BaseActivity {
             ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(roundArray, (RectF) null, (float[]) null));
             shapeDrawable.getPaint().setColor(Color.WHITE);
             rootLayout.setBackground(shapeDrawable);
-            rootLayout.setPadding(corner, corner, corner, corner);
+            int padding = Utils.dp2px(getContext(), 12);
+            rootLayout.setPadding(padding, padding, padding, padding);
             setContentView(rootLayout);
             updateWindow();
         }

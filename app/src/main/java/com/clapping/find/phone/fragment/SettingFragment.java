@@ -21,19 +21,26 @@ import androidx.fragment.app.Fragment;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.databinding.FragmentSettingBinding;
+import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.utils.SPUtils;
 
 
 public class SettingFragment extends Fragment {
     FragmentSettingBinding binding;
     private Uri selectedRingtoneUri;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentSettingBinding.inflate(getLayoutInflater());
-        AdHelper.showBroccoli(binding.adIncludeLayout);
-        AdHelper.loadAndShowNative(getActivity(), binding.nativeAd0, "tiny", "sn_settings_fragment");
+        if (RCManager.isShowSettingNativeAds(getActivity())) {
+            binding.nativeAd0.setVisibility(View.VISIBLE);
+            AdHelper.showBroccoli(binding.adIncludeLayout);
+            AdHelper.loadAndShowNative(getActivity(), binding.nativeAd0, "tiny", "sn_settings_fragment");
+        } else {
+            binding.nativeAd0.setVisibility(View.GONE);
+        }
         String ringtoneUriStr = SPUtils.getPreference(getActivity(), "ringtone_Name", null);
         if (!TextUtils.isEmpty(ringtoneUriStr)) {
             Uri lastSelectedRingtoneUri = Uri.parse(ringtoneUriStr);
