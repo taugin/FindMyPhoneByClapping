@@ -165,7 +165,7 @@ public class MainActivity extends BaseActivity {
             SharedPreferences.Editor editor = getSharedPreferences("save", MODE_PRIVATE).edit();
             editor.putBoolean("switch", true);
             editor.apply();
-            SPUtils.setPreference(getApplicationContext(), "battery", "NO");
+            SPUtils.setPreference(getApplicationContext(), "battery", SPUtils.VALUE_NO);
         }
     }
 

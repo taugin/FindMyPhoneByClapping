@@ -205,46 +205,78 @@ public class AdHelper {
     }
 
     public static void showInterstitialCallback(Context context, String sceneName, Runnable runnable) {
+        showInterstitialCallback(context, sceneName, runnable, true);
+    }
+
+    public static void showInterstitialCallback(Context context, String sceneName, Runnable runnable, boolean post) {
         String maxPlace = getMaxInterstitial(context);
         if (!TextUtils.isEmpty(maxPlace)) {
             AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
                 @Override
                 public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    sHandler.post(runnable);
+                    if (post) {
+                        sHandler.post(runnable);
+                    } else {
+                        runnable.run();
+                    }
                 }
 
                 @Override
                 public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    sHandler.post(runnable);
+                    if (post) {
+                        sHandler.post(runnable);
+                    } else {
+                        runnable.run();
+                    }
                 }
             }, true);
             AdSdk.get(context).showInterstitial(maxPlace, sceneName);
         } else {
-            sHandler.post(runnable);
+            if (post) {
+                sHandler.post(runnable);
+            } else {
+                runnable.run();
+            }
         }
     }
 
     public static void showSplashCallback(Context context, String sceneName, Runnable runnable) {
+        showSplashCallback(context, sceneName, runnable, true);
+    }
+
+    public static void showSplashCallback(Context context, String sceneName, Runnable runnable, boolean post) {
         String maxPlace = getMaxSplash(context);
         if (!TextUtils.isEmpty(maxPlace)) {
             AdSdk.get(context).setOnAdSdkListener(maxPlace, new SimpleAdSdkListener() {
                 @Override
                 public void onDismiss(String placeName, String source, String adType, String pid, boolean complexAds) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    sHandler.post(runnable);
+                    if (post) {
+                        sHandler.post(runnable);
+                    } else {
+                        runnable.run();
+                    }
                 }
 
                 @Override
                 public void onShowFailed(String placeName, String source, String adType, String pid, int error) {
                     AdSdk.get(context).setOnAdSdkListener(placeName, null, true);
-                    sHandler.post(runnable);
+                    if (post) {
+                        sHandler.post(runnable);
+                    } else {
+                        runnable.run();
+                    }
                 }
             }, true);
             AdSdk.get(context).showSplash(maxPlace, null, sceneName);
         } else {
-            sHandler.post(runnable);
+            if (post) {
+                sHandler.post(runnable);
+            } else {
+                runnable.run();
+            }
         }
     }
 

@@ -74,7 +74,7 @@ public class FindFragment extends Fragment {
         checkbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ("NO".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"))) {
+                if (SPUtils.VALUE_NO.equals(SPUtils.getPreference(getActivity(), SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO))) {
                     Stat.reportEvent(getActivity(), "click_finder_active");
                     if (isAllPermissionGrant()) {
                         activeClap();
@@ -84,7 +84,7 @@ public class FindFragment extends Fragment {
                 } else {
                     Stat.reportEvent(getActivity(), "click_finder_inactive");
                     tap.setText(R.string.tap_to_active);
-                    SPUtils.setPreference(getActivity(), "startButton", "NO");
+                    SPUtils.setPreference(getActivity(), SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO);
                     setInActiveStatus();
                     requireActivity().stopService(new Intent(getContext(), DetectionService.class));
                 }
@@ -92,7 +92,7 @@ public class FindFragment extends Fragment {
         });
 
         // Set UI state based on the 'startButton' preference value
-        boolean isServiceActive = "YES".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"));
+        boolean isServiceActive = SPUtils.VALUE_YES.equals(SPUtils.getPreference(getActivity(), SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO));
         if (isServiceActive) {
             tap.setText(R.string.tap_to_inactive);
             checkbox.setBackground(getResources().getDrawable(R.drawable.tap_checked));
@@ -102,12 +102,12 @@ public class FindFragment extends Fragment {
             setInActiveStatus();
         }
 
-        if ("YES".equals(SPUtils.getPreference(getActivity(), "flash", null))) {
+        if (SPUtils.VALUE_YES.equals(SPUtils.getPreference(getActivity(), SPUtils.SP_NAME_FLASH, SPUtils.DEFAULT_FLASH_VALUE))) {
             binding.flashSwitch.setChecked(true);
         } else {
             binding.flashSwitch.setChecked(false);
         }
-        if ("YES".equals(SPUtils.getPreference(getActivity(), "vibration", null))) {
+        if (SPUtils.VALUE_YES.equals(SPUtils.getPreference(getActivity(), SPUtils.SP_NAME_VIBRATION, SPUtils.DEFAULT_VIBRATION_VALUE))) {
             binding.vibrationSwitch.setChecked(true);
         } else {
             binding.vibrationSwitch.setChecked(false);
@@ -115,16 +115,16 @@ public class FindFragment extends Fragment {
 
         binding.flashSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                SPUtils.setPreference(getActivity(), "flash", "YES");
+                SPUtils.setPreference(getActivity(), SPUtils.SP_NAME_FLASH, SPUtils.VALUE_YES);
             } else {
-                SPUtils.setPreference(getActivity(), "flash", "NO");
+                SPUtils.setPreference(getActivity(), SPUtils.SP_NAME_FLASH, SPUtils.VALUE_NO);
             }
         });
         binding.vibrationSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                SPUtils.setPreference(getActivity(), "vibration", "YES");
+                SPUtils.setPreference(getActivity(), SPUtils.SP_NAME_VIBRATION, SPUtils.VALUE_YES);
             } else {
-                SPUtils.setPreference(getActivity(), "vibration", "NO");
+                SPUtils.setPreference(getActivity(), SPUtils.SP_NAME_VIBRATION, SPUtils.VALUE_NO);
             }
         });
 
@@ -142,7 +142,7 @@ public class FindFragment extends Fragment {
     private void activeClap() {
         tap.setText(R.string.tap_to_inactive);
         setActiveStatus();
-        SPUtils.setPreference(getActivity(), "startButton", "YES");
+        SPUtils.setPreference(getActivity(), SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_YES);
         ContextCompat.startForegroundService(getContext(), new Intent(getContext(), DetectionService.class));
     }
 
@@ -246,7 +246,7 @@ public class FindFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // Update UI state based on the current service status
-        boolean isServiceActive = "YES".equals(SPUtils.getPreference(getActivity(), "startButton", "NO"));
+        boolean isServiceActive = SPUtils.VALUE_YES.equals(SPUtils.getPreference(getActivity(), SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO));
         if (isServiceActive) {
             tap.setText(R.string.tap_to_inactive);
             setActiveStatus();

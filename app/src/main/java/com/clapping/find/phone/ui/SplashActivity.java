@@ -69,7 +69,7 @@ public class SplashActivity extends BaseActivity {
                 public void run() {
                     openActivity();
                 }
-            });
+            }, false);
             enableLoadingClickable();
         } else if (mShowIntSplash && !TextUtils.isEmpty(maxInterstitial)) {
             AdHelper.showInterstitialCallback(this, "si_open_splash", new Runnable() {
@@ -77,7 +77,7 @@ public class SplashActivity extends BaseActivity {
                 public void run() {
                     openActivity();
                 }
-            });
+            }, false);
             enableLoadingClickable();
         } else {
             openActivity();

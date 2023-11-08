@@ -3,6 +3,7 @@ package com.clapping.find.phone.ui;
 import android.media.AudioRecord;
 
 import com.clapping.find.phone.log.Log;
+import com.clapping.find.phone.utils.SPUtils;
 import com.musicg.api.ClapApi;
 import com.musicg.api.WhistleApi;
 import com.musicg.wave.WaveHeader;
@@ -104,7 +105,7 @@ public class DetectorThread extends Thread {
                     if (this.numClaps >= this.clapPassScore) {
                         Log.iv(DetectionService.TAG, "Detected clapValue : " + clapValue);
                         initBuffer();
-                        if(clapValue.equals("YES")) {
+                        if(clapValue.equals(SPUtils.VALUE_YES)) {
                             onWhistleDetected();
                         }
                     }

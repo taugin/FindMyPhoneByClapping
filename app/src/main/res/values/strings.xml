@@ -58,7 +58,7 @@
     <string name="flash_light">Flash Light</string>
     <string name="phone_vibrate">Phone Vibrate</string>
     <string name="sounds">Sounds</string>
-    <string name="volume">Sounds</string>
+    <string name="volume">Volume</string>
     <string name="current_sound">"Current Sound : "</string>
     <string name="change_sound_entry"><![CDATA[Change Sound >>]]></string>
     <string name="clap_to_find">Clap to Find</string>

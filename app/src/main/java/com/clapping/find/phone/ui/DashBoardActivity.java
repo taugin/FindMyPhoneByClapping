@@ -46,7 +46,7 @@ public class DashBoardActivity extends BaseActivity {
         boolean b = isMyServiceRunning(DetectionService.class);
 
         if (!b) {
-            SPUtils.setPreference(this, "startButton", "NO");
+            SPUtils.setPreference(this, SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO);
         }
         binding.navigationView.setItemIconTintList(ColorStateList.valueOf(Color.BLACK));
         binding.phoneFinderll.setBackground(defaultBackground);

@@ -42,7 +42,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignStart="@+id/sounds_image"
                         android:layout_alignParentTop="true"
-                        android:layout_marginTop="65dp"
+                        android:layout_marginTop="75dp"
                         android:paddingHorizontal="30dp"
                         android:text="@string/sounds"
                         android:textColor="#2A3135"
@@ -55,7 +55,7 @@
                         android:layout_below="@+id/sounds"
                         android:layout_alignStart="@+id/sounds_image"
                         android:layout_alignEnd="@+id/sounds_image"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -164,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/duration"
                         android:layout_alignStart="@+id/sounds_image"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:orientation="horizontal">
 
                         <TextView
@@ -199,7 +199,7 @@
                         android:layout_below="@+id/current_sound"
                         android:layout_centerHorizontal="true"
                         android:layout_marginHorizontal="80dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="25dp"
                         android:background="@drawable/back_checked"
                         android:backgroundTint="@color/color_common_btn"
                         android:gravity="center"
@@ -215,7 +215,7 @@
                         android:layout_alignEnd="@+id/sounds_image"
                         android:layout_alignParentTop="true"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="60dp"
                         android:outlineAmbientShadowColor="@color/app_color"
                         android:textOff="OFF"
                         android:textOn="ON"

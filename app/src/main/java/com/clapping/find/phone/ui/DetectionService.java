@@ -256,14 +256,14 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
         RecorderThread recorderThread2 = new RecorderThread();
         this.recorderThread = recorderThread2;
         recorderThread2.start();
-        DetectorThread detectorThread2 = new DetectorThread(this.recorderThread, SPUtils.getPreference(this, "startButton", "NO"));
+        DetectorThread detectorThread2 = new DetectorThread(this.recorderThread, SPUtils.getPreference(this, SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO));
         this.detectorThread = detectorThread2;
         detectorThread2.setOnSignalsDetectedListener(this);
         this.detectorThread.start();
     }
 
     public void onDestroy() {
-        SPUtils.setPreference(this, "startButton", "NO");
+        SPUtils.setPreference(this, SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO);
         RecorderThread recorderThread2 = this.recorderThread;
         if (recorderThread2 != null) {
             recorderThread2.stopRecording();
@@ -312,19 +312,19 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
         }
         Log.iv(TAG, "isDoubleClap : " + isDoubleClap);
         if (isDoubleClap) {
-            String startStatus = SPUtils.getPreference(this, "startButton", "NO");
+            String startStatus = SPUtils.getPreference(this, SPUtils.SP_NAME_START_BUTTON, SPUtils.VALUE_NO);
             Log.iv(TAG, "startStatus : " + startStatus);
-            if ("YES".equals(startStatus)) {
-                String ringStatus = SPUtils.getPreference(this, "ring", "NO");
+            if (SPUtils.VALUE_YES.equals(startStatus)) {
+                String ringStatus = SPUtils.getPreference(this, SPUtils.SP_NAME_RING, SPUtils.DEFAULT_RING_VALUE);
                 Log.iv(TAG, "ringStatus : " + ringStatus);
-                if ("YES".equals(ringStatus)) {
-                    String ringtoneName = SPUtils.getPreference(this, "ringtone_Name", null);
+                if (SPUtils.VALUE_YES.equals(ringStatus)) {
+                    String ringtoneName = SPUtils.getPreference(this, SPUtils.SP_NAME_RINGTONE_NAME, null);
                     Uri ringtoneUri = null;
                     if (!TextUtils.isEmpty(ringtoneName)) {
                         ringtoneUri = Uri.parse(ringtoneName);
                     }
                     if (ringtoneUri == null) {
-                        ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+                        ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
                     }
 
                     MediaPlayer mediaPlayer = new MediaPlayer();
@@ -343,9 +343,9 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                     }
                 }
 
-                String vibrationStatus = SPUtils.getPreference(this, "vibration", "NO");
+                String vibrationStatus = SPUtils.getPreference(this, SPUtils.SP_NAME_VIBRATION, SPUtils.DEFAULT_VIBRATION_VALUE);
                 Log.iv(TAG, "vibrationStatus : " + vibrationStatus);
-                if ("YES".equals(vibrationStatus)) {
+                if (SPUtils.VALUE_YES.equals(vibrationStatus)) {
                     // Inside your method
                     if (!isVibrating) {
                         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
@@ -370,9 +370,9 @@ public class DetectionService extends Service implements OnSignalsDetectedListen
                         }
                     }
                 }
-                String flashStatus = SPUtils.getPreference(this, "flash", "NO");
+                String flashStatus = SPUtils.getPreference(this, SPUtils.SP_NAME_FLASH, SPUtils.DEFAULT_FLASH_VALUE);
                 Log.iv(TAG, "flashStatus : " + flashStatus);
-                if ("YES".equals(flashStatus)) {
+                if (SPUtils.VALUE_YES.equals(flashStatus)) {
                     new Thread() {
                         public void run() {
                             try {
