@@ -56,12 +56,14 @@
                         android:layout_alignStart="@+id/sounds_image"
                         android:layout_alignEnd="@+id/sounds_image"
                         android:layout_marginTop="20dp"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <TextView
                             style="@style/common_text_style2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0"
                             android:paddingHorizontal="15dp"
                             android:text="@string/volume"
                             android:textColor="#CC2A3135"
@@ -71,8 +73,18 @@
                             android:id="@+id/volume_seekbar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:progressTint="@color/app_color"
                             android:thumbTint="@color/app_color" />
+
+                        <TextView
+                            android:id="@+id/volume_status"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="0"
+                            android:minWidth="36dp" />
                     </LinearLayout>
 
                     <LinearLayout

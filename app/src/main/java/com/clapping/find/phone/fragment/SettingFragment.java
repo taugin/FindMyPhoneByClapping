@@ -10,11 +10,11 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -28,6 +28,7 @@ import com.clapping.find.phone.utils.SPUtils;
 public class SettingFragment extends Fragment {
     FragmentSettingBinding binding;
     private Uri selectedRingtoneUri;
+    private AudioManager audioManager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,14 +106,14 @@ public class SettingFragment extends Fragment {
 
         });
 
-        AudioManager audioManager = (AudioManager) requireContext().getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) requireContext().getSystemService(Context.AUDIO_SERVICE);
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         binding.volumeSeekbar.setMax(maxVolume);
 
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         binding.volumeSeekbar.setProgress(currentVolume);
-
+        binding.volumeStatus.setText(currentVolume + "/" + maxVolume);
 // Set a listener to handle volume changes
         binding.volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -121,10 +122,11 @@ public class SettingFragment extends Fragment {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 
                 // Show a toast message for the final volume setting when the user stops interacting with the seek bar
-                if (!fromUser) {
-                    String volumeLevelText = "Volume Level: " + progress + "/" + maxVolume;
-                    Toast.makeText(requireContext(), volumeLevelText, Toast.LENGTH_SHORT).show();
-                }
+//                if (!fromUser) {
+//                    String volumeLevelText = "Volume Level: " + progress + "/" + maxVolume;
+//                    Toast.makeText(requireContext(), volumeLevelText, Toast.LENGTH_SHORT).show();
+//                }
+                binding.volumeStatus.setText(progress + "/" + maxVolume);
             }
 
             @Override
@@ -135,13 +137,28 @@ public class SettingFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // Show a toast message for the final volume setting when the user stops interacting with the seek bar
-                int finalVolume = seekBar.getProgress();
-                String volumeLevelText = "Volume Level: " + finalVolume + "/" + maxVolume;
-                Toast.makeText(requireContext(), volumeLevelText, Toast.LENGTH_SHORT).show();
+//                int finalVolume = seekBar.getProgress();
+//                String volumeLevelText = "Volume Level: " + finalVolume + "/" + maxVolume;
+//                Toast.makeText(requireContext(), volumeLevelText, Toast.LENGTH_SHORT).show();
             }
         });
 
         return binding.getRoot();
+    }
+
+    public void onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            if (currentVolume < maxVolume) {
+                binding.volumeSeekbar.setProgress(currentVolume + 1);
+            }
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            if (currentVolume > 0) {
+                binding.volumeSeekbar.setProgress(currentVolume - 1);
+            }
+        }
     }
 
     @Override

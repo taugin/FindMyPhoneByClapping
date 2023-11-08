@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -28,6 +29,7 @@ import com.clapping.find.phone.utils.SPUtils;
 
 public class MainActivity extends BaseActivity {
     ActivityMainBinding binding;
+    private SettingFragment mSettingFragment;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,9 +147,10 @@ public class MainActivity extends BaseActivity {
                 Stat.reportEvent(getApplicationContext(), "click_frg_settings");
                 binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_unchecked));
                 binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.settings_checked));
+                mSettingFragment = new SettingFragment();
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new SettingFragment());
+                fragmentTransaction.replace(R.id.fragment_container, mSettingFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -200,5 +203,14 @@ public class MainActivity extends BaseActivity {
             sendBroadcast(stopIntent);
         }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) && mSettingFragment != null) {
+            mSettingFragment.onKeyDown(keyCode, event);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

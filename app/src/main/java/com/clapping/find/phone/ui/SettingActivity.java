@@ -8,9 +8,9 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
@@ -21,6 +21,8 @@ import com.clapping.find.phone.utils.SPUtils;
 public class SettingActivity extends BaseActivity {
     ActivitySettingBinding binding;
     private Uri selectedRingtoneUri;
+
+    private AudioManager audioManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,14 +107,14 @@ public class SettingActivity extends BaseActivity {
 
         });
 
-        AudioManager audioManager = (AudioManager) SettingActivity.this.getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) SettingActivity.this.getSystemService(Context.AUDIO_SERVICE);
 
         int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
         binding.volumeSeekbar.setMax(maxVolume);
 
         int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
         binding.volumeSeekbar.setProgress(currentVolume);
-
+        binding.volumeStatus.setText(currentVolume + "/" + maxVolume);
 // Set a listener to handle volume changes
         binding.volumeSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -121,10 +123,11 @@ public class SettingActivity extends BaseActivity {
                 audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0);
 
                 // Show a toast message for the final volume setting when the user stops interacting with the seek bar
-                if (!fromUser) {
-                    String volumeLevelText = "Volume Level: " + progress + "/" + maxVolume;
-                    Toast.makeText(SettingActivity.this, volumeLevelText, Toast.LENGTH_SHORT).show();
-                }
+//                if (!fromUser) {
+//                    String volumeLevelText = "Volume Level: " + progress + "/" + maxVolume;
+//                    Toast.makeText(SettingActivity.this, volumeLevelText, Toast.LENGTH_SHORT).show();
+//                }
+                binding.volumeStatus.setText(progress + "/" + maxVolume);
             }
 
             @Override
@@ -135,11 +138,31 @@ public class SettingActivity extends BaseActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // Show a toast message for the final volume setting when the user stops interacting with the seek bar
-                int finalVolume = seekBar.getProgress();
-                String volumeLevelText = "Volume Level: " + finalVolume + "/" + maxVolume;
-                Toast.makeText(SettingActivity.this, volumeLevelText, Toast.LENGTH_SHORT).show();
+//                int finalVolume = seekBar.getProgress();
+//                String volumeLevelText = "Volume Level: " + finalVolume + "/" + maxVolume;
+//                Toast.makeText(SettingActivity.this, volumeLevelText, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+            int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            if (currentVolume < maxVolume) {
+                binding.volumeSeekbar.setProgress(currentVolume + 1);
+            }
+            return true;
+        }
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+            if (currentVolume > 0) {
+                binding.volumeSeekbar.setProgress(currentVolume - 1);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
