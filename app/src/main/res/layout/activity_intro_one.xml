@@ -40,8 +40,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@+id/tv_title"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/first_onboard" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/first_intro" />
 
             </androidx.cardview.widget.CardView>
 

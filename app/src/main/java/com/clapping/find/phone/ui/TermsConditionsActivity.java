@@ -24,12 +24,12 @@ public class TermsConditionsActivity extends BaseActivity {
         setContentView(binding.getRoot());
 
         Map<String, String> termsMap = new HashMap<>();
-        String termsConditionsEN = "Posting rules you should be taking care of before you start interaction on our website/application:\n" +
-                "\n Assuring you carry the rights and eligibility to post any form of content you are about to share. We never permit nudism on application/website.\n" +
-                "\n We won't allow posting of sexually explicit content, sexually explicit text, images, or audio content depicting extreme sexual acts such as acts of posting Content that drives traffic to pornographic online services. Please note that we may make exceptions based on artistic, educational, historical, documentary, or scientific nature, or where there are other considerable benefits to the public at large.\n" +
-                "\n We don't permit encouragement or applaud towards terrorism, formed crime scenes or hate association groups on our application/website. Attempting to sell sexual services or weapons and harmful drugs are also not permitted. We will remove reasonable threats of severity, hate arousing content/speech and the intentionally pointing of private individuals. We do not permit attacks/abuse based on skin colour, native, sex, gender, gender identity, sexual orientation, religion, disability or disease.\n" +
-                "\n Graphic violence is not allowed and we may remove videos or images of intense, graphic violence to make sure our application/website stays appropriate for everyone.\n" +
-                "\n If anyone or any account is spotted doing the above restricted activities they can be booked and arrested for the same. If viewers spot any violations of the above rules they have the right to report the content to us.\n" +
+        String termsConditionsEN = "Publishing rules that need to be noted before starting interaction on our website/app:\n" +
+                "\n We guarantee that you have the rights and qualifications to post all forms of content you intend to share. Nudity is absolutely not allowed on the app/website.\n" +
+                "\n Content that directs traffic to online pornographic services, or that depicts sexual content that depicts extreme sexual acts, or sexually explicit text, images, or sounds is not allowed. Please note that we may make exceptions to our rules based on: Such as artistic, educational, historical, documentary or scientific nature, or other significant benefits to the general public.\n" +
+                "\n Encouraging or praising terrorism, organized crime or hate groups is not allowed on our app/site. Also, the sale of sexual services, weapons or harmful drugs is not allowed. We will exclude serious legitimate threats. We We don't like offensive content/speech or intentional targeting of individuals. Attacking or abuse based on skin color, place of origin, gender, gender identity, sexual orientation, religion, disability or disease will not be tolerated.\n" +
+                "\n Graphic violence is not allowed. To ensure that our app/site is appropriate for everyone, we may remove videos or images of intense violence.\n" +
+                "\n Individuals or accounts found engaging in the restricted activities listed above may be subject to arrest for similar offenses. If viewers observe violations of the above rules, they have the right to report the content to us using the designated reporting feature.\n" +
                 "\n" +
                 "\n";
         termsMap.put("en", termsConditionsEN);
