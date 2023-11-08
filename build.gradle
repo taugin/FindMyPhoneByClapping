@@ -27,6 +27,8 @@ buildscript {
         classpath 'com.github.megatronking.stringfog:xor:4.0.1'
         classpath "com.bytedance.android:aabresguard-plugin:0.1.10"
         classpath "com.applovin.quality:AppLovinQualityServiceGradlePlugin:+"
+        // onesignal
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.10, 0.99.99]'
     }
 }
 

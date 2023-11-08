@@ -46,6 +46,7 @@ public class ClapApp extends Application {
                 InternalStat.reportEvent(context, s, s1, map);
             }
         });
+        Stat.initOneSignal(this);
     }
 
     private void registerLifeCycle() {

@@ -1,3 +1,4 @@
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 apply plugin: 'com.android.application'
 
 apply from: 'https://taugin.gitee.io/adsdk/encrypt.gradle'
@@ -28,7 +29,7 @@ def PRODUCT_NAME = ["com.clap.find.tool.myphone": "ClapFindMyPhone"]
 def PRIVACY_URL = ["com.clap.find.tool.myphone": "https://sites.google.com/view/claptofindmyphone2023/policy"]
 def EMAIL_US_ADDRESS = ["com.clap.find.tool.myphone": "xmwang8901@gmail.com"]
 def UTM = ["com.clap.find.tool.myphone": "ClapFindMyPhone"]
-def ONESIGNAL_APP_ID = ["com.clap.find.tool.myphone": ""]
+def ONESIGNAL_APP_ID = ["com.clap.find.tool.myphone": "9f8eec54-8293-402b-b4fd-ba0371650141"]
 def TALKING_DATA_APP_KEY = ["com.clap.find.tool.myphone": "8017CA7F8E6F490D9F70A381DD0A3426"]
 def UMENG_APP_KEY = ["com.clap.find.tool.myphone": "6538e8fc58a9eb5b0af5d19e"]
 
@@ -166,6 +167,8 @@ dependencies {
     implementation 'com.umeng.umsdk:apm:1.7.0' // 错误分析模块改为独立库，看crash和性能数据请一定集成
     // talking data
     implementation 'com.talkingdata:talkingdata:5.0.12-1'
+    // onesignal
+    implementation 'com.onesignal:OneSignal:[5.0.0, 5.99.99]'
 }
 
 

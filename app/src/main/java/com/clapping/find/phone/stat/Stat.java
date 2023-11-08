@@ -12,6 +12,8 @@ import com.clapping.find.phone.log.Log;
 import com.hauyu.adsdk.InternalStat;
 import com.hauyu.adsdk.Utils;
 import com.moon.BcSdk;
+import com.onesignal.OneSignal;
+import com.onesignal.debug.LogLevel;
 import com.tendcloud.tenddata.TalkingDataSDK;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
@@ -56,6 +58,22 @@ public class Stat {
             }
             TalkingDataSDK.setReportUncaughtExceptions(true);
             TalkingDataSDK.init(context, appKey, channel, "");
+        }
+    }
+
+    public static void initOneSignal(Context context) {
+        try {
+            if (!TextUtils.isEmpty(BuildConfig.ONESIGNAL_APP_ID)) {
+                Log.iv(Log.TAG, "onesignal id : " + BuildConfig.ONESIGNAL_APP_ID);
+                // OneSignal Initialization
+                OneSignal.initWithContext(context, BuildConfig.ONESIGNAL_APP_ID);
+                if (BuildConfig.DEBUG) {
+                    OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
+                    OneSignal.login("onesignal_external_user_id_for_test");
+                }
+            }
+        } catch (Exception e) {
+            Log.e(Log.TAG, "error : " + e, e);
         }
     }
 

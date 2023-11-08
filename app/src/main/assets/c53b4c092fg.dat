@@ -32,6 +32,13 @@
         {
           "sdk": "admob",
           "type": "interstitial",
+          "cpm": 15,
+          "remark": "auto",
+          "pid": "ca-app-pub-9491010963390888/5270589694"
+        },
+        {
+          "sdk": "admob",
+          "type": "interstitial",
           "cpm": 20,
           "mac": 3,
           "remark": "mediation",
