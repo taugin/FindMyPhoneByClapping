@@ -135,6 +135,7 @@ public class MainActivity extends BaseActivity {
                 Stat.reportEvent(getApplicationContext(), "click_frg_finder");
                 binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
                 binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
+                mSettingFragment = null;
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
