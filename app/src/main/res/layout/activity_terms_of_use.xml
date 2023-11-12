@@ -209,12 +209,13 @@
             </ScrollView>
         </LinearLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/relbtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:orientation="vertical">
@@ -223,8 +224,6 @@
                 android:id="@+id/tvText"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/next_button"
                 android:backgroundTint="@color/color_common_btn"
@@ -232,7 +231,14 @@
                 android:text="@string/i_agree"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
-        </LinearLayout>
+
+            <com.clapping.find.phone.ui.ShimmerView
+                android:id="@+id/shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:translationZ="4dp" />
+        </FrameLayout>
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView

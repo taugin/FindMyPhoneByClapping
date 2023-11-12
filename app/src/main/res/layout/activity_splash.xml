@@ -114,25 +114,29 @@
             <RelativeLayout
                 android:id="@+id/start_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/privacy_policy">
-
-                <ProgressBar
-                    android:id="@+id/loading_indicator"
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:layout_centerInParent="true" />
+                android:layout_height="56dp"
+                android:layout_above="@+id/privacy_policy"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="18dp">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/open_btn"
                     style="@style/common_button"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="26dp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="26dp"
-                    android:layout_marginBottom="18dp"
                     android:background="@drawable/bg_common_button"
                     android:elevation="0dp"
                     android:text="@string/start_now" />
+
+                <com.clapping.find.phone.ui.ShimmerView
+                    android:id="@+id/shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginEnd="26dp"
+                    android:translationZ="4dp" />
             </RelativeLayout>
         </LinearLayout>
     </FrameLayout>

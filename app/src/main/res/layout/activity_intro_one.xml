@@ -96,21 +96,33 @@
             android:scaleType="fitXY"
             android:src="@drawable/dots_1" />
 
-        <TextView
-            android:id="@+id/txt_next"
-            style="@style/common_text_style"
-            android:layout_width="150dp"
+        <FrameLayout
+            android:layout_width="240dp"
             android:layout_height="40dp"
             android:layout_above="@+id/native_ad0"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:layout_weight="0"
-            android:background="@drawable/next_button"
-            android:gravity="center"
-            android:text="@string/next"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:layout_weight="0">
+
+            <TextView
+                android:id="@+id/txt_next"
+                style="@style/common_text_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/next_button"
+                android:gravity="center"
+                android:text="@string/next"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <com.clapping.find.phone.ui.ShimmerView
+                android:id="@+id/shimmer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:translationZ="4dp" />
+        </FrameLayout>
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
