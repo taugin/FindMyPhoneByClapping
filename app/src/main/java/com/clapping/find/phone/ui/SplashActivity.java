@@ -1,11 +1,18 @@
 package com.clapping.find.phone.ui;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatCheckBox;
+
+import com.clapping.find.phone.BuildConfig;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.remote.RCManager;
@@ -21,9 +28,52 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        initView();
         mRootView = findViewById(R.id.root_layout);
+    }
+
+    private void initView() {
         loadAds();
-        initSplashView();
+        boolean policyAgreed = getSharedPreferences("PREFERENCE", MODE_PRIVATE).getBoolean("isPolicyAgreed", false);
+        if (policyAgreed) {
+            initSplashView();
+        } else {
+            initStartView();
+        }
+    }
+
+    private void initStartView() {
+        findViewById(R.id.privacy_layout).setVisibility(View.VISIBLE);
+        findViewById(R.id.loading_layout).setVisibility(View.GONE);
+        TextView textView = findViewById(R.id.ad_notice);
+        SpannableString content = new SpannableString(getString(R.string.privacy_policy));
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        textView.setText(content);
+        textView.setOnClickListener(v -> {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BuildConfig.PRIVACY_URL));
+                        startActivity(intent);
+                    } catch (Exception e) {
+                    }
+                }
+        );
+        findViewById(R.id.open_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit().putBoolean("isPolicyAgreed", true).commit();
+                loadAds();
+                initSplashView();
+            }
+        });
+        AppCompatCheckBox cbx = findViewById(R.id.checkBox);
+        cbx.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                findViewById(R.id.open_btn).setEnabled(true);
+            } else {
+                findViewById(R.id.open_btn).setEnabled(false);
+            }
+        });
+        cbx.setChecked(true);
     }
 
     private void loadAds() {
@@ -33,6 +83,8 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void initSplashView() {
+        findViewById(R.id.privacy_layout).setVisibility(View.GONE);
+        findViewById(R.id.loading_layout).setVisibility(View.VISIBLE);
         mShowIntSplash = RCManager.isShowIntSplash(this);
         long totalDuration = RCManager.getScanDurationWithSplashAds();
         CountDownTimer countDownTimer = new CountDownTimer(totalDuration, 2000) {

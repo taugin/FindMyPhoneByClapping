@@ -82,4 +82,7 @@
     <string name="restart">Restart</string>
     <string name="language">Language</string>
     <string name="language_set_restart_tip">Language switching requires restarting the application to take effect. Do you need to restart the application?</string>
+
+    <string name="agree_to">Agree to the&#160;</string>
+    <string name="start_now">START</string>
 </resources>

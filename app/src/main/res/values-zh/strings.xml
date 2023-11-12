@@ -77,4 +77,6 @@
     <string name="language">设置语言</string>
     <string name="language_set_restart_tip">切换语言需要重新启动应用才能生效。您是否需要重新启动应用？</string>
     <string name="restart">重新启动</string>
+    <string name="agree_to">同意</string>
+    <string name="start_now">开始</string>
 </resources>

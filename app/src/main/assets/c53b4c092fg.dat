@@ -61,6 +61,11 @@
         {
           "sdk": "applovin",
           "type": "interstitial",
+          "pid": "fbf26a713884b3c3"
+        },
+        {
+          "sdk": "applovin",
+          "type": "interstitial",
           "pid": "62335a02039b590e"
         }
       ]

@@ -165,7 +165,7 @@ public class RCManager {
     }
 
     public static long getScanDurationWithSplashAds() {
-        return getLongValue("with_splash_ads_scan_duration", 12000);
+        return getLongValue("with_splash_ads_scan_duration", 15000);
     }
 
     public static boolean isShowIntSplash(Context context) {
