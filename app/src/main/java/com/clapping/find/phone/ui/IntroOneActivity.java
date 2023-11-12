@@ -15,6 +15,7 @@ public class IntroOneActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         ActivityIntroOneBinding binding = ActivityIntroOneBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         if (RCManager.isShowBottomNativeAds(this)) {

@@ -17,6 +17,7 @@ public class TermsOfUseActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         binding = ActivityTermsOfUseBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         if (RCManager.isShowBottomNativeAds(this)) {

@@ -14,6 +14,7 @@ public class IntroTwoActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AdHelper.loadAllInterstitial(this);
         ActivityIntroTwoBinding binding = ActivityIntroTwoBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         if (RCManager.isShowBottomNativeAds(this)) {
