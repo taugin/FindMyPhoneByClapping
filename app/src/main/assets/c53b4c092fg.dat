@@ -5,11 +5,9 @@
       "mode": "con",
       "pids": [
         {
-          "sdk": "admob",
+          "sdk": "applovin",
           "type": "splash",
-          "cpm": 10,
-          "mac": 3,
-          "pid": "ca-app-pub-9491010963390888/1355794790"
+          "pid": "c9db0d9e3959dfbb"
         },
         {
           "sdk": "admob",
@@ -19,9 +17,11 @@
           "pid": "ca-app-pub-9491010963390888/9912069523"
         },
         {
-          "sdk": "applovin",
+          "sdk": "admob",
           "type": "splash",
-          "pid": "c9db0d9e3959dfbb"
+          "cpm": 10,
+          "mac": 3,
+          "pid": "ca-app-pub-9491010963390888/1355794790"
         }
       ]
     },
@@ -32,9 +32,10 @@
         {
           "sdk": "admob",
           "type": "interstitial",
-          "cpm": 15,
-          "remark": "auto",
-          "pid": "ca-app-pub-9491010963390888/5270589694"
+          "cpm": 25,
+          "mac": 3,
+          "remark": "medium",
+          "pid": "ca-app-pub-9491010963390888/2959648363"
         },
         {
           "sdk": "admob",
@@ -47,10 +48,9 @@
         {
           "sdk": "admob",
           "type": "interstitial",
-          "cpm": 25,
-          "mac": 3,
-          "remark": "medium",
-          "pid": "ca-app-pub-9491010963390888/2959648363"
+          "cpm": 15,
+          "remark": "auto",
+          "pid": "ca-app-pub-9491010963390888/5270589694"
         }
       ]
     },
@@ -61,11 +61,13 @@
         {
           "sdk": "applovin",
           "type": "interstitial",
+          "remark": "medium",
           "pid": "fbf26a713884b3c3"
         },
         {
           "sdk": "applovin",
           "type": "interstitial",
+          "remark": "auto",
           "pid": "62335a02039b590e"
         }
       ]
