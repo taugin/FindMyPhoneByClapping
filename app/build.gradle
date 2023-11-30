@@ -50,8 +50,8 @@ android {
         applicationId "com.clap.find.tool.myphone"
         minSdk 24
         targetSdk 33
-        versionCode 10008
-        versionName "1.0.8"
+        versionCode 10009
+        versionName "1.0.9"
         multiDexEnabled true
 
         buildConfigField "String", "PRIVACY_URL", "\"" + PRIVACY_URL[applicationId] + "\""
@@ -171,10 +171,10 @@ dependencies {
     implementation 'com.onesignal:OneSignal:[5.0.0, 5.99.99]'
 }
 
-//configurations.all {
-//    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-//    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
-//}
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds'
+}
 
 if (new File(new File(project.getRootDir(), "app"), "google-services.json").exists()) {
     apply plugin: 'com.google.gms.google-services'
