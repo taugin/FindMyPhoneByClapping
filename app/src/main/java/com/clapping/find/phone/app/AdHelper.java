@@ -47,6 +47,15 @@ public class AdHelper {
                     AdHelper.loadSplash(context);
                 }
             }
+
+            @Override
+            public void onImpression(String placeName, String sdkName, String adType, String pid, String sceneName) {
+                if (TextUtils.equals(adType, AdSdk.AD_TYPE_NATIVE)
+                        && !TextUtils.equals(sceneName, "sn_exit_dialog")
+                        && RCManager.isReloadNativeOnImpression(context)) {
+                    AdSdk.get(context).loadAdView(placeName);
+                }
+            }
         });
         AdSdk.get(context).init();
     }
@@ -121,25 +130,6 @@ public class AdHelper {
         return AdSdk.get(context).isAdViewLoaded(PID_NATIVE_COMMON);
     }
 
-    public static void loadAndShowNativeSlave(Context context, ViewGroup viewGroup, String cardStyle, String sceneName) {
-        AdSdk.get(context).loadAdView(PID_NATIVE_COMMON_SLAVE, new SimpleAdSdkListener() {
-            @Override
-            public void onLoaded(String placeName, String source, String adType, String pid) {
-                if (!(context instanceof Activity) || !((Activity) context).isFinishing()) {
-                    AdParams adParams = new AdParams.Builder().setAdCardStyle(cardStyle).setSceneName(sceneName).build();
-                    AdSdk.get(context).showAdView(placeName, adParams, viewGroup);
-                }
-            }
-
-            @Override
-            public void onImp(String placeName, String source, String adType, String network, String pid) {
-                if (!TextUtils.equals(sceneName, "sn_exit_dialog")) {
-                    AdSdk.get(context).loadAdView(placeName);
-                }
-            }
-        });
-    }
-
     public static void loadAndShowNative(Context context, ViewGroup viewGroup, String cardStyle, String sceneName) {
         String maxPlace = AdSdk.get(context).getMaxPlaceName(AdSdk.AD_TYPE_NATIVE);
         if (!TextUtils.isEmpty(maxPlace)) {
@@ -155,13 +145,6 @@ public class AdHelper {
                 if (!(context instanceof Activity) || !((Activity) context).isFinishing()) {
                     AdParams adParams = new AdParams.Builder().setAdCardStyle(cardStyle).setSceneName(sceneName).build();
                     AdSdk.get(context).showAdView(placeName, adParams, viewGroup);
-                }
-            }
-
-            @Override
-            public void onImp(String placeName, String source, String adType, String network, String pid) {
-                if (!TextUtils.equals(sceneName, "sn_exit_dialog")) {
-                    AdSdk.get(context).loadAdView(placeName);
                 }
             }
         });

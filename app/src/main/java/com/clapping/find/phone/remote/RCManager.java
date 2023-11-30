@@ -156,6 +156,10 @@ public class RCManager {
         return isGclicUser(context) && getBooleanValue("show_splash_from_background", true);
     }
 
+    public static boolean isReloadNativeOnImpression(Context context) {
+        return isGclicUser(context) && getBooleanValue("reload_native_on_impression", true);
+    }
+
     public static boolean isShowExitNativeAds(Context context) {
         return isAdUser(context) && getBooleanValue("show_ena", true);
     }
