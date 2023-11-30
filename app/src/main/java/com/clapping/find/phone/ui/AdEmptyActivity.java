@@ -80,7 +80,8 @@ public class AdEmptyActivity extends BaseActivity {
     }
 
     public static void showInterstitialAfterLoading(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
-        if (RCManager.isShowAdLoading(activity)) {
+        String maxPlace = AdSdk.get(activity).getMaxPlaceName(AdSdk.AD_TYPE_INTERSTITIAL);
+        if (!TextUtils.isEmpty(maxPlace) && RCManager.isShowAdLoading(activity)) {
             final AdDialog adDialog = new AdDialog(activity);
             adDialog.setCancelable(false);
             sHandler.postDelayed(new Runnable() {
@@ -89,34 +90,27 @@ public class AdEmptyActivity extends BaseActivity {
                     if (adDialog != null && adDialog.isShowing()) {
                         adDialog.dismiss();
                     }
-                    if (intent != null) {
-                        try {
-                            Intent adIntent = new Intent(activity, AdEmptyActivity.class);
-                            adIntent.putExtra(Intent.EXTRA_REFERRER_NAME, sceneName);
-                            activity.startActivities(new Intent[]{intent, adIntent});
-                            activity.overridePendingTransition(0, 0);
-                        } catch (Exception e) {
-                            showInterstitialCallback(activity, sceneName, runnable);
-                        }
-                    } else {
-                        showInterstitialCallback(activity, sceneName, runnable);
-                    }
+                    showInterstitialInternal(activity, intent, sceneName, runnable);
                 }
             }, 1000);
             adDialog.show();
         } else {
-            if (intent != null) {
-                try {
-                    Intent adIntent = new Intent(activity, AdEmptyActivity.class);
-                    adIntent.putExtra(Intent.EXTRA_REFERRER_NAME, sceneName);
-                    activity.startActivities(new Intent[]{intent, adIntent});
-                    activity.overridePendingTransition(0, 0);
-                } catch (Exception e) {
-                    showInterstitialCallback(activity, sceneName, runnable);
-                }
-            } else {
+            showInterstitialInternal(activity, intent, sceneName, runnable);
+        }
+    }
+
+    private static void showInterstitialInternal(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
+        if (intent != null) {
+            try {
+                Intent adIntent = new Intent(activity, AdEmptyActivity.class);
+                adIntent.putExtra(Intent.EXTRA_REFERRER_NAME, sceneName);
+                activity.startActivities(new Intent[]{intent, adIntent});
+                activity.overridePendingTransition(0, 0);
+            } catch (Exception e) {
                 showInterstitialCallback(activity, sceneName, runnable);
             }
+        } else {
+            showInterstitialCallback(activity, sceneName, runnable);
         }
     }
 
