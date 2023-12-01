@@ -61,12 +61,15 @@ public class MainActivity extends BaseActivity {
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_finder_2", new Runnable() {
                     @Override
                     public void run() {
-                        binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
-                        binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
-                        FragmentManager fragmentManager = getSupportFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
-                        fragmentTransaction.commit();
+                        try {
+                            binding.find.setImageDrawable(getResources().getDrawable(R.drawable.find_icon));
+                            binding.settings.setImageDrawable(getResources().getDrawable(R.drawable.setting));
+                            FragmentManager fragmentManager = getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.replace(R.id.fragment_container, new FindFragment());
+                            fragmentTransaction.commit();
+                        } catch (Exception e) {
+                        }
                     }
                 });
             }
@@ -83,7 +86,10 @@ public class MainActivity extends BaseActivity {
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_settings_2", new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        try {
+                            startActivity(new Intent(MainActivity.this, SettingActivity.class));
+                        } catch (Exception e) {
+                        }
                     }
                 });
             }
@@ -124,7 +130,10 @@ public class MainActivity extends BaseActivity {
                 AdHelper.showInterstitialCallback(getApplicationContext(), "si_navi_policy_2", new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(MainActivity.this, TermsConditionsActivity.class));
+                        try {
+                            startActivity(new Intent(MainActivity.this, TermsConditionsActivity.class));
+                        } catch (Exception e) {
+                        }
                     }
                 });
             }
@@ -179,7 +188,10 @@ public class MainActivity extends BaseActivity {
             AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_main", new Runnable() {
                 @Override
                 public void run() {
-                    MainActivity.super.onBackPressed();
+                    try {
+                        MainActivity.super.onBackPressed();
+                    } catch (Exception e) {
+                    }
                 }
             });
         } else {

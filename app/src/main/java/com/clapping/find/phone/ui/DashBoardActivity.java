@@ -53,7 +53,7 @@ public class DashBoardActivity extends BaseActivity {
         binding.menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                binding.drawer.openDrawer(Gravity.LEFT);
+                binding.drawer.openDrawer(GravityCompat.START);
             }
         });
         binding.phoneFinderll.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +65,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                binding.drawer.closeDrawer(GravityCompat.START);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, null, "si_navi_finder", new Runnable() {
                     @Override
                     public void run() {
@@ -83,7 +83,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                binding.drawer.closeDrawer(GravityCompat.START);
                 Intent intent = new Intent(getApplicationContext(), SettingActivity.class);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_settings", new Runnable() {
                     @Override
@@ -102,7 +102,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.settingLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                binding.drawer.closeDrawer(GravityCompat.START);
                 share();
             }
         });
@@ -115,7 +115,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyPolicyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                binding.drawer.closeDrawer(GravityCompat.START);
                 Stat.openPrivacyPolicy(getApplicationContext());
             }
         });
@@ -128,7 +128,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                binding.drawer.closeDrawer(GravityCompat.START);
                 Intent intent = new Intent(getApplicationContext(), TermsConditionsActivity.class);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_policy", new Runnable() {
                     @Override
@@ -148,7 +148,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.settingLl.setBackground(defaultBackground);
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
-                binding.drawer.closeDrawer(Gravity.LEFT);
+                binding.drawer.closeDrawer(GravityCompat.START);
                 Intent intent = new Intent(getApplicationContext(), LanguageActivity.class);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_language", new Runnable() {
                     @Override

@@ -195,7 +195,10 @@ public class SettingActivity extends BaseActivity {
     private String getRingtoneNameFromUri(Uri uri) {
         Ringtone ringtone = RingtoneManager.getRingtone(SettingActivity.this, uri);
         if (ringtone != null) {
-            return ringtone.getTitle(SettingActivity.this);
+            try {
+                return ringtone.getTitle(SettingActivity.this);
+            } catch (Exception e) {
+            }
         }
         return "";
     }
@@ -206,7 +209,10 @@ public class SettingActivity extends BaseActivity {
             AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_settings", new Runnable() {
                 @Override
                 public void run() {
-                    SettingActivity.super.onBackPressed();
+                    try {
+                        SettingActivity.super.onBackPressed();
+                    } catch (Exception e) {
+                    }
                 }
             });
         } else {

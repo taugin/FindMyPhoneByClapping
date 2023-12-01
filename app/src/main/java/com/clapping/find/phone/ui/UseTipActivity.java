@@ -39,7 +39,10 @@ public class UseTipActivity extends BaseActivity {
             AdHelper.showInterstitialCallback(getApplicationContext(), "si_back_use", new Runnable() {
                 @Override
                 public void run() {
-                    UseTipActivity.super.onBackPressed();
+                    try {
+                        UseTipActivity.super.onBackPressed();
+                    } catch (Exception e) {
+                    }
                 }
             });
         } else {
