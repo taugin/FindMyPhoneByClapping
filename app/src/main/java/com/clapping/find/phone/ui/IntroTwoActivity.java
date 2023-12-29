@@ -29,7 +29,7 @@ public class IntroTwoActivity extends BaseActivity {
             public void onClick(View view) {
                 Stat.reportEvent(getApplicationContext(), "click_intro_two");
                 if (RCManager.isShowIntroInt(getApplicationContext())) {
-                    Intent intent = new Intent(getApplicationContext(), TermsOfUseActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), DashBoardActivity.class);
                     AdHelper.showInterstitialAfterLoading(IntroTwoActivity.this, intent, "si_intro_two", new Runnable() {
                         @Override
                         public void run() {
@@ -38,7 +38,7 @@ public class IntroTwoActivity extends BaseActivity {
                         }
                     });
                 } else {
-                    startActivity(new Intent(getApplicationContext(), TermsOfUseActivity.class));
+                    startActivity(new Intent(getApplicationContext(), DashBoardActivity.class));
                     finish();
                 }
             }

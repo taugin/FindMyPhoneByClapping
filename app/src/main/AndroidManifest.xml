@@ -86,7 +86,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9491010963390888~5657963897"
+            android:value="@string/admob_application_id"
             tools:replace="android:value" />
     </application>
 

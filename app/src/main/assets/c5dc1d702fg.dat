@@ -1,0 +1,39 @@
+{
+  "all_places": [
+    {
+      "name": "common_splash",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "admob",
+          "type": "splash",
+          "pid": "ca-app-pub-3940256099942544/3419835294"
+        }
+      ]
+    },
+    {
+      "name": "common_int",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "admob",
+          "type": "interstitial",
+          "cpm": 10,
+          "pid": "ca-app-pub-3940256099942544/1033173712"
+        }
+      ]
+    },
+    {
+      "name": "common_native",
+      "mode": "con",
+      "pids": [
+        {
+          "sdk": "admob",
+          "type": "native",
+          "cpm": 5,
+          "pid": "ca-app-pub-3940256099942544/2247696110"
+        }
+      ]
+    }
+  ]
+}

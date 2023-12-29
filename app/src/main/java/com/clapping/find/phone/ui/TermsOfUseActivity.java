@@ -57,8 +57,4 @@ public class TermsOfUseActivity extends BaseActivity {
             }
         });
     }
-
-    @Override
-    public void onBackPressed() {
-    }
 }

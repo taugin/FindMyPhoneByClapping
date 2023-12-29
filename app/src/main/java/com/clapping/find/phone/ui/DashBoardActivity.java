@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 
 import androidx.core.app.ActivityCompat;
@@ -129,7 +128,7 @@ public class DashBoardActivity extends BaseActivity {
                 binding.referLl.setBackground(defaultBackground);
                 binding.privacyLl.setBackground(defaultBackground);
                 binding.drawer.closeDrawer(GravityCompat.START);
-                Intent intent = new Intent(getApplicationContext(), TermsConditionsActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TermsOfUseActivity.class);
                 AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_navi_policy", new Runnable() {
                     @Override
                     public void run() {
@@ -160,6 +159,19 @@ public class DashBoardActivity extends BaseActivity {
         });
 
         binding.startLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Stat.reportEvent(getApplicationContext(), "click_action_start");
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                AdHelper.showInterstitialAfterLoading(DashBoardActivity.this, intent, "si_goto_main", new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(intent);
+                    }
+                });
+            }
+        });
+        binding.startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Stat.reportEvent(getApplicationContext(), "click_action_start");

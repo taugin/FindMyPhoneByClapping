@@ -32,6 +32,7 @@ def UTM = ["com.find.clap.myphone.whilsting": "Fine My Phone By Clap"]
 def ONESIGNAL_APP_ID = ["com.find.clap.myphone.whilsting": ""]
 def TALKING_DATA_APP_KEY = ["com.find.clap.myphone.whilsting": "6A9D04E0AB664C0DBB10A5CB3C4D06C8"]
 def UMENG_APP_KEY = ["com.find.clap.myphone.whilsting": "658e726495b14f599d0c66ee"]
+def ADMOB_APP_ID = ["com.find.clap.myphone.whilsting": "ca-app-pub-3940256099942544~3347511713"]
 
 
 android {
@@ -60,7 +61,7 @@ android {
         buildConfigField "String", "ONESIGNAL_APP_ID", "\"" + ONESIGNAL_APP_ID[applicationId] + "\""
         buildConfigField "String", "TALKING_DATA_APP_KEY", "\"" + TALKING_DATA_APP_KEY[applicationId] + "\""
         buildConfigField "String", "UMENG_APP_KEY", "\"" + UMENG_APP_KEY[applicationId] + "\""
-
+        resValue("string", "admob_application_id", ADMOB_APP_ID[applicationId])
         ndk {
             //根据需要 自行选择添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
@@ -211,6 +212,12 @@ gradle.buildFinished {
     if (UMENG_APP_KEY[android.defaultConfig.applicationId] == null
             || UMENG_APP_KEY[android.defaultConfig.applicationId].trim() == "") {
         error_list.add("UMENG_APP_KEY is not config")
+    }
+    if (ADMOB_APP_ID[android.defaultConfig.applicationId] == "") {
+        error_list.add("ADMOB_APP_ID is not config")
+    }
+    if (ADMOB_APP_ID[android.defaultConfig.applicationId] == "ca-app-pub-3940256099942544~3347511713") {
+        error_list.add("ADMOB_APP_ID is test config : [" + ADMOB_APP_ID[android.defaultConfig.applicationId] + "]")
     }
     if (error_list.size() > 0) {
         System.err.println("+++++++++++++++++++++++++++++++++++++++++++++")
