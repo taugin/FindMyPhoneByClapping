@@ -36,7 +36,7 @@
     <string name="exit_message">Are you sure to exit ?</string>
     <string name="exit_later">Exit Later</string>
     <string name="tap_to_exit">Tap to Exit</string>
-    <string name="splash_loading">Loading ...\nThis may contain ads</string>
+    <string name="splash_loading">This may contain ads</string>
     <string name="tap_to_inactive">Tap to Inactive</string>
     <string name="tap_to_active">Tap to Active</string>
     <string name="permission_guide">Please grant permission to ensure the normal use of this app</string>

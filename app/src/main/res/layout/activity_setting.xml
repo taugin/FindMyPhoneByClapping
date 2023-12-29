@@ -262,7 +262,8 @@
                         android:outlineAmbientShadowColor="@color/app_color"
                         android:textOff="OFF"
                         android:textOn="ON"
-                        app:thumbTint="@color/color_common_btn" />
+                        app:thumbTint="@color/color_common_btn"
+                        app:trackTint="@color/color_common_btn" />
 
 
                 </RelativeLayout>
@@ -315,7 +316,8 @@
                             android:outlineAmbientShadowColor="@color/color_common_btn"
                             android:textOff="OFF"
                             android:textOn="ON"
-                            app:thumbTint="@color/color_common_btn" />
+                            app:thumbTint="@color/color_common_btn"
+                            app:trackTint="@color/color_common_btn" />
 
 
                     </RelativeLayout>
@@ -359,7 +361,8 @@
                             android:outlineAmbientShadowColor="@color/app_color"
                             android:textOff="OFF"
                             android:textOn="ON"
-                            app:thumbTint="@color/color_common_btn" />
+                            app:thumbTint="@color/color_common_btn"
+                            app:trackTint="@color/color_common_btn" />
                     </RelativeLayout>
                 </LinearLayout>
             </LinearLayout>

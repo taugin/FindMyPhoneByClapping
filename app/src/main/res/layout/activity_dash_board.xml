@@ -226,20 +226,21 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:paddingStart="8dp">
 
                             <ImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_centerVertical="true"
-                                android:layout_marginStart="12dp"
+                                android:layout_marginHorizontal="4dp"
                                 android:src="@drawable/settings_dash" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
-                                android:layout_marginEnd="40dp"
+                                android:layout_marginHorizontal="4dp"
                                 android:clickable="false"
                                 android:gravity="center"
                                 android:minWidth="128dp"
@@ -294,7 +295,8 @@
                     android:layout_height="30dp"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/phone_finder" />
+                    android:src="@drawable/phone_finder"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/find_phone_text"
@@ -332,7 +334,8 @@
                     android:layout_height="30dp"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/setting_icon" />
+                    android:src="@drawable/setting_icon"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/setting_text"
@@ -373,7 +376,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/refer" />
+                    android:src="@drawable/refer"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/refer_txt"
@@ -413,7 +417,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/privacy" />
+                    android:src="@drawable/privacy"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/privacy_txt"
@@ -453,7 +458,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/terms" />
+                    android:src="@drawable/terms"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/privacy_policy_txt"
@@ -492,7 +498,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_language" />
+                    android:src="@drawable/ic_language"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/change_language_txt"

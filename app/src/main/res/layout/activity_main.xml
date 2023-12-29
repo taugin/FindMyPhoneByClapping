@@ -168,7 +168,8 @@
                     android:layout_height="30dp"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/phone_finder" />
+                    android:src="@drawable/phone_finder"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/find_phone_text"
@@ -206,7 +207,8 @@
                     android:layout_height="30dp"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/setting_icon" />
+                    android:src="@drawable/setting_icon"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/setting_text"
@@ -247,7 +249,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/refer" />
+                    android:src="@drawable/refer"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/refer_txt"
@@ -287,7 +290,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/privacy" />
+                    android:src="@drawable/privacy"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/privacy_txt"
@@ -327,7 +331,8 @@
                     android:layout_gravity="center_vertical"
                     android:padding="2dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/terms" />
+                    android:src="@drawable/terms"
+                    app:tint="@color/app_color" />
 
                 <TextView
                     android:id="@+id/privacy_policy_txt"
