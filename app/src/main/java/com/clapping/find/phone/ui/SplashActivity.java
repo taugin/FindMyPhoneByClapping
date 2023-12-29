@@ -16,7 +16,7 @@ import com.clapping.find.phone.BuildConfig;
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.app.AdHelper;
 import com.clapping.find.phone.remote.RCManager;
-import com.hauyu.adsdk.AdSdk;
+import com.pumob.adsdk.AdSdk;
 
 public class SplashActivity extends BaseActivity {
 

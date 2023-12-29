@@ -11,14 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 
+import com.clapping.find.phone.R;
 import com.clapping.find.phone.remote.RCManager;
-import com.clapping.find.phone.ui.AdEmptyActivity;
+import com.clapping.find.phone.ui.LoadingActivity;
 import com.clapping.find.phone.ui.DashBoardActivity;
-import com.hauyu.adsdk.AdParams;
-import com.hauyu.adsdk.AdSdk;
-import com.hauyu.adsdk.OnAdEventListener;
-import com.hauyu.adsdk.OnAdSdkListener;
-import com.hauyu.adsdk.SimpleAdSdkListener;
+import com.pumob.adsdk.AdParams;
+import com.pumob.adsdk.AdSdk;
+import com.pumob.adsdk.OnAdEventListener;
+import com.pumob.adsdk.OnAdSdkListener;
+import com.pumob.adsdk.SimpleAdSdkListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -168,15 +169,15 @@ public class AdHelper {
     public static void showBroccoli(View adLayoutView) {
         try {
             Broccoli broccoli = new Broccoli();
-            broccoli.addPlaceholders(adLayoutView.findViewById(com.android.widget.R.id.rab_native_icon)
-                    , adLayoutView.findViewById(com.android.widget.R.id.rab_native_title)
-                    , adLayoutView.findViewById(com.android.widget.R.id.rab_native_detail)
-                    , adLayoutView.findViewById(com.android.widget.R.id.rab_native_action_btn));
+            broccoli.addPlaceholders(adLayoutView.findViewById(R.id.rab_native_icon)
+                    , adLayoutView.findViewById(R.id.rab_native_title)
+                    , adLayoutView.findViewById(R.id.rab_native_detail)
+                    , adLayoutView.findViewById(R.id.rab_native_action_btn));
 
             broccoli.addPlaceholder(new PlaceholderParameter.Builder()
                     .setDrawable(new BroccoliGradientDrawable(Color.parseColor("#DDDDDD"),
                             Color.parseColor("#CCCCCC"), 0, 1000, new LinearInterpolator()))
-                    .setView(adLayoutView.findViewById(com.android.widget.R.id.rab_native_cover_info))
+                    .setView(adLayoutView.findViewById(R.id.rab_native_cover_info))
                     .build());
             broccoli.show();
         } catch (Exception e) {
@@ -272,6 +273,6 @@ public class AdHelper {
      * @param runnable
      */
     public static void showInterstitialAfterLoading(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
-        AdEmptyActivity.showInterstitialAfterLoading(activity, intent, sceneName, runnable);
+        LoadingActivity.showInterstitialAfterLoading(activity, intent, sceneName, runnable);
     }
 }

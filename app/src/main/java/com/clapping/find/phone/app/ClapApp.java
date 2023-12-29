@@ -7,10 +7,10 @@ import android.os.Bundle;
 
 import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.utils.ChangeLanguage;
-import com.hauyu.adsdk.InternalStat;
-import com.hauyu.adsdk.core.framework.ActivityMonitor;
-import com.moon.BcSdk;
-import com.moon.listener.OnDataListener;
+import com.pumob.adsdk.InternalStat;
+import com.pumob.adsdk.core.framework.ActivityMonitor;
+import com.pumob.bcsdk.BcSdk;
+import com.pumob.bcsdk.OnDataListener;
 
 import java.lang.ref.WeakReference;
 import java.util.Map;
@@ -39,11 +39,6 @@ public class ClapApp extends Application {
             @Override
             public void onReferrerResult(String status, String mediaSource, boolean fromClick) {
                 Stat.init(getApplicationContext());
-            }
-
-            @Override
-            public void onReportEvent(Context context, String s, String s1, Map<String, Object> map) {
-                InternalStat.reportEvent(context, s, s1, map);
             }
         });
         Stat.initOneSignal(this);

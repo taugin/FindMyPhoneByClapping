@@ -21,8 +21,8 @@ import com.clapping.find.phone.log.Log;
 import com.clapping.find.phone.remote.RCManager;
 import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.utils.ChangeLanguage;
-import com.hauyu.adsdk.OnAdSdkListener;
-import com.hauyu.adsdk.Utils;
+import com.pumob.adsdk.OnAdSdkListener;
+import com.pumob.adsdk.utils.Utils;
 
 import java.util.List;
 import java.util.Locale;

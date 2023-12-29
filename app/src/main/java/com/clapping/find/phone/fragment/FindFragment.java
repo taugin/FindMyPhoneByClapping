@@ -26,9 +26,9 @@ import com.clapping.find.phone.stat.Stat;
 import com.clapping.find.phone.ui.DetectionService;
 import com.clapping.find.phone.ui.UseTipActivity;
 import com.clapping.find.phone.utils.SPUtils;
-import com.hauyu.adsdk.Utils;
-import com.moon.BcSdk;
-import com.moon.listener.OnPermissionListener;
+import com.pumob.adsdk.utils.Utils;
+import com.pumob.bcsdk.BcSdk;
+import com.pumob.bcsdk.OnPermissionListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;

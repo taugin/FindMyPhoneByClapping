@@ -75,7 +75,7 @@
         </activity>
         <activity android:name=".ui.LanguageActivity" />
         <activity
-            android:name=".ui.AdEmptyActivity"
+            android:name=".ui.LoadingActivity"
             android:theme="@style/AdEmptyStyle" />
 
         <service

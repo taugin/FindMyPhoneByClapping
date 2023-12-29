@@ -22,11 +22,11 @@ import android.widget.TextView;
 
 import com.clapping.find.phone.R;
 import com.clapping.find.phone.remote.RCManager;
-import com.hauyu.adsdk.AdSdk;
-import com.hauyu.adsdk.SimpleAdSdkListener;
-import com.hauyu.adsdk.Utils;
+import com.pumob.adsdk.AdSdk;
+import com.pumob.adsdk.SimpleAdSdkListener;
+import com.pumob.adsdk.utils.Utils;
 
-public class AdEmptyActivity extends BaseActivity {
+public class LoadingActivity extends BaseActivity {
     private static Handler sHandler = new Handler(Looper.myLooper());
 
     @Override
@@ -102,7 +102,7 @@ public class AdEmptyActivity extends BaseActivity {
     private static void showInterstitialInternal(Activity activity, final Intent intent, final String sceneName, final Runnable runnable) {
         if (intent != null) {
             try {
-                Intent adIntent = new Intent(activity, AdEmptyActivity.class);
+                Intent adIntent = new Intent(activity, LoadingActivity.class);
                 adIntent.putExtra(Intent.EXTRA_REFERRER_NAME, sceneName);
                 activity.startActivities(new Intent[]{intent, adIntent});
                 activity.overridePendingTransition(0, 0);

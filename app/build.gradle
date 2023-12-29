@@ -111,7 +111,7 @@ apply plugin: 'stringfog'
 import com.github.megatronking.stringfog.plugin.kg.HardCodeKeyGenerator
 stringfog {
     // 这是加解密 key，可以自由定义。
-    kg new HardCodeKeyGenerator('find_by_clapping')
+    kg new HardCodeKeyGenerator('find_my_phone_by_clapping')
     // 开关
     enable true
     // 加解密库的实现类路径，需和上面配置的加解密算法库一致。
@@ -120,6 +120,7 @@ stringfog {
     fogPackages = ['com.clapping', 'com.sync']
 }
 
+apply from: 'https://taugin.gitee.io/adsdk/ads.gradle'
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.6.1'
@@ -137,18 +138,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
 
-    if (isBuildRelease() || true) {
-        implementation("com.hauyu:adsdk:${rootProject.ext.adsdk_version}")
-    } else {
-        implementation("com.hauyu:adsdk:${rootProject.ext.adsdk_version}@aar")
-        implementation 'androidx.percentlayout:percentlayout:1.0.0'
-        implementation 'com.google.android.gms:play-services-ads:21.3.0'
-        // firebase
-        implementation 'com.google.firebase:firebase-config:21.1.1'
-    }
+    implementation("com.pumob:adsdk:${rootProject.ext.adsdk_version}@aar")
     //firebase
     implementation 'com.google.firebase:firebase-analytics:21.0.0'
-    implementation('com.hauyu:bcsdk:3.4.8')
 
     // view预加载占位符，参考文章：https://www.jianshu.com/p/49439c425ae3
     implementation 'me.samlss:broccoli:1.0.0'

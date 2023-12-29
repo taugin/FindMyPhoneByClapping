@@ -139,7 +139,7 @@
 
         <include
             android:id="@+id/ad_include_layout"
-            layout="@layout/rab_card_tiny" />
+            layout="@layout/kom_layout_tiny" />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

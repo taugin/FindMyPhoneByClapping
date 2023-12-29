@@ -28,10 +28,10 @@ import android.widget.TextView;
 
 import com.clapping.find.phone.log.Log;
 import com.clapping.find.phone.utils.ChangeLanguage;
-import com.hauyu.adsdk.AdImpData;
-import com.hauyu.adsdk.Utils;
-import com.hauyu.adsdk.core.db.DBManager;
-import com.hauyu.adsdk.core.framework.ActivityMonitor;
+import com.pumob.adsdk.AdImpData;
+import com.pumob.adsdk.core.db.DBManager;
+import com.pumob.adsdk.core.framework.ActivityMonitor;
+import com.pumob.adsdk.utils.Utils;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
