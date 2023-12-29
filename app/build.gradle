@@ -25,33 +25,33 @@ static def getDate() {
     return formattedDate
 }
 
-def PRODUCT_NAME = ["com.clap.find.tool.myphone": "ClapFindMyPhone"]
-def PRIVACY_URL = ["com.clap.find.tool.myphone": "https://sites.google.com/view/claptofindmyphone2023/policy"]
-def EMAIL_US_ADDRESS = ["com.clap.find.tool.myphone": "xmwang8901@gmail.com"]
-def UTM = ["com.clap.find.tool.myphone": "ClapFindMyPhone"]
-def ONESIGNAL_APP_ID = ["com.clap.find.tool.myphone": "9f8eec54-8293-402b-b4fd-ba0371650141"]
-def TALKING_DATA_APP_KEY = ["com.clap.find.tool.myphone": "8017CA7F8E6F490D9F70A381DD0A3426"]
-def UMENG_APP_KEY = ["com.clap.find.tool.myphone": "6538e8fc58a9eb5b0af5d19e"]
+def PRODUCT_NAME = ["com.find.clap.myphone.whilsting": "Fine My Phone By Clap"]
+def PRIVACY_URL = ["com.find.clap.myphone.whilsting": "https://sites.google.com/view/findmyphonebyclapping/policy"]
+def EMAIL_US_ADDRESS = ["com.find.clap.myphone.whilsting": "halfOdfy@gmail.com"]
+def UTM = ["com.find.clap.myphone.whilsting": "Fine My Phone By Clap"]
+def ONESIGNAL_APP_ID = ["com.find.clap.myphone.whilsting": ""]
+def TALKING_DATA_APP_KEY = ["com.find.clap.myphone.whilsting": "6A9D04E0AB664C0DBB10A5CB3C4D06C8"]
+def UMENG_APP_KEY = ["com.find.clap.myphone.whilsting": "658e726495b14f599d0c66ee"]
 
 
 android {
     signingConfigs {
         release {
-            keyAlias 'clapfindphone'
-            keyPassword 'cfp1568794'
-            def keystore = rootDir.toString() + File.separator + "keystore" + File.separator + "clapfindphone_pwd_cfp1568794.jks";
+            keyAlias 'findphoneclap'
+            keyPassword 'findmy9587456'
+            def keystore = rootDir.toString() + File.separator + "keystore" + File.separator + "findphoneclap_pwd_findmy9587456.jks";
             System.out.println("keystore : " + keystore);
             storeFile file(keystore)
-            storePassword 'cfp1568794'
+            storePassword 'findmy9587456'
         }
     }
     compileSdk 33
     defaultConfig {
-        applicationId "com.clap.find.tool.myphone"
+        applicationId "com.find.clap.myphone.whilsting"
         minSdk 24
         targetSdk 33
-        versionCode 10101
-        versionName "1.1.1"
+        versionCode 10001
+        versionName "1.0.1"
         multiDexEnabled true
 
         buildConfigField "String", "PRIVACY_URL", "\"" + PRIVACY_URL[applicationId] + "\""
